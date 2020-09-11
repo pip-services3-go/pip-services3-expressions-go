@@ -84,7 +84,11 @@ func (c *GenericWordState) NextToken(
 //   - toSymbol: Last character index of the interval.
 //   - enable: <code>true</code> if this state should use characters in the given range.
 func (c *GenericWordState) SetWordChars(fromSymbol rune, toSymbol rune, enable bool) {
-	c.mp.AddInterval(fromSymbol, toSymbol, enable)
+	if enable {
+		c.mp.AddInterval(fromSymbol, toSymbol, true)
+	} else {
+		c.mp.AddInterval(fromSymbol, toSymbol, nil)
+	}
 }
 
 // Clears definitions of word chars.

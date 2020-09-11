@@ -58,7 +58,11 @@ func (c *GenericWhitespaceState) NextToken(
 //   - toSymbol: Last character index of the interval.
 //   - enable: <code>true</code> if this state should ignore characters in the given range.
 func (c *GenericWhitespaceState) SetWhitespaceChars(fromSymbol rune, toSymbol rune, enable bool) {
-	c.mp.AddInterval(fromSymbol, toSymbol, enable)
+	if enable {
+		c.mp.AddInterval(fromSymbol, toSymbol, true)
+	} else {
+		c.mp.AddInterval(fromSymbol, toSymbol, nil)
+	}
 }
 
 // Clears definitions of whitespace characters.
