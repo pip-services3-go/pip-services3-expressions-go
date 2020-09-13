@@ -1,4 +1,4 @@
-package csv
+package tokenizers
 
 import (
 	"strings"
@@ -8,11 +8,12 @@ import (
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/utilities"
 )
 
-// Implements a quote string state object for CSV streams.
-type CsvQuoteState struct{}
+// Implements an Expression-specific quote string state object.
+type ExpressionQuoteState struct {
+}
 
-func NewCsvQuoteState() *CsvQuoteState {
-	c := &CsvQuoteState{}
+func NewExpressionQuoteState() *ExpressionQuoteState {
+	c := &ExpressionQuoteState{}
 	return c
 }
 
@@ -22,9 +23,8 @@ func NewCsvQuoteState() *CsvQuoteState {
 //   - reader: A textual string to be tokenized.
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
-func (c *CsvQuoteState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
-
+func (c *ExpressionQuoteState) NextToken(reader io.IPushbackReader,
+	tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 	firstSymbol, err := reader.Read()
 	if err != nil {
 		return nil, err
@@ -46,11 +46,13 @@ func (c *CsvQuoteState) NextToken(
 			if err != nil {
 				return nil, err
 			}
+
 			if chr == firstSymbol {
-				nextSymbol, err = reader.Read()
-				if err != nil {
-					return nil, err
+				nextSymbol, err1 = reader.Read()
+				if err1 != nil {
+					return nil, err1
 				}
+
 				tokenValue.WriteRune(nextSymbol)
 			} else {
 				break
@@ -59,11 +61,16 @@ func (c *CsvQuoteState) NextToken(
 
 		nextSymbol, err1 = reader.Read()
 		if err1 != nil {
-			return nil, err
+			return nil, err1
 		}
 	}
 
-	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String()), nil
+	tokenType := tokenizers.Quoted
+	if firstSymbol == '"' {
+		tokenType = tokenizers.Word
+	}
+
+	return tokenizers.NewToken(tokenType, tokenValue.String()), nil
 }
 
 // Encodes a string value.
@@ -72,7 +79,7 @@ func (c *CsvQuoteState) NextToken(
 //   - value: A string value to be encoded.
 //   - quoteSymbol: A string quote character.
 // Returns: An encoded string.
-func (c *CsvQuoteState) EncodeString(value string, quoteSymbol rune) string {
+func (c *ExpressionQuoteState) EncodeString(value string, quoteSymbol rune) string {
 	result := strings.Builder{}
 	quoteString := string(quoteSymbol)
 	result.WriteRune(quoteSymbol)
@@ -85,9 +92,9 @@ func (c *CsvQuoteState) EncodeString(value string, quoteSymbol rune) string {
 //
 // Parameters:
 //   - value: A string value to be decoded.
-//   - quoteSymbol: A string quote character.
+//   - quoteChar: A string quote character.
 // Returns: An decoded string.
-func (c *CsvQuoteState) DecodeString(value string, quoteSymbol rune) string {
+func (c *ExpressionQuoteState) DecodeString(value string, quoteSymbol rune) string {
 	runes := []rune(value)
 	if len(runes) >= 2 && runes[0] == quoteSymbol && runes[len(value)-1] == quoteSymbol {
 		value = string(runes[1 : len(runes)-1])

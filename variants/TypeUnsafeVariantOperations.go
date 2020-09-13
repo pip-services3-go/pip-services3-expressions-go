@@ -132,7 +132,7 @@ func (c *TypeUnsafeVariantOperations) convertFromLong(value *Variant, newType in
 	result := EmptyVariant()
 	switch newType {
 	case Integer:
-		result.SetAsInteger(int32(value.AsLong()))
+		result.SetAsInteger(int(value.AsLong()))
 		return result
 	case Float:
 		result.SetAsFloat(float32(value.AsLong()))
@@ -158,7 +158,7 @@ func (c *TypeUnsafeVariantOperations) convertFromFloat(value *Variant, newType i
 	result := EmptyVariant()
 	switch newType {
 	case Integer:
-		result.SetAsInteger(int32(math.Trunc(float64(value.AsFloat()))))
+		result.SetAsInteger(int(math.Trunc(float64(value.AsFloat()))))
 		return result
 	case Long:
 		result.SetAsLong(int64(math.Trunc(float64(value.AsFloat()))))
@@ -178,7 +178,7 @@ func (c *TypeUnsafeVariantOperations) convertFromDouble(value *Variant, newType 
 	result := EmptyVariant()
 	switch newType {
 	case Integer:
-		result.SetAsInteger(int32(math.Trunc(value.AsDouble())))
+		result.SetAsInteger(int(math.Trunc(value.AsDouble())))
 		return result
 	case Long:
 		result.SetAsLong(int64(math.Trunc(value.AsDouble())))
@@ -198,7 +198,7 @@ func (c *TypeUnsafeVariantOperations) convertFromString(value *Variant, newType 
 	result := EmptyVariant()
 	switch newType {
 	case Integer:
-		result.SetAsInteger(int32(cconv.IntegerConverter.ToInteger(value.AsString())))
+		result.SetAsInteger(cconv.IntegerConverter.ToInteger(value.AsString()))
 		return result
 	case Long:
 		result.SetAsLong(int64(cconv.LongConverter.ToLong(value.AsString())))
@@ -270,7 +270,7 @@ func (c *TypeUnsafeVariantOperations) convertFromDateTime(value *Variant, newTyp
 	result := EmptyVariant()
 	switch newType {
 	case Integer:
-		result.SetAsInteger(int32(value.AsDateTime().Unix()))
+		result.SetAsInteger(int(value.AsDateTime().Unix()))
 		return result
 	case Long:
 		result.SetAsLong(value.AsDateTime().Unix())
@@ -287,7 +287,7 @@ func (c *TypeUnsafeVariantOperations) convertFromTimeSpan(value *Variant, newTyp
 	result := EmptyVariant()
 	switch newType {
 	case Integer:
-		result.SetAsInteger(int32(value.AsTimeSpan().Milliseconds()))
+		result.SetAsInteger(int(value.AsTimeSpan().Milliseconds()))
 		return result
 	case Long:
 		result.SetAsLong(value.AsTimeSpan().Milliseconds())

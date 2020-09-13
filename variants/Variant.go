@@ -38,7 +38,7 @@ func NewVariant(value interface{}) *Variant {
 // Params:
 //   - value: a variant value.
 // Returns: A created variant object
-func VariantFromInteger(value int32) *Variant {
+func VariantFromInteger(value int) *Variant {
 	c := &Variant{}
 	c.SetAsInteger(value)
 	return c
@@ -149,15 +149,15 @@ func (c *Variant) Type() int {
 }
 
 // Gets variant value as integer
-func (c *Variant) AsInteger() int32 {
-	return c.value.(int32)
+func (c *Variant) AsInteger() int {
+	return c.value.(int)
 }
 
 // Sets variant value as integer
 //
 // Parameters:
 //   - value a value to be set
-func (c *Variant) SetAsInteger(value int32) {
+func (c *Variant) SetAsInteger(value int) {
 	c.typ = Integer
 	c.value = value
 }
@@ -279,9 +279,9 @@ func (c *Variant) SetAsObject(value interface{}) {
 
 	switch value.(type) {
 	case int:
-		c.value = int32(c.value.(int))
 		c.typ = Integer
 	case int32:
+		c.value = int(c.value.(int32))
 		c.typ = Integer
 	case uint:
 		c.value = int64(c.value.(uint))
