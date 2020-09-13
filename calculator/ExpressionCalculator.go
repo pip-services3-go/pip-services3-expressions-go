@@ -280,26 +280,43 @@ func (c *ExpressionCalculator) evaluateLogical(
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.And(value1, value2))
+			result, err := c.variantOperations.And(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Or:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Or(value1, value2))
+			result, err := c.variantOperations.Or(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Xor:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Xor(value1, value2))
+			result, err := c.variantOperations.Xor(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Not:
 		{
-			stack.Push(c.variantOperations.Not(stack.Pop()))
+			value := stack.Pop()
+			result, err := c.variantOperations.Not(value)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	}
@@ -315,61 +332,98 @@ func (c *ExpressionCalculator) evaluateArithmetical(
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Add(value1, value2))
+			result, err := c.variantOperations.Add(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Minus:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Sub(value1, value2))
+			result, err := c.variantOperations.Sub(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Star:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Mul(value1, value2))
+			result, err := c.variantOperations.Mul(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Slash:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Div(value1, value2))
+			result, err := c.variantOperations.Div(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Procent:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Mod(value1, value2))
+			result, err := c.variantOperations.Mod(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Power:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Pow(value1, value2))
+			result, err := c.variantOperations.Pow(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Unary:
 		{
-			stack.Push(c.variantOperations.Negative(stack.Pop()))
+			value := stack.Pop()
+			result, err := c.variantOperations.Negative(value)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.ShiftLeft:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Lsh(value1, value2))
+			result, err := c.variantOperations.Lsh(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.ShiftRight:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Rsh(value1, value2))
+			result, err := c.variantOperations.Rsh(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	}
@@ -385,42 +439,66 @@ func (c *ExpressionCalculator) evaluateBoolean(
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Equal(value1, value2))
+			result, err := c.variantOperations.Equal(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.NotEqual:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.NotEqual(value1, value2))
+			result, err := c.variantOperations.NotEqual(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.More:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.More(value1, value2))
+			result, err := c.variantOperations.More(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Less:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.Less(value1, value2))
+			result, err := c.variantOperations.Less(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.EqualMore:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.MoreEqual(value1, value2))
+			result, err := c.variantOperations.MoreEqual(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.EqualLess:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.LessEqual(value1, value2))
+			result, err := c.variantOperations.LessEqual(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	}
@@ -436,14 +514,22 @@ func (c *ExpressionCalculator) evaluateOther(
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.In(value1, value2))
+			result, err := c.variantOperations.In(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.Element:
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			stack.Push(c.variantOperations.GetElement(value1, value2))
+			result, err := c.variantOperations.GetElement(value1, value2)
+			if err != nil {
+				return false, err
+			}
+			stack.Push(result)
 			return true, nil
 		}
 	case parsers.IsNull:

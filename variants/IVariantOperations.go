@@ -8,7 +8,7 @@ type IVariantOperations interface {
 	//   - value: A variant value to be converted.
 	//   - newType: A type of object to be returned.
 	// Returns: A converted Variant value.
-	Convert(value *Variant, newType int) *Variant
+	Convert(value *Variant, newType int) (*Variant, error)
 
 	// Performs '+' operation for two variants.
 	//
@@ -16,7 +16,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Add(value1 *Variant, value2 *Variant) *Variant
+	Add(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '-' operation for two variants.
 	//
@@ -24,7 +24,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Sub(value1 *Variant, value2 *Variant) *Variant
+	Sub(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '*' operation for two variants.
 	//
@@ -32,7 +32,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Mul(value1 *Variant, value2 *Variant) *Variant
+	Mul(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '/' operation for two variants.
 	//
@@ -40,7 +40,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Div(value1 *Variant, value2 *Variant) *Variant
+	Div(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '%' operation for two variants.
 	//
@@ -48,7 +48,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Mod(value1 *Variant, value2 *Variant) *Variant
+	Mod(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '^' operation for two variants.
 	//
@@ -56,7 +56,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Pow(value1 *Variant, value2 *Variant) *Variant
+	Pow(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs AND operation for two variants.
 	//
@@ -64,7 +64,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	And(value1 *Variant, value2 *Variant) *Variant
+	And(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs OR operation for two variants.
 	//
@@ -72,7 +72,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Or(value1 *Variant, value2 *Variant) *Variant
+	Or(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs XOR operation for two variants.
 	//
@@ -80,7 +80,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Xor(value1 *Variant, value2 *Variant) *Variant
+	Xor(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs << operation for two variants.
 	//
@@ -88,7 +88,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Lsh(value1 *Variant, value2 *Variant) *Variant
+	Lsh(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs >> operation for two variants.
 	//
@@ -96,21 +96,21 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Rsh(value1 *Variant, value2 *Variant) *Variant
+	Rsh(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs NOT operation for a variant.
 	//
 	// Parameters:
 	//   - value: The operand for this operation.
 	// Returns: A result variant object.
-	Not(value *Variant) *Variant
+	Not(value *Variant) (*Variant, error)
 
 	// Performs unary '-' operation for a variant.
 	//
 	// Parameters:
 	//   - value: The operand for this operation.
 	// Returns: A result variant object.
-	Negative(value *Variant) *Variant
+	Negative(value *Variant) (*Variant, error)
 
 	// Performs '=' operation for two variants.
 	//
@@ -118,7 +118,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Equal(value1 *Variant, value2 *Variant) *Variant
+	Equal(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '<>' operation for two variants.
 	//
@@ -126,7 +126,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	NotEqual(value1 *Variant, value2 *Variant) *Variant
+	NotEqual(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '>' operation for two variants.
 	//
@@ -134,7 +134,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	More(value1 *Variant, value2 *Variant) *Variant
+	More(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '<' operation for two variants.
 	//
@@ -142,7 +142,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	Less(value1 *Variant, value2 *Variant) *Variant
+	Less(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '>=' operation for two variants.
 	//
@@ -150,7 +150,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	MoreEqual(value1 *Variant, value2 *Variant) *Variant
+	MoreEqual(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs '<=' operation for two variants.
 	//
@@ -158,7 +158,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	LessEqual(value1 *Variant, value2 *Variant) *Variant
+	LessEqual(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs IN operation for two variants.
 	//
@@ -166,7 +166,7 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	In(value1 *Variant, value2 *Variant) *Variant
+	In(value1 *Variant, value2 *Variant) (*Variant, error)
 
 	// Performs [] operation for two variants.
 	//
@@ -174,5 +174,5 @@ type IVariantOperations interface {
 	//   - value1: The first operand for this operation.
 	//   - value2: The second operand for this operation.
 	// Returns: A result variant object.
-	GetElement(value1 *Variant, value2 *Variant) *Variant
+	GetElement(value1 *Variant, value2 *Variant) (*Variant, error)
 }

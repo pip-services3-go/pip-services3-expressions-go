@@ -1,5 +1,7 @@
 package variants
 
+import "github.com/pip-services3-go/pip-services3-commons-go/errors"
+
 // Implements a strongly typed (type safe) variant operations manager object.
 type TypeSafeVariantOperations struct {
 	AbstractVariantOperations
@@ -19,13 +21,15 @@ func NewTypeSafeVariantOperations() *TypeSafeVariantOperations {
 //   - value: A variant value to be converted.
 //   - newType: A type of object to be returned.
 // Returns: A converted Variant value.
-func (c *TypeSafeVariantOperations) Convert(value *Variant, newType int) *Variant {
+func (c *TypeSafeVariantOperations) Convert(
+	value *Variant, newType int) (*Variant, error) {
+
 	if newType == Null {
 		result := EmptyVariant()
-		return result
+		return result, nil
 	}
 	if newType == value.Type() || newType == Object {
-		return value
+		return value, nil
 	}
 
 	switch value.Type() {
@@ -42,52 +46,70 @@ func (c *TypeSafeVariantOperations) Convert(value *Variant, newType int) *Varian
 	case Boolean:
 		break
 	case Object:
-		return value
+		return value, nil
 	case Array:
 		break
 	}
-	panic("Variant convertion from " + typeToString(value.Type()) +
-		" to " + typeToString(newType) + " is not supported.")
+
+	err := errors.NewUnsupportedError("", "CONV_NOT_SUPPORTED",
+		"Variant convertion from "+typeToString(value.Type())+
+			" to "+typeToString(newType)+" is not supported.")
+	return nil, err
 }
 
-func (c *TypeSafeVariantOperations) convertFromInteger(value *Variant, newType int) *Variant {
+func (c *TypeSafeVariantOperations) convertFromInteger(
+	value *Variant, newType int) (*Variant, error) {
+
 	result := EmptyVariant()
 	switch newType {
 	case Long:
 		result.SetAsLong(int64(value.AsInteger()))
-		return result
+		return result, nil
 	case Float:
 		result.SetAsFloat(float32(value.AsInteger()))
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(float64(value.AsInteger()))
-		return result
+		return result, nil
 	}
-	panic("Variant convertion from " + typeToString(value.Type()) +
-		" to " + typeToString(newType) + " is not supported.")
+
+	err := errors.NewUnsupportedError("", "CONV_NOT_SUPPORTED",
+		"Variant convertion from "+typeToString(value.Type())+
+			" to "+typeToString(newType)+" is not supported.")
+	return nil, err
 }
 
-func (c *TypeSafeVariantOperations) convertFromLong(value *Variant, newType int) *Variant {
+func (c *TypeSafeVariantOperations) convertFromLong(
+	value *Variant, newType int) (*Variant, error) {
+
 	result := EmptyVariant()
 	switch newType {
 	case Float:
 		result.SetAsFloat(float32(value.AsLong()))
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(float64(value.AsLong()))
-		return result
+		return result, nil
 	}
-	panic("Variant convertion from " + typeToString(value.Type()) +
-		" to " + typeToString(newType) + " is not supported.")
+
+	err := errors.NewUnsupportedError("", "CONV_NOT_SUPPORTED",
+		"Variant convertion from "+typeToString(value.Type())+
+			" to "+typeToString(newType)+" is not supported.")
+	return nil, err
 }
 
-func (c *TypeSafeVariantOperations) convertFromFloat(value *Variant, newType int) *Variant {
+func (c *TypeSafeVariantOperations) convertFromFloat(
+	value *Variant, newType int) (*Variant, error) {
+
 	result := EmptyVariant()
 	switch newType {
 	case Double:
 		result.SetAsDouble(float64(value.AsFloat()))
-		return result
+		return result, nil
 	}
-	panic("Variant convertion from " + typeToString(value.Type()) +
-		" to " + typeToString(newType) + " is not supported.")
+
+	err := errors.NewUnsupportedError("", "CONV_NOT_SUPPORTED",
+		"Variant convertion from "+typeToString(value.Type())+
+			" to "+typeToString(newType)+" is not supported.")
+	return nil, err
 }

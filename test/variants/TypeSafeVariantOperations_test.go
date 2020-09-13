@@ -11,14 +11,17 @@ func TestSafeOperations(t *testing.T) {
 	a := variants.NewVariant(123)
 	manager := variants.NewTypeSafeVariantOperations()
 
-	b := manager.Convert(a, variants.Float)
+	b, _ := manager.Convert(a, variants.Float)
 	assert.Equal(t, variants.Float, b.Type())
 	assert.Equal(t, float32(123.0), b.AsFloat())
 
 	c := variants.NewVariant(2)
-	assert.Equal(t, 125, manager.Add(a, c).AsInteger())
-	assert.Equal(t, 121, manager.Sub(a, c).AsInteger())
-	assert.False(t, manager.Equal(a, c).AsBoolean())
+	v, _ := manager.Add(a, c)
+	assert.Equal(t, 125, v.AsInteger())
+	v, _ = manager.Sub(a, c)
+	assert.Equal(t, 121, v.AsInteger())
+	v, _ = manager.Equal(a, c)
+	assert.False(t, v.AsBoolean())
 
 	array := []*variants.Variant{
 		variants.NewVariant("aaa"),
@@ -27,7 +30,10 @@ func TestSafeOperations(t *testing.T) {
 		variants.NewVariant("ddd"),
 	}
 	d := variants.NewVariant(array)
-	assert.True(t, manager.In(d, variants.NewVariant("ccc")).AsBoolean())
-	assert.False(t, manager.In(d, variants.NewVariant("eee")).AsBoolean())
-	assert.Equal(t, "bbb", manager.GetElement(d, variants.NewVariant(1)).AsString())
+	v, _ = manager.In(d, variants.NewVariant("ccc"))
+	assert.True(t, v.AsBoolean())
+	v, _ = manager.In(d, variants.NewVariant("eee"))
+	assert.False(t, v.AsBoolean())
+	v, _ = manager.GetElement(d, variants.NewVariant(1))
+	assert.Equal(t, "bbb", v.AsString())
 }

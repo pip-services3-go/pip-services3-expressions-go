@@ -1,8 +1,10 @@
 package variants
 
+import "github.com/pip-services3-go/pip-services3-commons-go/errors"
+
 // Implements an abstractd variant operations manager object.
 type AbstractVariantOperations struct {
-	convertFunc func(value *Variant, newType int) *Variant
+	convertFunc func(value *Variant, newType int) (*Variant, error)
 }
 
 // Convert variant type to string representation
@@ -46,9 +48,9 @@ func typeToString(value int) string {
 //   - newType: A type of object to be returned.
 // Returns: A converted Variant value.
 func (c *AbstractVariantOperations) Convert(
-	value *Variant, newType int) *Variant {
+	value *Variant, newType int) (*Variant, error) {
 	return c.convertFunc(value, newType)
-	//panic("Not implemented operation")
+	//err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED", "Not implemented operation")
 }
 
 // Performs '+' operation for two variants.
@@ -58,39 +60,46 @@ func (c *AbstractVariantOperations) Convert(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Add(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() + value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() + value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsFloat(value1.AsFloat() + value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(value1.AsDouble() + value2.AsDouble())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsTimeSpan(value1.AsTimeSpan() + value2.AsTimeSpan())
-		return result
+		return result, nil
 	case String:
 		result.SetAsString(value1.AsString() + value2.AsString())
-		return result
+		return result, nil
 	}
-	panic("Operation '+' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '+' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '-' operation for two variants.
@@ -100,39 +109,46 @@ func (c *AbstractVariantOperations) Add(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Sub(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() - value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() - value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsFloat(value1.AsFloat() - value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(value1.AsDouble() - value2.AsDouble())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsTimeSpan(value1.AsTimeSpan() - value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		result.SetAsTimeSpan(value1.AsDateTime().Sub(value2.AsDateTime()))
-		return result
+		return result, nil
 	}
-	panic("Operation '-' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '-' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '*' operation for two variants.
@@ -142,33 +158,40 @@ func (c *AbstractVariantOperations) Sub(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Mul(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() * value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() * value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsFloat(value1.AsFloat() * value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(value1.AsDouble() * value2.AsDouble())
-		return result
+		return result, nil
 	}
-	panic("Operation '*' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '*' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '/' operation for two variants.
@@ -178,33 +201,40 @@ func (c *AbstractVariantOperations) Mul(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Div(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() / value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() / value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsFloat(value1.AsFloat() / value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(value1.AsDouble() / value2.AsDouble())
-		return result
+		return result, nil
 	}
-	panic("Operation '/' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '/' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '%' operation for two variants.
@@ -214,27 +244,34 @@ func (c *AbstractVariantOperations) Div(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Mod(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() % value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() % value2.AsLong())
-		return result
+		return result, nil
 	}
-	panic("Operation '%' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '%' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '^' operation for two variants.
@@ -244,12 +281,12 @@ func (c *AbstractVariantOperations) Mod(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Pow(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Performs operation.
@@ -259,12 +296,24 @@ func (c *AbstractVariantOperations) Pow(
 	case Float:
 	case Double:
 		// Converts second operant to the type of the first operand.
-		value1 = c.Convert(value1, Double)
-		value2 = c.Convert(value2, Double)
+		var err error
+		value1, err = c.Convert(value1, Double)
+		if err != nil {
+			return nil, err
+		}
+
+		value2, err = c.Convert(value2, Double)
+		if err != nil {
+			return nil, err
+		}
+
 		result.SetAsDouble(value1.AsDouble() * value2.AsDouble())
-		return result
+		return result, nil
 	}
-	panic("Operation '^' is not supported for type " + typeToString(value1.Type()))
+
+	err := errors.NewUnsupportedError("",
+		"OP_NOT_SUPPORTED", "Operation '^' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs AND operation for two variants.
@@ -274,30 +323,37 @@ func (c *AbstractVariantOperations) Pow(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) And(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() & value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() & value2.AsLong())
-		return result
+		return result, nil
 	case Boolean:
 		result.SetAsBoolean(value1.AsBoolean() && value2.AsBoolean())
-		return result
+		return result, nil
 	}
-	panic("Operation AND is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("",
+		"OP_NOT_SUPPORTED", "Operation AND is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs OR operation for two variants.
@@ -307,30 +363,37 @@ func (c *AbstractVariantOperations) And(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Or(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() | value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() | value2.AsLong())
-		return result
+		return result, nil
 	case Boolean:
 		result.SetAsBoolean(value1.AsBoolean() || value2.AsBoolean())
-		return result
+		return result, nil
 	}
-	panic("Operation OR is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation OR is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs XOR operation for two variants.
@@ -340,31 +403,38 @@ func (c *AbstractVariantOperations) Or(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Xor(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() ^ value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() ^ value2.AsLong())
-		return result
+		return result, nil
 	case Boolean:
 		result.SetAsBoolean((value1.AsBoolean() && !value2.AsBoolean()) ||
 			(!value1.AsBoolean() && value2.AsBoolean()))
-		return result
+		return result, nil
 	}
-	panic("Operation XOR is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("",
+		"OP_NOT_SUPPORTED", "Operation XOR is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '<<' operation for two variants.
@@ -374,27 +444,34 @@ func (c *AbstractVariantOperations) Xor(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Lsh(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, Integer)
+	var err error
+	value2, err = c.Convert(value2, Integer)
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() << value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() << value2.AsInteger())
-		return result
+		return result, nil
 	}
-	panic("Operation '<<' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("",
+		"OP_NOT_SUPPORTED", "Operation '<<' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '>>' operation for two variants.
@@ -404,27 +481,34 @@ func (c *AbstractVariantOperations) Lsh(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Rsh(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, Integer)
+	var err error
+	value2, err = c.Convert(value2, Integer)
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsInteger(value1.AsInteger() >> value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(value1.AsLong() >> value2.AsInteger())
-		return result
+		return result, nil
 	}
-	panic("Operation '>>' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '>>' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs NOT operation for a variant.
@@ -432,28 +516,31 @@ func (c *AbstractVariantOperations) Rsh(
 // Parameters:
 //   - value: The operand for this operation.
 // Returns: A result variant object.
-func (c *AbstractVariantOperations) Not(value *Variant) *Variant {
+func (c *AbstractVariantOperations) Not(value *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value.Type() == Null {
 		result.SetAsBoolean(true)
-		return result
+		return result, nil
 	}
 
 	// Performs operation.
 	switch value.Type() {
 	case Integer:
 		result.SetAsInteger(^value.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(^value.AsLong())
-		return result
+		return result, nil
 	case Boolean:
 		result.SetAsBoolean(!value.AsBoolean())
-		return result
+		return result, nil
 	}
-	panic("Operation NOT is not supported for type " + typeToString(value.Type()))
+
+	err := errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation NOT is not supported for type "+typeToString(value.Type()))
+	return nil, err
 }
 
 // Performs unary '-' operation for a variant.
@@ -461,30 +548,33 @@ func (c *AbstractVariantOperations) Not(value *Variant) *Variant {
 // Parameters:
 //   - value: The operand for this operation.
 // Returns: A result variant object.
-func (c *AbstractVariantOperations) Negative(value *Variant) *Variant {
+func (c *AbstractVariantOperations) Negative(value *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Performs operation.
 	switch value.Type() {
 	case Integer:
 		result.SetAsInteger(-value.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsLong(-value.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsFloat(-value.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsDouble(-value.AsDouble())
-		return result
+		return result, nil
 	}
-	panic("Operation unary '-' is not supported for type " + typeToString(value.Type()))
+
+	err := errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation unary '-' is not supported for type "+typeToString(value.Type()))
+	return nil, err
 }
 
 // Performs '=' operation for two variants.
@@ -494,55 +584,62 @@ func (c *AbstractVariantOperations) Negative(value *Variant) *Variant {
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Equal(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null && value2.Type() == Null {
 		result.SetAsBoolean(true)
-		return result
+		return result, nil
 	}
 	if value1.Type() == Null || value2.Type() == Null {
 		result.SetAsBoolean(false)
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsBoolean(value1.AsInteger() == value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsBoolean(value1.AsLong() == value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsBoolean(value1.AsFloat() == value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsBoolean(value1.AsDouble() == value2.AsDouble())
-		return result
+		return result, nil
 	case String:
 		result.SetAsBoolean(value1.AsString() == value2.AsString())
-		return result
+		return result, nil
 	case Boolean:
 		result.SetAsBoolean(value1.AsBoolean() == value2.AsBoolean())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsBoolean(value1.AsTimeSpan() == value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		date1 := value1.AsDateTime()
 		date2 := value2.AsDateTime()
 		result.SetAsBoolean(date1.Equal(date2))
-		return result
+		return result, nil
 	case Object:
 		result.SetAsBoolean(value1.AsObject() == value2.AsObject())
-		return result
+		return result, nil
 	}
-	panic("Operation '=' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '=' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '<>' operation for two variants.
@@ -552,55 +649,62 @@ func (c *AbstractVariantOperations) Equal(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) NotEqual(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null && value2.Type() == Null {
 		result.SetAsBoolean(false)
-		return result
+		return result, nil
 	}
 	if value1.Type() == Null || value2.Type() == Null {
 		result.SetAsBoolean(true)
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsBoolean(value1.AsInteger() != value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsBoolean(value1.AsLong() != value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsBoolean(value1.AsFloat() != value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsBoolean(value1.AsDouble() != value2.AsDouble())
-		return result
+		return result, nil
 	case String:
 		result.SetAsBoolean(value1.AsString() != value2.AsString())
-		return result
+		return result, nil
 	case Boolean:
 		result.SetAsBoolean(value1.AsBoolean() != value2.AsBoolean())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsBoolean(value1.AsTimeSpan() != value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		date1 := value1.AsDateTime()
 		date2 := value2.AsDateTime()
 		result.SetAsBoolean(!date1.Equal(date2))
-		return result
+		return result, nil
 	case Object:
 		result.SetAsBoolean(value1.AsObject() != value2.AsObject())
-		return result
+		return result, nil
 	}
-	panic("Operation '<>' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '<>' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '>' operation for two variants.
@@ -610,42 +714,49 @@ func (c *AbstractVariantOperations) NotEqual(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) More(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsBoolean(value1.AsInteger() > value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsBoolean(value1.AsLong() > value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsBoolean(value1.AsFloat() > value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsBoolean(value1.AsDouble() > value2.AsDouble())
-		return result
+		return result, nil
 	case String:
 		result.SetAsBoolean(value1.AsString() > value2.AsString())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsBoolean(value1.AsTimeSpan() > value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		result.SetAsBoolean(value1.AsDateTime().After(value2.AsDateTime()))
-		return result
+		return result, nil
 	}
-	panic("Operation '>' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '>' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '<' operation for two variants.
@@ -655,42 +766,49 @@ func (c *AbstractVariantOperations) More(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) Less(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsBoolean(value1.AsInteger() < value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsBoolean(value1.AsLong() < value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsBoolean(value1.AsFloat() < value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsBoolean(value1.AsDouble() < value2.AsDouble())
-		return result
+		return result, nil
 	case String:
 		result.SetAsBoolean(value1.AsString() < value2.AsString())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsBoolean(value1.AsTimeSpan() < value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		result.SetAsBoolean(value1.AsDateTime().Before(value2.AsDateTime()))
-		return result
+		return result, nil
 	}
-	panic("Operation '<' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '<' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '>=' operation for two variants.
@@ -700,44 +818,51 @@ func (c *AbstractVariantOperations) Less(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) MoreEqual(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsBoolean(value1.AsInteger() >= value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsBoolean(value1.AsLong() >= value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsBoolean(value1.AsFloat() >= value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsBoolean(value1.AsDouble() >= value2.AsDouble())
-		return result
+		return result, nil
 	case String:
 		result.SetAsBoolean(value1.AsString() >= value2.AsString())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsBoolean(value1.AsTimeSpan() >= value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		date1 := value1.AsDateTime()
 		date2 := value2.AsDateTime()
 		result.SetAsBoolean(date1.After(date2) || date1.Equal(date2))
-		return result
+		return result, nil
 	}
-	panic("Operation '>=' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '>=' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs '<=' operation for two variants.
@@ -747,44 +872,51 @@ func (c *AbstractVariantOperations) MoreEqual(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) LessEqual(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Converts second operant to the type of the first operand.
-	value2 = c.Convert(value2, value1.Type())
+	var err error
+	value2, err = c.Convert(value2, value1.Type())
+	if err != nil {
+		return nil, err
+	}
 
 	// Performs operation.
 	switch value1.Type() {
 	case Integer:
 		result.SetAsBoolean(value1.AsInteger() <= value2.AsInteger())
-		return result
+		return result, nil
 	case Long:
 		result.SetAsBoolean(value1.AsLong() <= value2.AsLong())
-		return result
+		return result, nil
 	case Float:
 		result.SetAsBoolean(value1.AsFloat() <= value2.AsFloat())
-		return result
+		return result, nil
 	case Double:
 		result.SetAsBoolean(value1.AsDouble() <= value2.AsDouble())
-		return result
+		return result, nil
 	case String:
 		result.SetAsBoolean(value1.AsString() <= value2.AsString())
-		return result
+		return result, nil
 	case TimeSpan:
 		result.SetAsBoolean(value1.AsTimeSpan() <= value2.AsTimeSpan())
-		return result
+		return result, nil
 	case DateTime:
 		date1 := value1.AsDateTime()
 		date2 := value2.AsDateTime()
 		result.SetAsBoolean(date1.Before(date2) || date1.Equal(date2))
-		return result
+		return result, nil
 	}
-	panic("Operation '<=' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '<=' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }
 
 // Performs IN operation for two variants.
@@ -794,32 +926,36 @@ func (c *AbstractVariantOperations) LessEqual(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) In(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
 	// Processes null arrays.
 	if value1.AsObject() == nil {
 		result.SetAsBoolean(false)
-		return result
+		return result, nil
 	}
 
 	if value1.Type() == Array {
 		array := value1.AsArray()
 		for _, element := range array {
-			eq := c.Equal(value2, element)
+			eq, err := c.Equal(value2, element)
+			if err != nil {
+				return nil, err
+			}
 			if eq.Type() == Boolean && eq.AsBoolean() {
 				result.SetAsBoolean(true)
-				return result
+				return result, nil
 			}
 		}
 		result.SetAsBoolean(false)
-		return result
+		return result, nil
 	}
+
 	return c.Equal(value1, value2)
 }
 
@@ -830,23 +966,31 @@ func (c *AbstractVariantOperations) In(
 //   - value2: The second operand for this operation.
 // Returns: A result variant object.
 func (c *AbstractVariantOperations) GetElement(
-	value1 *Variant, value2 *Variant) *Variant {
+	value1 *Variant, value2 *Variant) (*Variant, error) {
 	result := EmptyVariant()
 
 	// Processes VariantType.Null values.
 	if value1.Type() == Null || value2.Type() == Null {
-		return result
+		return result, nil
 	}
 
-	value2 = c.Convert(value2, Integer)
+	var err error
+	value2, err = c.Convert(value2, Integer)
+	if err != nil {
+		return nil, err
+	}
+
 	index := int(value2.AsInteger())
 
 	if value1.Type() == Array {
-		return value1.GetByIndex(index)
+		return value1.GetByIndex(index), nil
 	} else if value1.Type() == String {
 		runes := []rune(value1.AsString())
 		result.SetAsString(string(runes[value2.AsInteger()]))
-		return result
+		return result, nil
 	}
-	panic("Operation '[]' is not supported for type " + typeToString(value1.Type()))
+
+	err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED",
+		"Operation '[]' is not supported for type "+typeToString(value1.Type()))
+	return nil, err
 }

@@ -108,7 +108,11 @@ func minFunctionCalculator(parameters []*variants.Variant,
 	result := getParameter(parameters, 0)
 	for i := 1; i < paramCount; i = i + 1 {
 		value := getParameter(parameters, i)
-		if variantOperations.More(result, value).AsBoolean() {
+		temp, err := variantOperations.More(result, value)
+		if err != nil {
+			return nil, err
+		}
+		if temp.AsBoolean() {
 			result = value
 		}
 	}
@@ -128,7 +132,11 @@ func maxFunctionCalculator(parameters []*variants.Variant,
 	result := getParameter(parameters, 0)
 	for i := 1; i < paramCount; i++ {
 		value := getParameter(parameters, i)
-		if variantOperations.Less(result, value).AsBoolean() {
+		temp, err := variantOperations.Less(result, value)
+		if err != nil {
+			return nil, err
+		}
+		if temp.AsBoolean() {
 			result = value
 		}
 	}
@@ -148,7 +156,11 @@ func sumFunctionCalculator(parameters []*variants.Variant,
 	result := getParameter(parameters, 0)
 	for i := 1; i < paramCount; i++ {
 		value := getParameter(parameters, i)
-		result = variantOperations.Add(result, value)
+		var err error
+		result, err = variantOperations.Add(result, value)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return result, nil
@@ -164,7 +176,12 @@ func ifFunctionCalculator(parameters []*variants.Variant,
 	value1 := getParameter(parameters, 0)
 	value2 := getParameter(parameters, 1)
 	value3 := getParameter(parameters, 2)
-	condition := variantOperations.Convert(value1, variants.Boolean)
+
+	condition, err1 := variantOperations.Convert(value1, variants.Boolean)
+	if err1 != nil {
+		return nil, err1
+	}
+
 	result := value3
 	if condition.AsBoolean() {
 		result = value2
@@ -183,7 +200,10 @@ func chooseFunctionCalculator(parameters []*variants.Variant,
 	}
 
 	value1 := getParameter(parameters, 0)
-	condition := variantOperations.Convert(value1, variants.Integer)
+	condition, err := variantOperations.Convert(value1, variants.Integer)
+	if err != nil {
+		return nil, err
+	}
 	paramIndex := int(condition.AsInteger())
 
 	if paramCount < paramIndex+1 {
@@ -256,7 +276,10 @@ func absFunctionCalculator(parameters []*variants.Variant,
 		result.SetAsDouble(math.Abs(value.AsDouble()))
 		break
 	default:
-		value = variantOperations.Convert(value, variants.Double)
+		value, err = variantOperations.Convert(value, variants.Double)
+		if err != nil {
+			return nil, err
+		}
 		result.SetAsDouble(math.Abs(value.AsDouble()))
 		break
 	}
@@ -271,7 +294,10 @@ func acosFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err == nil {
+		return nil, err
+	}
 	result := variants.VariantFromDouble(math.Acos(value.AsDouble()))
 
 	return result, nil
@@ -284,7 +310,10 @@ func asinFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Asin(value.AsDouble()))
 
 	return result, nil
@@ -297,7 +326,10 @@ func atanFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Atan(value.AsDouble()))
 
 	return result, nil
@@ -310,7 +342,10 @@ func expFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Exp(value.AsDouble()))
 
 	return result, nil
@@ -323,7 +358,10 @@ func logFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Log(value.AsDouble()))
 
 	return result, nil
@@ -336,7 +374,10 @@ func log10FunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Log10(value.AsDouble()))
 
 	return result, nil
@@ -349,7 +390,10 @@ func ceilFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Ceil(value.AsDouble()))
 
 	return result, nil
@@ -362,7 +406,10 @@ func floorFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Floor(value.AsDouble()))
 
 	return result, nil
@@ -375,7 +422,10 @@ func roundFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Round(value.AsDouble()))
 
 	return result, nil
@@ -388,7 +438,10 @@ func truncFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromLong(int64(math.Trunc(value.AsDouble())))
 
 	return result, nil
@@ -401,7 +454,10 @@ func cosFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Cos(value.AsDouble()))
 
 	return result, nil
@@ -414,7 +470,10 @@ func sinFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Sin(value.AsDouble()))
 
 	return result, nil
@@ -427,7 +486,10 @@ func tanFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Tan(value.AsDouble()))
 
 	return result, nil
@@ -440,7 +502,10 @@ func sqrtFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	value := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Double)
+	if err1 != nil {
+		return nil, err1
+	}
 	result := variants.VariantFromDouble(math.Sqrt(value.AsDouble()))
 
 	return result, nil
@@ -478,8 +543,14 @@ func containsFunctionCalculator(parameters []*variants.Variant,
 		return nil, err
 	}
 
-	str := variantOperations.Convert(getParameter(parameters, 0), variants.String)
-	substr := variantOperations.Convert(getParameter(parameters, 1), variants.String)
+	str, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.String)
+	if err1 != nil {
+		return nil, err1
+	}
+	substr, err2 := variantOperations.Convert(getParameter(parameters, 1), variants.String)
+	if err2 != nil {
+		return nil, err2
+	}
 
 	if str.IsEmpty() || str.IsNull() {
 		return variants.VariantFromBoolean(false), nil
