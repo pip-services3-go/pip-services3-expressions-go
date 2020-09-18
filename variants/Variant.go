@@ -330,7 +330,8 @@ func (c *Variant) AsArray() []*Variant {
 func (c *Variant) SetAsArray(value []*Variant) {
 	c.typ = Array
 	a := make([]*Variant, len(value))
-	c.value = copy(a, value)
+	copy(a, value)
+	c.value = a
 }
 
 // Gets length of the array

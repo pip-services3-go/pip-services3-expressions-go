@@ -432,6 +432,13 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel3() error {
 			c.addTokenToResult(IsNull, variants.Empty)
 		} else if c.matchTokensWithTypes(Is, Not, Null) {
 			c.addTokenToResult(IsNotNull, variants.Empty)
+		} else if c.matchTokensWithTypes(Not, In) {
+			err = c.performSyntaxAnalysisAtLevel4()
+			if err != nil {
+				return err
+			}
+
+			c.addTokenToResult(NotIn, variants.Empty)
 		} else {
 			break
 		}

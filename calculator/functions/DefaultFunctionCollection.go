@@ -54,6 +54,7 @@ func NewDefaultFunctionCollection() *DefaultFunctionCollection {
 	c.Add(NewDelegatedFunction("Empty", emptyFunctionCalculator))
 	c.Add(NewDelegatedFunction("Null", nullFunctionCalculator))
 	c.Add(NewDelegatedFunction("Contains", containsFunctionCalculator))
+	c.Add(NewDelegatedFunction("Array", arrayFunctionCalculator))
 
 	return c
 }
@@ -559,5 +560,11 @@ func containsFunctionCalculator(parameters []*variants.Variant,
 	contains := strings.Contains(str.AsString(), substr.AsString())
 	result := variants.VariantFromBoolean(contains)
 
+	return result, nil
+}
+
+func arrayFunctionCalculator(parameters []*variants.Variant,
+	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
+	result := variants.VariantFromArray(parameters)
 	return result, nil
 }

@@ -42,4 +42,18 @@ func TestExpressionCalculator(t *testing.T) {
 	assert.Nil(t, err1)
 	assert.Equal(t, variants.Boolean, result.Type())
 	assert.False(t, result.AsBoolean())
+
+	err = calculator.SetExpression("2 IN ARRAY(1,2,3)")
+	assert.Nil(t, err)
+	result, err1 = calculator.Evaluate()
+	assert.Nil(t, err1)
+	assert.Equal(t, variants.Boolean, result.Type())
+	assert.True(t, result.AsBoolean())
+
+	err = calculator.SetExpression("5 NOT IN ARRAY(1,2,3)")
+	assert.Nil(t, err)
+	result, err1 = calculator.Evaluate()
+	assert.Nil(t, err1)
+	assert.Equal(t, variants.Boolean, result.Type())
+	assert.True(t, result.AsBoolean())
 }

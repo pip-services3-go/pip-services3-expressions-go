@@ -514,10 +514,22 @@ func (c *ExpressionCalculator) evaluateOther(
 		{
 			value2 := stack.Pop()
 			value1 := stack.Pop()
-			result, err := c.variantOperations.In(value1, value2)
+			result, err := c.variantOperations.In(value2, value1)
 			if err != nil {
 				return false, err
 			}
+			stack.Push(result)
+			return true, nil
+		}
+	case parsers.NotIn:
+		{
+			value2 := stack.Pop()
+			value1 := stack.Pop()
+			result, err := c.variantOperations.In(value2, value1)
+			if err != nil {
+				return false, err
+			}
+			result = variants.VariantFromBoolean(!result.AsBoolean())
 			stack.Push(result)
 			return true, nil
 		}
