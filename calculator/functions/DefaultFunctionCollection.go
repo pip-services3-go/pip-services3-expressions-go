@@ -22,7 +22,8 @@ func NewDefaultFunctionCollection() *DefaultFunctionCollection {
 	}
 
 	c.Add(NewDelegatedFunction("Time", timeFunctionCalculator))
-	c.Add(NewDelegatedFunction("Now", timeFunctionCalculator))
+	c.Add(NewDelegatedFunction("Now", nowFunctionCalculator))
+	c.Add(NewDelegatedFunction("Date", dateFunctionCalculator))
 	c.Add(NewDelegatedFunction("Min", minFunctionCalculator))
 	c.Add(NewDelegatedFunction("Max", maxFunctionCalculator))
 	c.Add(NewDelegatedFunction("Sum", sumFunctionCalculator))
@@ -94,6 +95,96 @@ func timeFunctionCalculator(parameters []*variants.Variant,
 
 	result := variants.VariantFromLong(time.Now().Unix())
 
+	return result, nil
+}
+
+func nowFunctionCalculator(parameters []*variants.Variant,
+	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
+	err := checkParamCount(parameters, 0)
+	if err != nil {
+		return nil, err
+	}
+
+	result := variants.VariantFromDateTime(time.Now())
+
+	return result, nil
+}
+
+func dateFunctionCalculator(parameters []*variants.Variant,
+	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
+
+	paramCount := len(parameters)
+	if paramCount < 1 || paramCount > 7 {
+		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT", "Expected from 1 to 7 parameters")
+		return nil, err
+	}
+
+	if paramCount == 1 {
+		value, err := variantOperations.Convert(getParameter(parameters, 0), variants.Long)
+		if err != nil {
+			return nil, err
+		}
+		date := time.Unix(value.AsLong(), 0)
+		result := variants.VariantFromDateTime(date)
+		return result, nil
+	}
+
+	value1, err := variantOperations.Convert(getParameter(parameters, 0), variants.Integer)
+	if err != nil {
+		return nil, err
+	}
+
+	value2 := variants.VariantFromInteger(1)
+	if paramCount > 1 {
+		value2, err = variantOperations.Convert(getParameter(parameters, 1), variants.Integer)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	value3 := variants.VariantFromInteger(1)
+	if paramCount > 2 {
+		value3, err = variantOperations.Convert(getParameter(parameters, 2), variants.Integer)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	value4 := variants.VariantFromInteger(0)
+	if paramCount > 3 {
+		value4, err = variantOperations.Convert(getParameter(parameters, 3), variants.Integer)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	value5 := variants.VariantFromInteger(0)
+	if paramCount > 4 {
+		value5, err = variantOperations.Convert(getParameter(parameters, 4), variants.Integer)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	value6 := variants.VariantFromInteger(0)
+	if paramCount > 5 {
+		value6, err = variantOperations.Convert(getParameter(parameters, 5), variants.Integer)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	value7 := variants.VariantFromInteger(0)
+	if paramCount > 6 {
+		value7, err = variantOperations.Convert(getParameter(parameters, 6), variants.Integer)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	date := time.Date(value1.AsInteger(), time.Month(value2.AsInteger()), value3.AsInteger(),
+		value4.AsInteger(), value5.AsInteger(), value6.AsInteger(), value7.AsInteger(), time.Local)
+	result := variants.VariantFromDateTime(date)
 	return result, nil
 }
 
