@@ -22,8 +22,10 @@ func NewDefaultFunctionCollection() *DefaultFunctionCollection {
 	}
 
 	c.Add(NewDelegatedFunction("Time", timeFunctionCalculator))
+	c.Add(NewDelegatedFunction("TimeSpan", timeFunctionCalculator))
 	c.Add(NewDelegatedFunction("Now", nowFunctionCalculator))
 	c.Add(NewDelegatedFunction("Date", dateFunctionCalculator))
+	c.Add(NewDelegatedFunction("DayOfWeek", dayOfWeekFunctionCalculator))
 	c.Add(NewDelegatedFunction("Min", minFunctionCalculator))
 	c.Add(NewDelegatedFunction("Max", maxFunctionCalculator))
 	c.Add(NewDelegatedFunction("Sum", sumFunctionCalculator))
@@ -94,6 +96,62 @@ func timeFunctionCalculator(parameters []*variants.Variant,
 	}
 
 	result := variants.VariantFromLong(time.Now().Unix())
+
+	return result, nil
+}
+
+func timeSpanFunctionCalculator(parameters []*variants.Variant,
+	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
+	paramCount := len(parameters)
+	if paramCount != 1 && paramCount != 3 && paramCount != 4 && paramCount != 5 {
+		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT", "Expected 1, 3, 4 or 5 parameters")
+		return nil, err
+	}
+
+	result := variants.EmptyVariant()
+
+	if paramCount == 1 {
+		value, err := variantOperations.Convert(getParameter(parameters, 0), variants.Long)
+		if err != nil {
+			return nil, err
+		}
+
+		result.SetAsTimeSpan(time.Millisecond * time.Duration(value.AsLong()))
+	} else if paramCount > 2 {
+		value1, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.Long)
+		if err1 != nil {
+			return nil, err1
+		}
+
+		value2, err2 := variantOperations.Convert(getParameter(parameters, 1), variants.Long)
+		if err2 != nil {
+			return nil, err2
+		}
+
+		value3, err3 := variantOperations.Convert(getParameter(parameters, 2), variants.Long)
+		if err3 != nil {
+			return nil, err3
+		}
+
+		value4 := variants.VariantFromLong(0)
+		if paramCount > 3 {
+			value4, err1 = variantOperations.Convert(getParameter(parameters, 3), variants.Long)
+			if err1 != nil {
+				return nil, err1
+			}
+		}
+
+		value5 := variants.VariantFromLong(0)
+		if paramCount > 4 {
+			value5, err1 = variantOperations.Convert(getParameter(parameters, 4), variants.Long)
+			if err1 != nil {
+				return nil, err1
+			}
+		}
+
+		ticks := (((value1.AsLong()*24+value2.AsLong())*60+value3.AsLong())*60+value4.AsLong())*1000 + value5.AsLong()
+		result.SetAsTimeSpan(time.Millisecond * time.Duration(ticks))
+	}
 
 	return result, nil
 }
@@ -185,6 +243,24 @@ func dateFunctionCalculator(parameters []*variants.Variant,
 	date := time.Date(value1.AsInteger(), time.Month(value2.AsInteger()), value3.AsInteger(),
 		value4.AsInteger(), value5.AsInteger(), value6.AsInteger(), value7.AsInteger(), time.Local)
 	result := variants.VariantFromDateTime(date)
+	return result, nil
+}
+
+func dayOfWeekFunctionCalculator(parameters []*variants.Variant,
+	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
+	err := checkParamCount(parameters, 1)
+	if err != nil {
+		return nil, err
+	}
+
+	value, err1 := variantOperations.Convert(getParameter(parameters, 0), variants.DateTime)
+	if err1 != nil {
+		return nil, err1
+	}
+
+	day := value.AsDateTime().Weekday()
+	result := variants.VariantFromInteger(int(day))
+
 	return result, nil
 }
 
