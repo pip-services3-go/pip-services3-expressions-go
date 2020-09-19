@@ -21,8 +21,8 @@ func NewDefaultFunctionCollection() *DefaultFunctionCollection {
 		FunctionCollection: *NewFunctionCollection(),
 	}
 
-	c.Add(NewDelegatedFunction("Time", timeFunctionCalculator))
-	c.Add(NewDelegatedFunction("TimeSpan", timeFunctionCalculator))
+	c.Add(NewDelegatedFunction("Ticks", ticksFunctionCalculator))
+	c.Add(NewDelegatedFunction("TimeSpan", timeSpanFunctionCalculator))
 	c.Add(NewDelegatedFunction("Now", nowFunctionCalculator))
 	c.Add(NewDelegatedFunction("Date", dateFunctionCalculator))
 	c.Add(NewDelegatedFunction("DayOfWeek", dayOfWeekFunctionCalculator))
@@ -88,7 +88,7 @@ func getParameter(parameters []*variants.Variant, paramIndex int) *variants.Vari
 	return parameters[paramIndex]
 }
 
-func timeFunctionCalculator(parameters []*variants.Variant,
+func ticksFunctionCalculator(parameters []*variants.Variant,
 	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
 	err := checkParamCount(parameters, 0)
 	if err != nil {
