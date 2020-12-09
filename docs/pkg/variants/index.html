@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>variants - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package variants
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "variants"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#AbstractVariantOperations">type AbstractVariantOperations</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Add">func (c *AbstractVariantOperations) Add(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.And">func (c *AbstractVariantOperations) And(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Convert">func (c *AbstractVariantOperations) Convert(value *Variant, newType int) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Div">func (c *AbstractVariantOperations) Div(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Equal">func (c *AbstractVariantOperations) Equal(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.GetElement">func (c *AbstractVariantOperations) GetElement(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.In">func (c *AbstractVariantOperations) In(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Less">func (c *AbstractVariantOperations) Less(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.LessEqual">func (c *AbstractVariantOperations) LessEqual(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Lsh">func (c *AbstractVariantOperations) Lsh(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Mod">func (c *AbstractVariantOperations) Mod(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.More">func (c *AbstractVariantOperations) More(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.MoreEqual">func (c *AbstractVariantOperations) MoreEqual(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Mul">func (c *AbstractVariantOperations) Mul(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Negative">func (c *AbstractVariantOperations) Negative(value *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Not">func (c *AbstractVariantOperations) Not(value *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.NotEqual">func (c *AbstractVariantOperations) NotEqual(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Or">func (c *AbstractVariantOperations) Or(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Pow">func (c *AbstractVariantOperations) Pow(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Rsh">func (c *AbstractVariantOperations) Rsh(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Sub">func (c *AbstractVariantOperations) Sub(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Xor">func (c *AbstractVariantOperations) Xor(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IVariantOperations">type IVariantOperations</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TypeSafeVariantOperations">type TypeSafeVariantOperations</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTypeSafeVariantOperations">func NewTypeSafeVariantOperations() *TypeSafeVariantOperations</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeSafeVariantOperations.Convert">func (c *TypeSafeVariantOperations) Convert(value *Variant, newType int) (*Variant, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#TypeUnsafeVariantOperations">type TypeUnsafeVariantOperations</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTypeUnsafeVariantOperations">func NewTypeUnsafeVariantOperations() *TypeUnsafeVariantOperations</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TypeUnsafeVariantOperations.Convert">func (c *TypeUnsafeVariantOperations) Convert(value *Variant, newType int) (*Variant, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Variant">type Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#EmptyVariant">func EmptyVariant() *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewVariant">func NewVariant(value interface{}) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromArray">func VariantFromArray(value []*Variant) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromBoolean">func VariantFromBoolean(value bool) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromDateTime">func VariantFromDateTime(value time.Time) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromDouble">func VariantFromDouble(value float64) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromFloat">func VariantFromFloat(value float32) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromInteger">func VariantFromInteger(value int) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromLong">func VariantFromLong(value int64) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromObject">func VariantFromObject(value interface{}) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromString">func VariantFromString(value string) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#VariantFromTimeSpan">func VariantFromTimeSpan(value time.Duration) *Variant</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsArray">func (c *Variant) AsArray() []*Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsBoolean">func (c *Variant) AsBoolean() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsDateTime">func (c *Variant) AsDateTime() time.Time</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsDouble">func (c *Variant) AsDouble() float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsFloat">func (c *Variant) AsFloat() float32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsInteger">func (c *Variant) AsInteger() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsLong">func (c *Variant) AsLong() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsObject">func (c *Variant) AsObject() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsString">func (c *Variant) AsString() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.AsTimeSpan">func (c *Variant) AsTimeSpan() time.Duration</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.Assign">func (c *Variant) Assign(value *Variant)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.Clear">func (c *Variant) Clear()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.Clone">func (c *Variant) Clone() *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.Equals">func (c *Variant) Equals(obj interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.GetByIndex">func (c *Variant) GetByIndex(index int) *Variant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.IsEmpty">func (c *Variant) IsEmpty() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.IsNull">func (c *Variant) IsNull() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.Length">func (c *Variant) Length() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsArray">func (c *Variant) SetAsArray(value []*Variant)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsBoolean">func (c *Variant) SetAsBoolean(value bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsDateTime">func (c *Variant) SetAsDateTime(value time.Time)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsDouble">func (c *Variant) SetAsDouble(value float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsFloat">func (c *Variant) SetAsFloat(value float32)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsInteger">func (c *Variant) SetAsInteger(value int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsLong">func (c *Variant) SetAsLong(value int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsObject">func (c *Variant) SetAsObject(value interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsString">func (c *Variant) SetAsString(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetAsTimeSpan">func (c *Variant) SetAsTimeSpan(value time.Duration)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetByIndex">func (c *Variant) SetByIndex(index int, element *Variant)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.SetLength">func (c *Variant) SetLength(value int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.String">func (c *Variant) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Variant.Type">func (c *Variant) Type() int</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/variants/AbstractVariantOperations.go">AbstractVariantOperations.go</a>
+			
+				<a href="http://localhost:6060/src/variants/IVariantOperations.go">IVariantOperations.go</a>
+			
+				<a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go">TypeSafeVariantOperations.go</a>
+			
+				<a href="http://localhost:6060/src/variants/TypeUnsafeVariantOperations.go">TypeUnsafeVariantOperations.go</a>
+			
+				<a href="http://localhost:6060/src/variants/Variant.go">Variant.go</a>
+			
+				<a href="http://localhost:6060/src/variants/VariantType.go">VariantType.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+Defines supported types of variant values.
+</p>
+
+				<pre>const (
+    <span id="Null">Null</span> = <a href="http://localhost:6060/pkg/builtin/#iota">iota</a>
+    <span id="Integer">Integer</span>
+    <span id="Long">Long</span>
+    <span id="Float">Float</span>
+    <span id="Double">Double</span>
+    <span id="String">String</span>
+    <span id="Boolean">Boolean</span>
+    <span id="DateTime">DateTime</span>
+    <span id="TimeSpan">TimeSpan</span>
+    <span id="Object">Object</span>
+    <span id="Array">Array</span>
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="AbstractVariantOperations">type <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=150:256#L1">AbstractVariantOperations</a>
+				<a class="permalink" href="index.html#AbstractVariantOperations">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements an abstractd variant operations manager object.
+</p>
+
+			<pre>type AbstractVariantOperations struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="AbstractVariantOperations.Add">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=1483:1576#L52">Add</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Add(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;+&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.And">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=8667:8760#L315">And</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.And">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) And(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs AND operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Convert">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=1052:1144#L40">Convert</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Convert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Convert(
+    value *<a href="index.html#Variant">Variant</a>, newType <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Converts variant to specified type
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A variant value to be converted.
+- newType: A type of object to be returned.
+</pre>
+<p>
+Returns: A converted Variant value.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Div">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=5448:5541#L193">Div</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Div">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Div(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;/&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Equal">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=15661:15756#L576">Equal</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Equal">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Equal(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;=&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.GetElement">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=26466:26566#L958">GetElement</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.GetElement">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) GetElement(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs [] operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.In">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=25538:25630#L918">In</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.In">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) In(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs IN operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Less">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=20905:20999#L758">Less</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Less">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Less(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&lt;&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.LessEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=23972:24071#L864">LessEqual</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.LessEqual">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) LessEqual(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&lt;=&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Lsh">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=12018:12111#L436">Lsh</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Lsh">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Lsh(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&lt;&lt;&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Mod">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=6634:6727#L236">Mod</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Mod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Mod(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;%&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.More">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=19407:19501#L706">More</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.More">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) More(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&gt;&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.MoreEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=22405:22504#L810">MoreEqual</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.MoreEqual">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) MoreEqual(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&gt;=&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Mul">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=4262:4355#L150">Mul</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Mul">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Mul(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;*&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Negative">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=14753:14831#L541">Negative</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Negative">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Negative(value *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs unary &#39;-&#39; operation for a variant.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: The operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Not">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=13955:14028#L509">Not</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Not">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Not(value *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs NOT operation for a variant.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: The operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.NotEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=17532:17630#L641">NotEqual</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.NotEqual">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) NotEqual(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&lt;&gt;&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Or">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=9766:9858#L355">Or</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Or">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Or(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs OR operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Pow">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=7634:7727#L273">Pow</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Pow">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Pow(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;^&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Rsh">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=13019:13112#L473">Rsh</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Rsh">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Rsh(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;&gt;&gt;&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Sub">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=2867:2960#L101">Sub</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Sub">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Sub(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs &#39;-&#39; operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="AbstractVariantOperations.Xor">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=10864:10957#L395">Xor</a>
+					<a class="permalink" href="index.html#AbstractVariantOperations.Xor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Xor(
+    value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Performs XOR operation for two variants.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value1: The first operand for this operation.
+- value2: The second operand for this operation.
+</pre>
+<p>
+Returns: A result variant object.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IVariantOperations">type <a href="http://localhost:6060/src/variants/IVariantOperations.go?s=74:5903#L1">IVariantOperations</a>
+				<a class="permalink" href="index.html#IVariantOperations">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Defines an interface for variant operations manager.
+</p>
+
+			<pre>type IVariantOperations interface {
+    <span class="comment">// Converts variant to specified type</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value: A variant value to be converted.</span>
+    <span class="comment">//   - newType: A type of object to be returned.</span>
+    <span class="comment">// Returns: A converted Variant value.</span>
+    Convert(value *<a href="index.html#Variant">Variant</a>, newType <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;+&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Add(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;-&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Sub(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;*&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Mul(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;/&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Div(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;%&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Mod(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;^&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Pow(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs AND operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    And(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs OR operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Or(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs XOR operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Xor(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &lt;&lt; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Lsh(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &gt;&gt; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Rsh(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs NOT operation for a variant.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value: The operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Not(value *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs unary &#39;-&#39; operation for a variant.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value: The operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Negative(value *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;=&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Equal(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;&lt;&gt;&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    NotEqual(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;&gt;&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    More(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;&lt;&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    Less(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;&gt;=&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    MoreEqual(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs &#39;&lt;=&#39; operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    LessEqual(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs IN operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    In(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Performs [] operation for two variants.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value1: The first operand for this operation.</span>
+    <span class="comment">//   - value2: The second operand for this operation.</span>
+    <span class="comment">// Returns: A result variant object.</span>
+    GetElement(value1 *<a href="index.html#Variant">Variant</a>, value2 *<a href="index.html#Variant">Variant</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TypeSafeVariantOperations">type <a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go?s=166:234#L1">TypeSafeVariantOperations</a>
+				<a class="permalink" href="index.html#TypeSafeVariantOperations">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements a strongly typed (type safe) variant operations manager object.
+</p>
+
+			<pre>type TypeSafeVariantOperations struct {
+    <a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTypeSafeVariantOperations">func <a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go?s=236:298#L1">NewTypeSafeVariantOperations</a>
+					<a class="permalink" href="index.html#NewTypeSafeVariantOperations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTypeSafeVariantOperations() *<a href="index.html#TypeSafeVariantOperations">TypeSafeVariantOperations</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="TypeSafeVariantOperations.Convert">func (*TypeSafeVariantOperations) <a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go?s=653:745#L14">Convert</a>
+					<a class="permalink" href="index.html#TypeSafeVariantOperations.Convert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TypeSafeVariantOperations">TypeSafeVariantOperations</a>) Convert(
+    value *<a href="index.html#Variant">Variant</a>, newType <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Converts variant to specified type
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A variant value to be converted.
+- newType: A type of object to be returned.
+</pre>
+<p>
+Returns: A converted Variant value.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TypeUnsafeVariantOperations">type <a href="http://localhost:6060/src/variants/TypeUnsafeVariantOperations.go?s=243:313#L2">TypeUnsafeVariantOperations</a>
+				<a class="permalink" href="index.html#TypeUnsafeVariantOperations">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements a type unsafe variant operations manager object.
+</p>
+
+			<pre>type TypeUnsafeVariantOperations struct {
+    <a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTypeUnsafeVariantOperations">func <a href="http://localhost:6060/src/variants/TypeUnsafeVariantOperations.go?s=315:381#L6">NewTypeUnsafeVariantOperations</a>
+					<a class="permalink" href="index.html#NewTypeUnsafeVariantOperations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTypeUnsafeVariantOperations() *<a href="index.html#TypeUnsafeVariantOperations">TypeUnsafeVariantOperations</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="TypeUnsafeVariantOperations.Convert">func (*TypeUnsafeVariantOperations) <a href="http://localhost:6060/src/variants/TypeUnsafeVariantOperations.go?s=738:832#L20">Convert</a>
+					<a class="permalink" href="index.html#TypeUnsafeVariantOperations.Convert">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TypeUnsafeVariantOperations">TypeUnsafeVariantOperations</a>) Convert(
+    value *<a href="index.html#Variant">Variant</a>, newType <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Converts variant to specified type
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A variant value to be converted.
+- newType: A type of object to be returned.
+</pre>
+<p>
+Returns: A converted Variant value.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Variant">type <a href="http://localhost:6060/src/variants/Variant.go?s=150:203#L1">Variant</a>
+				<a class="permalink" href="index.html#Variant">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Defines container for variant values.
+</p>
+
+			<pre>type Variant struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+				<p>
+Empty variant constant
+</p>
+
+				<pre>var <span id="Empty">Empty</span> *<a href="index.html#Variant">Variant</a> = <a href="index.html#EmptyVariant">EmptyVariant</a>()</pre>
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="EmptyVariant">func <a href="http://localhost:6060/src/variants/Variant.go?s=306:334#L9">EmptyVariant</a>
+					<a class="permalink" href="index.html#EmptyVariant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func EmptyVariant() *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Constructs an empty variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewVariant">func <a href="http://localhost:6060/src/variants/Variant.go?s=488:531#L20">NewVariant</a>
+					<a class="permalink" href="index.html#NewVariant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewVariant(value interface{}) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Constructs this class and assignes a value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: another variant value.
+</pre>
+
+				
+				
+			
+				
+				<h3 id="VariantFromArray">func <a href="http://localhost:6060/src/variants/Variant.go?s=2762:2810#L130">VariantFromArray</a>
+					<a class="permalink" href="index.html#VariantFromArray">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromArray(value []*<a href="index.html#Variant">Variant</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Array value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Rturns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromBoolean">func <a href="http://localhost:6060/src/variants/Variant.go?s=1158:1202#L53">VariantFromBoolean</a>
+					<a class="permalink" href="index.html#VariantFromBoolean">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromBoolean(value <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Boolean value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromDateTime">func <a href="http://localhost:6060/src/variants/Variant.go?s=2063:2113#L97">VariantFromDateTime</a>
+					<a class="permalink" href="index.html#VariantFromDateTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromDateTime(value <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from DateTime value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromDouble">func <a href="http://localhost:6060/src/variants/Variant.go?s=1608:1654#L75">VariantFromDouble</a>
+					<a class="permalink" href="index.html#VariantFromDouble">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromDouble(value <a href="http://localhost:6060/pkg/builtin/#float64">float64</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Double value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromFloat">func <a href="http://localhost:6060/src/variants/Variant.go?s=1383:1428#L64">VariantFromFloat</a>
+					<a class="permalink" href="index.html#VariantFromFloat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromFloat(value <a href="http://localhost:6060/pkg/builtin/#float32">float32</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Float value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromInteger">func <a href="http://localhost:6060/src/variants/Variant.go?s=713:756#L31">VariantFromInteger</a>
+					<a class="permalink" href="index.html#VariantFromInteger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromInteger(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Integer value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromLong">func <a href="http://localhost:6060/src/variants/Variant.go?s=936:978#L42">VariantFromLong</a>
+					<a class="permalink" href="index.html#VariantFromLong">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromLong(value <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Long value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromObject">func <a href="http://localhost:6060/src/variants/Variant.go?s=2533:2583#L119">VariantFromObject</a>
+					<a class="permalink" href="index.html#VariantFromObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromObject(value interface{}) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from Object value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Rturns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromString">func <a href="http://localhost:6060/src/variants/Variant.go?s=1835:1880#L86">VariantFromString</a>
+					<a class="permalink" href="index.html#VariantFromString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from String value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Returns: A created variant object
+</p>
+
+				
+				
+			
+				
+				<h3 id="VariantFromTimeSpan">func <a href="http://localhost:6060/src/variants/Variant.go?s=2297:2351#L108">VariantFromTimeSpan</a>
+					<a class="permalink" href="index.html#VariantFromTimeSpan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func VariantFromTimeSpan(value <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Creates a new variant from TimeSpan value.
+</p>
+<p>
+Params:
+</p>
+<pre>- value: a variant value.
+</pre>
+<p>
+Rturns: A created variant object
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="Variant.AsArray">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=6096:6134#L312">AsArray</a>
+					<a class="permalink" href="index.html#Variant.AsArray">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsArray() []*<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Gets variant value as variant array
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsBoolean">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3475:3509#L170">AsBoolean</a>
+					<a class="permalink" href="index.html#Variant.AsBoolean">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsBoolean() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Gets variant value as boolean
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsDateTime">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4520:4560#L226">AsDateTime</a>
+					<a class="permalink" href="index.html#Variant.AsDateTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsDateTime() <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a></pre>
+				<p>
+Gets variant value as DateTime
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsDouble">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3993:4029#L198">AsDouble</a>
+					<a class="permalink" href="index.html#Variant.AsDouble">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsDouble() <a href="http://localhost:6060/pkg/builtin/#float64">float64</a></pre>
+				<p>
+Gets variant value as double
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsFloat">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3733:3768#L184">AsFloat</a>
+					<a class="permalink" href="index.html#Variant.AsFloat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsFloat() <a href="http://localhost:6060/pkg/builtin/#float32">float32</a></pre>
+				<p>
+Gets variant value as float
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsInteger">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=2968:3001#L142">AsInteger</a>
+					<a class="permalink" href="index.html#Variant.AsInteger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsInteger() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+Gets variant value as integer
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsLong">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3223:3255#L156">AsLong</a>
+					<a class="permalink" href="index.html#Variant.AsLong">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsLong() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
+				<p>
+Gets variant value as int64
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsObject">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=5090:5130#L254">AsObject</a>
+					<a class="permalink" href="index.html#Variant.AsObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsObject() interface{}</pre>
+				<p>
+Gets variant value as object
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsString">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4257:4292#L212">AsString</a>
+					<a class="permalink" href="index.html#Variant.AsString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsString() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets variant value as string
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.AsTimeSpan">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4800:4844#L240">AsTimeSpan</a>
+					<a class="permalink" href="index.html#Variant.AsTimeSpan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) AsTimeSpan() <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a></pre>
+				<p>
+Gets variant value as TimeSpan
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.Assign">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=8166:8206#L406">Assign</a>
+					<a class="permalink" href="index.html#Variant.Assign">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) Assign(value *<a href="index.html#Variant">Variant</a>)</pre>
+				<p>
+Assignes a new value to this object.
+Parameters:
+</p>
+<pre>- value A new value to be assigned.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.Clear">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=8379:8404#L417">Clear</a>
+					<a class="permalink" href="index.html#Variant.Clear">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) Clear()</pre>
+				<p>
+Clears this object and assignes a VariantType.Null type.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.Clone">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=9150:9184#L452">Clone</a>
+					<a class="permalink" href="index.html#Variant.Clone">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) Clone() *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Cloning the variant value
+</p>
+<p>
+Returns The cloned value of this variant
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.Equals">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=8804:8850#L437">Equals</a>
+					<a class="permalink" href="index.html#Variant.Equals">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) Equals(obj interface{}) <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Compares this object to the specified one.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- obj An object to be compared.
+</pre>
+<p>
+Returns &lt;code&gt;true&lt;/code&gt; if objects are equal.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.GetByIndex">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=7032:7080#L359">GetByIndex</a>
+					<a class="permalink" href="index.html#Variant.GetByIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) GetByIndex(index <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="index.html#Variant">Variant</a></pre>
+				<p>
+Gets an array element by its index.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- index an element index
+</pre>
+<p>
+Returns a requested array element
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.IsEmpty">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=8009:8041#L399">IsEmpty</a>
+					<a class="permalink" href="index.html#Variant.IsEmpty">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) IsEmpty() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Checks is this variant value empty.
+Returns &lt;code&gt;true&lt;/code&lt; is this variant value is empty.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.IsNull">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=7850:7881#L393">IsNull</a>
+					<a class="permalink" href="index.html#Variant.IsNull">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) IsNull() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Checks is this variant value Null.
+</p>
+<p>
+Returns &lt;code&gt;true&lt;/code&gt; if this variant value is Null.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.Length">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=6459:6489#L330">Length</a>
+					<a class="permalink" href="index.html#Variant.Length">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) Length() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+Gets length of the array
+</p>
+<p>
+Returns the length of the array or 0
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsArray">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=6257:6303#L320">SetAsArray</a>
+					<a class="permalink" href="index.html#Variant.SetAsArray">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsArray(value []*<a href="index.html#Variant">Variant</a>)</pre>
+				<p>
+Sets variant value as variant array
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsBoolean">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3620:3662#L178">SetAsBoolean</a>
+					<a class="permalink" href="index.html#Variant.SetAsBoolean">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsBoolean(value <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>)</pre>
+				<p>
+Sets variant value as boolean
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsDateTime">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4677:4725#L234">SetAsDateTime</a>
+					<a class="permalink" href="index.html#Variant.SetAsDateTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsDateTime(value <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a>)</pre>
+				<p>
+Sets variant value as DateTime
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsDouble">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4142:4186#L206">SetAsDouble</a>
+					<a class="permalink" href="index.html#Variant.SetAsDouble">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsDouble(value <a href="http://localhost:6060/pkg/builtin/#float64">float64</a>)</pre>
+				<p>
+Sets variant value as double
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsFloat">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3880:3923#L192">SetAsFloat</a>
+					<a class="permalink" href="index.html#Variant.SetAsFloat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsFloat(value <a href="http://localhost:6060/pkg/builtin/#float32">float32</a>)</pre>
+				<p>
+Sets variant value as float
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsInteger">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3111:3152#L150">SetAsInteger</a>
+					<a class="permalink" href="index.html#Variant.SetAsInteger">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsInteger(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
+				<p>
+Sets variant value as integer
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsLong">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=3365:3405#L164">SetAsLong</a>
+					<a class="permalink" href="index.html#Variant.SetAsLong">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsLong(value <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Sets variant value as int64
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsObject">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=5233:5281#L262">SetAsObject</a>
+					<a class="permalink" href="index.html#Variant.SetAsObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsObject(value interface{})</pre>
+				<p>
+Sets variant value as object
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsString">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4404:4447#L220">SetAsString</a>
+					<a class="permalink" href="index.html#Variant.SetAsString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets variant value as string
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetAsTimeSpan">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=4965:5017#L248">SetAsTimeSpan</a>
+					<a class="permalink" href="index.html#Variant.SetAsTimeSpan">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetAsTimeSpan(value <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>)</pre>
+				<p>
+Sets variant value as TimeSpan
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a value to be set
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetByIndex">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=7446:7503#L377">SetByIndex</a>
+					<a class="permalink" href="index.html#Variant.SetByIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetByIndex(index <a href="http://localhost:6060/pkg/builtin/#int">int</a>, element *<a href="index.html#Variant">Variant</a>)</pre>
+				<p>
+Sets an array element by its index.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- index an element index
+- element an element value
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.SetLength">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=6650:6688#L342">SetLength</a>
+					<a class="permalink" href="index.html#Variant.SetLength">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) SetLength(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
+				<p>
+Sets a new array length
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value a new array length
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.String">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=8525:8558#L425">String</a>
+					<a class="permalink" href="index.html#Variant.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets a string value for this object.
+</p>
+<p>
+Returns a string value for this object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Variant.Type">func (*Variant) <a href="http://localhost:6060/src/variants/Variant.go?s=2887:2915#L137">Type</a>
+					<a class="permalink" href="index.html#Variant.Type">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Variant">Variant</a>) Type() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+Gets a variant type
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

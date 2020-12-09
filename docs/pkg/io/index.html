@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>io - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package io
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "io"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#IPushbackReader">type IPushbackReader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#StringPushbackReader">type StringPushbackReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStringPushbackReader">func NewStringPushbackReader(content string) *StringPushbackReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.Peek">func (c *StringPushbackReader) Peek() (rune, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.Pushback">func (c *StringPushbackReader) Pushback(value rune)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.PushbackString">func (c *StringPushbackReader) PushbackString(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.Read">func (c *StringPushbackReader) Read() (rune, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/io/IPushbackReader.go">IPushbackReader.go</a>
+			
+				<a href="http://localhost:6060/src/io/StringPushbackReader.go">StringPushbackReader.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="IPushbackReader">type <a href="http://localhost:6060/src/io/IPushbackReader.go?s=131:844#L1">IPushbackReader</a>
+				<a class="permalink" href="index.html#IPushbackReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Defines reader with ability to push back characters.
+This reader is used by tokenizers to process input streams.
+</p>
+
+			<pre>type IPushbackReader interface {
+    <span class="comment">// Reads character from the top of the stream.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to the end.&lt;/returns&gt;</span>
+    Read() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Returns the character from the top of the stream without moving the stream pointer.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if stream is empty.&lt;/returns&gt;</span>
+    Peek() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Puts the specified character to the top of the stream.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value: A character to be pushed back.</span>
+    Pushback(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)
+
+    <span class="comment">// Pushes the specified string to the top of the stream.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Parameters:</span>
+    <span class="comment">//   - value: A string to be pushed back.</span>
+    PushbackString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="StringPushbackReader">type <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=142:305#L1">StringPushbackReader</a>
+				<a class="permalink" href="index.html#StringPushbackReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Wraps string to provide unlimited pushback that allows tokenizers
+to look ahead through stream to perform lexical analysis.
+</p>
+
+			<pre>type StringPushbackReader struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStringPushbackReader">func <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=405:471#L7">NewStringPushbackReader</a>
+					<a class="permalink" href="index.html#NewStringPushbackReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStringPushbackReader(content <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#StringPushbackReader">StringPushbackReader</a></pre>
+				<p>
+Creates an instance of this class.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- content: A text content to be read
+</pre>
+
+				
+				
+			
+
+			
+				
+				<h3 id="StringPushbackReader.Peek">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=1482:1533#L45">Peek</a>
+					<a class="permalink" href="index.html#StringPushbackReader.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) Peek() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Returns the character from the top of the stream without moving the stream pointer.
+</p>
+<p>
+Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if stream is empty.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StringPushbackReader.Pushback">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=1916:1967#L63">Pushback</a>
+					<a class="permalink" href="index.html#StringPushbackReader.Pushback">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) Pushback(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)</pre>
+				<p>
+Puts the specified character to the top of the stream.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A character to be pushed back.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="StringPushbackReader.PushbackString">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=2424:2483#L83">PushbackString</a>
+					<a class="permalink" href="index.html#StringPushbackReader.PushbackString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) PushbackString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Pushes the specified string to the top of the stream.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A string to be pushed back.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="StringPushbackReader.Read">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=684:735#L17">Read</a>
+					<a class="permalink" href="index.html#StringPushbackReader.Read">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) Read() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Reads character from the top of the stream.
+</p>
+<p>
+Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to the end.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
