@@ -13,7 +13,7 @@ type StringPushbackReader struct {
 // Creates an instance of this class.
 //
 // Parameters:
-// 	- content: A text content to be read
+//   - content: A text content to be read
 func NewStringPushbackReader(content string) *StringPushbackReader {
 	return &StringPushbackReader{
 		content:  []rune(content),
@@ -69,7 +69,7 @@ func (c *StringPushbackReader) Peek() (rune, error) {
 // Puts the specified character to the top of the stream.
 //
 // Parameters:
-// 	- value: A character to be pushed back.
+//   - value: A character to be pushed back.
 func (c *StringPushbackReader) Pushback(value rune) {
 	// Skip EOF
 	if value == -1 {
@@ -89,7 +89,7 @@ func (c *StringPushbackReader) Pushback(value rune) {
 // Pushes the specified string to the top of the stream.
 //
 // Parameters:
-// 	- value: A string to be pushed back.
+//   - value: A string to be pushed back.
 func (c *StringPushbackReader) PushbackString(value string) {
 	temp := []rune(value)
 	len := len(temp)

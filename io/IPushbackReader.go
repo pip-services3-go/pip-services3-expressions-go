@@ -16,12 +16,12 @@ type IPushbackReader interface {
 	// Puts the specified character to the top of the stream.
 	//
 	// Parameters:
-	// 	- value: A character to be pushed back.
+	//   - value: A character to be pushed back.
 	Pushback(value rune)
 
 	// Pushes the specified string to the top of the stream.
 	//
 	// Parameters:
-	// 	- value: A string to be pushed back.
+	//   - value: A string to be pushed back.
 	PushbackString(value string)
 }

@@ -104,19 +104,18 @@ func (c *SymbolNode) FindChildWithChar(value rune) *SymbolNode {
 	return result
 }
 
-//// Find a descendant which is down the path the given string indicates.
-// func (c *SymbolNode) FindDescendant(value []rune) *SymbolNode {
-//    tempChar := CharValidator.Eof
-//    if len(value) > 0 {
-// 	   tempChar = value[0]
-//    }
-//    childNode := c.FindChildWithChar(tempChar)
-//    if !CharValidator.IsEof(tempChar) && childNode != nil && len(value) > 1 {
-//        childNode = childNode.FindDescendant(value[1:])
-//    }
-//    return childNode
-// }
-
+// Find a descendant which is down the path the given string indicates.
+//  func (c *SymbolNode) FindDescendant(value []rune) *SymbolNode {
+//     tempChar := CharValidator.Eof
+//     if len(value) > 0 {
+//     tempChar = value[0]
+//     }
+//     childNode := c.FindChildWithChar(tempChar)
+//     if !CharValidator.IsEof(tempChar) && childNode != nil && len(value) > 1 {
+//         childNode = childNode.FindDescendant(value[1:])
+//     }
+//     return childNode
+//  }
 // Unwind to a valid node; this node is "valid" if its ancestry represents a complete symbol.
 // If this node is not valid, put back the character and ask the parent to unwind.
 func (c *SymbolNode) UnreadToValid(reader io.IPushbackReader) *SymbolNode {

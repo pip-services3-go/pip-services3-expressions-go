@@ -26,7 +26,7 @@ func EmptyVariant() *Variant {
 // Constructs this class and assignes a value.
 //
 // Params:
-// 	- value: another variant value.
+//   - value: another variant value.
 func NewVariant(value interface{}) *Variant {
 	c := &Variant{}
 	c.SetAsObject(value)
@@ -348,7 +348,7 @@ func (c *Variant) Length() int {
 // Sets a new array length
 //
 // Parameters:
-// 	- value a new array length
+//   - value a new array length
 func (c *Variant) SetLength(value int) {
 	if c.typ == Array {
 		a := c.value.([]*Variant)
@@ -364,7 +364,7 @@ func (c *Variant) SetLength(value int) {
 // Gets an array element by its index.
 //
 // Parameters:
-//	- index an element index
+//    - index an element index
 // Returns a requested array element
 func (c *Variant) GetByIndex(index int) *Variant {
 	if c.typ == Array {
@@ -382,8 +382,8 @@ func (c *Variant) GetByIndex(index int) *Variant {
 // Sets an array element by its index.
 //
 // Parameters:
-// 	- index an element index
-// 	- element an element value
+//   - index an element index
+//   - element an element value
 func (c *Variant) SetByIndex(index int, element *Variant) {
 	if c.typ == Array {
 		a := c.value.([]*Variant)
@@ -442,7 +442,7 @@ func (c *Variant) String() string {
 // Compares this object to the specified one.
 //
 // Parameters:
-//	- obj An object to be compared.
+//   - obj An object to be compared.
 // Returns <code>true</code> if objects are equal.
 func (c *Variant) Equals(obj interface{}) bool {
 	if varObj, ok := obj.(Variant); ok {

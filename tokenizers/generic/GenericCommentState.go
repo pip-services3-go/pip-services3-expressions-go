@@ -16,7 +16,7 @@ func NewGenericCommentState() *GenericCommentState {
 	return c
 }
 
-//  Either delegate to a comment-handling state, or return a token with just a slash in it.
+// Either delegate to a comment-handling state, or return a token with just a slash in it.
 //
 // Returns: Either just a slash token, or the results of delegating to a comment-handling state
 func (c *GenericCommentState) NextToken(
