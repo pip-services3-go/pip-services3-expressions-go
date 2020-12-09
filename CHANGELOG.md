@@ -1,23 +1,6 @@
-# Tokenizers, parsers and expression calculators for Pip.Services in Node.js Changelog
+# <img src="https://uploads-ssl.webflow.com/5ea5d3315186cf5ec60c3ee4/5edf1c94ce4c859f2b188094_logo.svg" alt="Pip.Services Logo" width="200"> <br/> Tokenizers, parsers and expression calculators Golang Changelog
 
-## <a name="3.0.2"></a> 3.0.2 (2020-09-18)
-
-### Features
-* Added new funtions: TIMESPAN, DAYOFWEEK
-* Rename TIME function to TICKS
-
-## <a name="3.0.1"></a> 3.0.1 (2020-09-18)
-
-### Features
-* Added new funtions: ARRAY, DATE
-* Added operation NOTIN
-* New tests
-
-### Bug Fixes
-* Fixed EOF processing in comment states
-* Fixed some exceptions
-
-## <a name="3.0.0"></a> 3.0.0 (2020-09-05)
+## <a name="1.0.0"></a> 1.0.0 (2020-09-19)
 
 ### Features
 * IO Streaming: IPushbackReader and StringPushbackReader
