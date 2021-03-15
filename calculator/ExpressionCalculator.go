@@ -198,13 +198,13 @@ func (c *ExpressionCalculator) EvaluateUsingVariablesAndFunctions(
 				return nil, err
 			}
 		} else {
-			err := errors.NewExpressionError("", "INTERNAL", "Internal error.")
+			err := errors.NewExpressionError("", "INTERNAL", "Internal error", token.Line(), token.Column())
 			return nil, err
 		}
 	}
 
 	if stack.Length() != 1 {
-		err := errors.NewExpressionError("", "INTERNAL", "Internal error.")
+		err := errors.NewExpressionError("", "INTERNAL", "Internal error", 0, 0)
 		return nil, err
 	}
 
@@ -228,7 +228,8 @@ func (c *ExpressionCalculator) evaluateVariable(
 		variable := vars.FindByName(token.Value().AsString())
 		if variable == nil {
 			err := errors.NewExpressionError("", "VAR_NOT_FOUND",
-				"Variable "+token.Value().AsString()+" was not found.")
+				"Variable "+token.Value().AsString()+" was not found.",
+				token.Line(), token.Column())
 			return false, err
 		}
 
@@ -247,7 +248,8 @@ func (c *ExpressionCalculator) evaluateFunction(
 		function := funcs.FindByName(token.Value().AsString())
 		if function == nil {
 			err := errors.NewExpressionError("", "FUNC_NOT_FOUND",
-				"Function "+token.Value().AsString()+" was not found.")
+				"Function "+token.Value().AsString()+" was not found.",
+				token.Line(), token.Column())
 			return false, err
 		}
 

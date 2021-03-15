@@ -120,7 +120,7 @@ func (c *ExpressionParser) hasMoreTokens() bool {
 // Checks are there more tokens available and throws exception if no more tokens available.
 func (c *ExpressionParser) checkForMoreTokens() error {
 	if !c.hasMoreTokens() {
-		return errors.NewSyntaxError("", errors.ErrUnexpectedEnd, "Unexpected end of expression.")
+		return errors.NewSyntaxError("", errors.ErrUnexpectedEnd, "Unexpected end of expression.", 0, 0)
 	}
 	return nil
 }
@@ -219,8 +219,8 @@ func (c *ExpressionParser) performParsing() error {
 		}
 
 		if c.hasMoreTokens() {
-			//token := c.getCurrentToken()
-			err = errors.NewSyntaxError("", errors.ErrErrorNear, "Syntax error near " /*+token.Value().AsString()*/)
+			token := c.getCurrentToken()
+			err = errors.NewSyntaxError("", errors.ErrErrorNear, "Syntax error near " + token.Value().AsString(), token.Line(), token.Column())
 			return err
 		}
 	}
@@ -295,7 +295,7 @@ func (c *ExpressionParser) completeLexicalAnalysis() error {
 		}
 
 		if tokenType == Unknown {
-			err := errors.NewSyntaxError("", errors.ErrUnknownSymbol, "Unknown symbol "+token.Value())
+			err := errors.NewSyntaxError("", errors.ErrUnknownSymbol, "Unknown symbol "+token.Value(), token.Line(), token.Column())
 			return err
 		}
 
@@ -573,7 +573,13 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 
 		primitiveToken = c.getCurrentToken()
 		if primitiveToken.Type() != RightBrace {
-			err = errors.NewSyntaxError("", errors.ErrMissedCloseParenthesis, "Expected ')' was not found")
+			err = errors.NewSyntaxError(
+				"",
+				errors.ErrMissedCloseParenthesis,
+				"Expected ')' was not found",
+				primitiveToken.Line(),
+				primitiveToken.Column(),
+			)
 			return err
 		}
 
@@ -583,7 +589,13 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 		token := c.getCurrentToken()
 
 		if token.Type() != LeftBrace {
-			err = errors.NewSyntaxError("", errors.ErrInternal, "Internal error.")
+			err = errors.NewSyntaxError(
+				"",
+				errors.ErrInternal,
+				"Internal error",
+				token.Line(),
+				token.Column(),
+			)
 			return err
 		}
 
@@ -615,7 +627,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 		}
 
 		if token.Type() != RightBrace {
-			err = errors.NewSyntaxError("", errors.ErrMissedCloseParenthesis, "Expected ')' was not found.")
+			err = errors.NewSyntaxError("", errors.ErrMissedCloseParenthesis, "Expected ')' was not found", token.Line(), token.Column())
 			return err
 		}
 
@@ -624,7 +636,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 		c.addTokenToResult(Constant, variants.VariantFromInteger(paramCount), primitiveToken.Line(), primitiveToken.Column())
 		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value(), primitiveToken.Line(), primitiveToken.Column())
 	} else {
-		err = errors.NewSyntaxError("", errors.ErrErrorAt, "Syntax error at " /*+primitiveToken.Value().AsString()*/)
+		err = errors.NewSyntaxError("", errors.ErrErrorAt, "Syntax error at " +primitiveToken.Value().AsString(), primitiveToken.Line(), primitiveToken.Column())
 		return err
 	}
 
@@ -650,7 +662,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 
 			primitiveToken := c.getCurrentToken()
 			if primitiveToken.Type() != RightSquareBrace {
-				err = errors.NewSyntaxError("", errors.ErrMissedCloseSquareBracket, "Expected ']' was not found")
+				err = errors.NewSyntaxError("", errors.ErrMissedCloseSquareBracket, "Expected ']' was not found", primitiveToken.Line(), primitiveToken.Column())
 			}
 
 			c.moveToNextToken()

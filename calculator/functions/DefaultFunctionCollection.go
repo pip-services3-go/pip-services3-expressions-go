@@ -72,7 +72,7 @@ func checkParamCount(parameters []*variants.Variant, expectedParamCount int) err
 	if expectedParamCount != paramCount {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
 			"Expected "+string(expectedParamCount)+
-				" parameters but was found "+string(paramCount))
+				" parameters but was found "+string(paramCount), 0, 0)
 		return err
 	}
 	return nil
@@ -104,7 +104,7 @@ func timeSpanFunctionCalculator(parameters []*variants.Variant,
 	variantOperations variants.IVariantOperations) (*variants.Variant, error) {
 	paramCount := len(parameters)
 	if paramCount != 1 && paramCount != 3 && paramCount != 4 && paramCount != 5 {
-		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT", "Expected 1, 3, 4 or 5 parameters")
+		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT", "Expected 1, 3, 4 or 5 parameters", 0, 0)
 		return nil, err
 	}
 
@@ -173,7 +173,7 @@ func dateFunctionCalculator(parameters []*variants.Variant,
 
 	paramCount := len(parameters)
 	if paramCount < 1 || paramCount > 7 {
-		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT", "Expected from 1 to 7 parameters")
+		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT", "Expected from 1 to 7 parameters", 0, 0)
 		return nil, err
 	}
 
@@ -269,7 +269,7 @@ func minFunctionCalculator(parameters []*variants.Variant,
 	paramCount := len(parameters)
 	if paramCount < 2 {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected at least 2 parameters")
+			"Expected at least 2 parameters", 0, 0)
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func maxFunctionCalculator(parameters []*variants.Variant,
 	paramCount := len(parameters)
 	if paramCount < 2 {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected at least 2 parameters")
+			"Expected at least 2 parameters", 0, 0)
 		return nil, err
 	}
 
@@ -317,7 +317,7 @@ func sumFunctionCalculator(parameters []*variants.Variant,
 	paramCount := len(parameters)
 	if paramCount < 2 {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected at least 2 parameters")
+			"Expected at least 2 parameters", 0, 0)
 		return nil, err
 	}
 
@@ -363,7 +363,7 @@ func chooseFunctionCalculator(parameters []*variants.Variant,
 	paramCount := len(parameters)
 	if paramCount < 3 {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected at least 3 parameters")
+			"Expected at least 3 parameters", 0, 0)
 		return nil, err
 	}
 
@@ -376,7 +376,7 @@ func chooseFunctionCalculator(parameters []*variants.Variant,
 
 	if paramCount < paramIndex+1 {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected at least "+string(paramIndex+1)+" parameters")
+			"Expected at least "+string(paramIndex+1)+" parameters", 0, 0)
 		return nil, err
 	}
 

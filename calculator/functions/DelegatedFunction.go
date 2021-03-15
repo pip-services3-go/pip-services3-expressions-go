@@ -62,7 +62,7 @@ func (c *DelegatedFunction) Calculate(parameters []*variants.Variant,
 	defer func() {
 		if r := recover(); r != nil {
 			message := fmt.Sprint("%v", r)
-			err = errors.NewExpressionError("", "CALC_FAILED", message)
+			err = errors.NewExpressionError("", "CALC_FAILED", message, 0, 0)
 		}
 	}()
 
