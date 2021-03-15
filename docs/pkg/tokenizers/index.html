@@ -154,7 +154,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.ReadNextToken">func (c *AbstractTokenizer) ReadNextToken() (*Token, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.Reader">func (c *AbstractTokenizer) Reader() io.IPushbackReader</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.Reader">func (c *AbstractTokenizer) Reader() io.IScanner</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.SetCharacterState">func (c *AbstractTokenizer) SetCharacterState(fromSymbol rune, toSymbol rune, state ITokenizerState)</a></dd>
@@ -175,7 +175,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.SetQuoteState">func (c *AbstractTokenizer) SetQuoteState(value IQuoteState)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.SetReader">func (c *AbstractTokenizer) SetReader(value io.IPushbackReader)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.SetReader">func (c *AbstractTokenizer) SetReader(value io.IScanner)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.SetSkipComments">func (c *AbstractTokenizer) SetSkipComments(value bool)</a></dd>
@@ -223,10 +223,10 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.TokenizeBufferToStrings">func (c *AbstractTokenizer) TokenizeBufferToStrings(buffer string) ([]string, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.TokenizeStream">func (c *AbstractTokenizer) TokenizeStream(reader io.IPushbackReader) ([]*Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.TokenizeStream">func (c *AbstractTokenizer) TokenizeStream(scanner io.IScanner) ([]*Token, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.TokenizeStreamToStrings">func (c *AbstractTokenizer) TokenizeStreamToStrings(reader io.IPushbackReader) ([]string, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.TokenizeStreamToStrings">func (c *AbstractTokenizer) TokenizeStreamToStrings(scanner io.IScanner) ([]string, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractTokenizer.UnifyNumbers">func (c *AbstractTokenizer) UnifyNumbers() bool</a></dd>
@@ -528,7 +528,7 @@ Implements an abstract tokenizer class.
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) Reader() <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a></pre>
+				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) Reader() <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a></pre>
 				
 				
 				
@@ -612,7 +612,7 @@ Implements an abstract tokenizer class.
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) SetReader(value <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>)</pre>
+				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) SetReader(value <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>)</pre>
 				
 				
 				
@@ -804,7 +804,7 @@ Implements an abstract tokenizer class.
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) TokenizeStream(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) ([]*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) TokenizeStream(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) ([]*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
@@ -816,7 +816,7 @@ Implements an abstract tokenizer class.
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) TokenizeStreamToStrings(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) ([]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a>) TokenizeStreamToStrings(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) ([]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
@@ -1092,18 +1092,18 @@ of what characters can be part of a word, after the first character.
     <span class="comment">// Gets a token state to process words or indentificators.</span>
     WordState() <a href="index.html#IWordState">IWordState</a>
 
-    <span class="comment">// Gets the stream reader to tokenize.</span>
-    Reader() <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>
+    <span class="comment">// Gets the stream scanner to tokenize.</span>
+    Reader() <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>
 
-    <span class="comment">// Sets the stream reader to tokenize.</span>
-    SetReader(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>)
+    <span class="comment">// Sets the stream scanner to tokenize.</span>
+    SetReader(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>)
 
     <span class="comment">// Checks if there is the next token exist.</span>
     <span class="comment">//</span>
-    <span class="comment">// Returns: &lt;code&gt;true&lt;/code&gt; if reader has the next token.</span>
+    <span class="comment">// Returns: &lt;code&gt;true&lt;/code&gt; if scanner has the next token.</span>
     HasNextToken() (<a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 
-    <span class="comment">// Gets the next token from the reader.</span>
+    <span class="comment">// Gets the next token from the scanner.</span>
     <span class="comment">//</span>
     <span class="comment">// Returns: Next token of &lt;code&gt;null&lt;/code&gt; if there are no more tokens left.</span>
     NextToken() (*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
@@ -1111,9 +1111,9 @@ of what characters can be part of a word, after the first character.
     <span class="comment">// Tokenizes a textual stream into a list of token structures.</span>
     <span class="comment">//</span>
     <span class="comment">// Parameters:</span>
-    <span class="comment">//   - reader: A textual stream to be tokenized.</span>
+    <span class="comment">//   - scanner: A textual stream to be tokenized.</span>
     <span class="comment">// Returns: A list of token structures.</span>
-    TokenizeStream(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) ([]*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    TokenizeStream(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) ([]*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 
     <span class="comment">// Tokenizes a string buffer into a list of tokens structures.</span>
     <span class="comment">//</span>
@@ -1125,9 +1125,9 @@ of what characters can be part of a word, after the first character.
     <span class="comment">// Tokenizes a textual stream into a list of strings.</span>
     <span class="comment">//</span>
     <span class="comment">// Parameters:</span>
-    <span class="comment">//   - reader: A textual stream to be tokenized.</span>
+    <span class="comment">//   - scanner: A textual stream to be tokenized.</span>
     <span class="comment">// Returns: A list of token strings.</span>
-    TokenizeStreamToStrings(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) ([]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    TokenizeStreamToStrings(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) ([]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 
     <span class="comment">// Tokenizes a string buffer into a list of strings.</span>
     <span class="comment">//</span>
@@ -1157,8 +1157,8 @@ of what characters can be part of a word, after the first character.
 				
 			</h2>
 			<p>
-A tokenizerState returns a token, given a reader, an initial character read from the reader,
-and a tokenizer that is conducting an overall tokenization of the reader. The tokenizer will
+A tokenizerState returns a token, given a scanner, an initial character read from the scanner,
+and a tokenizer that is conducting an overall tokenization of the scanner. The tokenizer will
 typically have a character state table that decides which state to use, depending on an initial
 character. If a single character is insufficient, a state such as &lt;code&gt;SlashState&lt;/code&gt;
 will read a second character, and may delegate to another state, such as &lt;code&gt;SlashStarState&lt;/code&gt;.
@@ -1170,10 +1170,10 @@ method has a tokenizer argument.
     <span class="comment">// Gets the next token from the stream started from the character linked to this state.</span>
     <span class="comment">//</span>
     <span class="comment">// Parameters:</span>
-    <span class="comment">//   - reader: A textual string to be tokenized.</span>
+    <span class="comment">//   - scanner: A textual string to be tokenized.</span>
     <span class="comment">//   - tokenizer: A tokenizer class that controls the process.</span>
     <span class="comment">// Returns: The next token from the top of the stream.</span>
-    NextToken(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="index.html#ITokenizer">ITokenizer</a>) (*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    NextToken(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="index.html#ITokenizer">ITokenizer</a>) (*<a href="index.html#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 }</pre>
 
 			

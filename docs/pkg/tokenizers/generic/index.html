@@ -120,7 +120,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CCommentState.NextToken">func (c *CCommentState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CCommentState.NextToken">func (c *CCommentState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 			
 				
@@ -131,13 +131,13 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CppCommentState.GetMultiLineComment">func (c *CppCommentState) GetMultiLineComment(reader io.IPushbackReader) (string, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CppCommentState.GetMultiLineComment">func (c *CppCommentState) GetMultiLineComment(scanner io.IScanner) (string, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CppCommentState.GetSingleLineComment">func (c *CppCommentState) GetSingleLineComment(reader io.IPushbackReader) (string, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CppCommentState.GetSingleLineComment">func (c *CppCommentState) GetSingleLineComment(scanner io.IScanner) (string, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CppCommentState.NextToken">func (c *CppCommentState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CppCommentState.NextToken">func (c *CppCommentState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 			
 				
@@ -148,7 +148,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GenericCommentState.NextToken">func (c *GenericCommentState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GenericCommentState.NextToken">func (c *GenericCommentState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 			
 				
@@ -159,7 +159,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GenericNumberState.NextToken">func (c *GenericNumberState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GenericNumberState.NextToken">func (c *GenericNumberState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 			
 				
@@ -176,7 +176,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GenericQuoteState.EncodeString">func (c *GenericQuoteState) EncodeString(value string, quoteSymbol rune) string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GenericQuoteState.NextToken">func (c *GenericQuoteState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GenericQuoteState.NextToken">func (c *GenericQuoteState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 			
 				
@@ -190,7 +190,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GenericSymbolState.Add">func (c *GenericSymbolState) Add(value string, tokenType int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GenericSymbolState.NextToken">func (c *GenericSymbolState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GenericSymbolState.NextToken">func (c *GenericSymbolState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 			
 				
@@ -212,7 +212,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GenericWhitespaceState.ClearWhitespaceChars">func (c *GenericWhitespaceState) ClearWhitespaceChars()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GenericWhitespaceState.NextToken">func (c *GenericWhitespaceState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GenericWhitespaceState.NextToken">func (c *GenericWhitespaceState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GenericWhitespaceState.SetWhitespaceChars">func (c *GenericWhitespaceState) SetWhitespaceChars(fromSymbol rune, toSymbol rune, enable bool)</a></dd>
@@ -229,7 +229,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GenericWordState.ClearWordChars">func (c *GenericWordState) ClearWordChars()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GenericWordState.NextToken">func (c *GenericWordState) NextToken(reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GenericWordState.NextToken">func (c *GenericWordState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GenericWordState.SetWordChars">func (c *GenericWordState) SetWordChars(fromSymbol rune, toSymbol rune, enable bool)</a></dd>
@@ -249,7 +249,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.Ancestry">func (c *SymbolNode) Ancestry() []rune</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.DeepestRead">func (c *SymbolNode) DeepestRead(reader io.IPushbackReader) (*SymbolNode, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.DeepestRead">func (c *SymbolNode) DeepestRead(scanner io.IScanner) (*SymbolNode, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.EnsureChildWithChar">func (c *SymbolNode) EnsureChildWithChar(value rune) *SymbolNode</a></dd>
@@ -267,7 +267,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.TokenType">func (c *SymbolNode) TokenType() int</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.UnreadToValid">func (c *SymbolNode) UnreadToValid(reader io.IPushbackReader) *SymbolNode</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.UnreadToValid">func (c *SymbolNode) UnreadToValid(scanner io.IScanner) *SymbolNode</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#SymbolNode.Valid">func (c *SymbolNode) Valid() bool</a></dd>
@@ -284,7 +284,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#SymbolRootNode.Add">func (c *SymbolRootNode) Add(value string, tokenType int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#SymbolRootNode.NextToken">func (c *SymbolRootNode) NextToken(reader io.IPushbackReader) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#SymbolRootNode.NextToken">func (c *SymbolRootNode) NextToken(scanner io.IScanner) (*tokenizers.Token, error)</a></dd>
 				
 			
 			
@@ -377,7 +377,7 @@ This state will either delegate to a comment-handling state, or return a token w
 					
 				</h3>
 				<pre>func (c *<a href="index.html#CCommentState">CCommentState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Either delegate to a comment-handling state, or return a token with just a slash in it.
 </p>
@@ -432,7 +432,7 @@ This state will either delegate to a comment-handling state, or return a token w
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CppCommentState">CppCommentState</a>) GetMultiLineComment(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#CppCommentState">CppCommentState</a>) GetMultiLineComment(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Ignore everything up to a closing star and slash, and then return the tokenizer&#39;s next token.
 </p>
@@ -447,7 +447,7 @@ Ignore everything up to a closing star and slash, and then return the tokenizer&
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CppCommentState">CppCommentState</a>) GetSingleLineComment(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#CppCommentState">CppCommentState</a>) GetSingleLineComment(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Ignore everything up to an end-of-line and return the tokenizer&#39;s next token.
 </p>
@@ -463,7 +463,7 @@ Ignore everything up to an end-of-line and return the tokenizer&#39;s next token
 					
 				</h3>
 				<pre>func (c *<a href="index.html#CppCommentState">CppCommentState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Either delegate to a comment-handling state, or return a token with just a slash in it.
 </p>
@@ -484,7 +484,7 @@ Returns: Either just a slash token, or the results of delegating to a comment-ha
 				
 			</h2>
 			<p>
-A CommentState object returns a comment from a reader.
+A CommentState object returns a comment from a scanner.
 </p>
 
 			<pre>type GenericCommentState struct{}
@@ -519,7 +519,7 @@ A CommentState object returns a comment from a reader.
 					
 				</h3>
 				<pre>func (c *<a href="index.html#GenericCommentState">GenericCommentState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Either delegate to a comment-handling state, or return a token with just a slash in it.
 </p>
@@ -540,7 +540,7 @@ Returns: Either just a slash token, or the results of delegating to a comment-ha
 				
 			</h2>
 			<p>
-A NumberState object returns a number from a reader. This state&#39;s idea of a number allows
+A NumberState object returns a number from a scanner. This state&#39;s idea of a number allows
 an optional, initial minus sign, followed by one or more digits. A decimal point and another string
 of digits may follow these digits.
 </p>
@@ -577,14 +577,14 @@ of digits may follow these digits.
 					
 				</h3>
 				<pre>func (c *<a href="index.html#GenericNumberState">GenericNumberState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Gets the next token from the stream started from the character linked to this state.
 </p>
 <p>
 Parameters:
 </p>
-<pre>- reader: A textual string to be tokenized.
+<pre>- scanner: A textual string to be tokenized.
 - tokenizer: A tokenizer class that controls the process.
 </pre>
 <p>
@@ -604,11 +604,11 @@ Returns: The next token from the top of the stream.
 				
 			</h2>
 			<p>
-A quoteState returns a quoted string token from a reader. This state will collect characters
+A quoteState returns a quoted string token from a scanner. This state will collect characters
 until it sees a match to the character that the tokenizer used to switch to this state.
 For example, if a tokenizer uses a double-quote character to enter this state,
 then &lt;code&gt;nextToken()&lt;/code&gt; will search for another double-quote until it finds one
-or finds the end of the reader.
+or finds the end of the scanner.
 </p>
 
 			<pre>type GenericQuoteState struct{}
@@ -691,14 +691,14 @@ Returns: An encoded string.
 					
 				</h3>
 				<pre>func (c *<a href="index.html#GenericQuoteState">GenericQuoteState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Return a quoted string token from a reader. This method will collect
+Return a quoted string token from a scanner. This method will collect
 characters until it sees a match to the character that the tokenizer used
 to switch to this state.
 </p>
 <p>
-Returns: A quoted string token from a reader.
+Returns: A quoted string token from a scanner.
 </p>
 
 				
@@ -784,12 +784,12 @@ Params:
 					
 				</h3>
 				<pre>func (c *<a href="index.html#GenericSymbolState">GenericSymbolState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Returns a symbol token from a reader.
+Returns a symbol token from a scanner.
 </p>
 <p>
-Returns: A symbol token from a reader.
+Returns: A symbol token from a scanner.
 </p>
 
 				
@@ -900,7 +900,7 @@ Clears definitions of whitespace characters.
 					
 				</h3>
 				<pre>func (c *<a href="index.html#GenericWhitespaceState">GenericWhitespaceState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Ignore whitespace (such as blanks and tabs), and return the tokenizer&#39;s next token.
 </p>
@@ -943,7 +943,7 @@ Parameters:
 				
 			</h2>
 			<p>
-A wordState returns a word from a reader. Like other states, a tokenizer transfers the job
+A wordState returns a word from a scanner. Like other states, a tokenizer transfers the job
 of reading to this state, depending on an initial character. Thus, the tokenizer decides
 which characters may begin a word, and this state determines which characters may appear
 as a second or later character in a word. These are typically different sets of characters;
@@ -1018,7 +1018,7 @@ Clears definitions of word chars.
 					
 				</h3>
 				<pre>func (c *<a href="index.html#GenericWordState">GenericWordState</a>) NextToken(
-    reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Ignore word (such as blanks and tabs), and return the tokenizer&#39;s next token.
 </p>
@@ -1163,7 +1163,7 @@ Returns: The symbol this node represents
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#SymbolNode">SymbolNode</a>) DeepestRead(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) (*<a href="index.html#SymbolNode">SymbolNode</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#SymbolNode">SymbolNode</a>) DeepestRead(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) (*<a href="index.html#SymbolNode">SymbolNode</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Find the descendant that takes as many characters as possible from the input.
 </p>
@@ -1244,7 +1244,7 @@ Find a child with the given character.
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#SymbolNode">SymbolNode</a>) UnreadToValid(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) *<a href="index.html#SymbolNode">SymbolNode</a></pre>
+				<pre>func (c *<a href="index.html#SymbolNode">SymbolNode</a>) UnreadToValid(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) *<a href="index.html#SymbolNode">SymbolNode</a></pre>
 				<p>
 Find a descendant which is down the path the given string indicates.
 </p>
@@ -1350,18 +1350,18 @@ Parameters:
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#SymbolRootNode">SymbolRootNode</a>) NextToken(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#SymbolRootNode">SymbolRootNode</a>) NextToken(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Return a symbol string from a reader.
+Return a symbol string from a scanner.
 </p>
 <p>
 Parameters:
 </p>
-<pre>- reader: A reader to read from
-- firstChar: The first character of this symbol, already read from the reader.
+<pre>- scanner: A scanner to read from
+- firstChar: The first character of this symbol, already read from the scanner.
 </pre>
 <p>
-Returns: A symbol string from a reader
+Returns: A symbol string from a scanner
 </p>
 
 				

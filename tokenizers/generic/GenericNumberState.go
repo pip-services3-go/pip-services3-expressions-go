@@ -8,7 +8,7 @@ import (
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/utilities"
 )
 
-// A NumberState object returns a number from a reader. This state's idea of a number allows
+// A NumberState object returns a number from a scanner. This state's idea of a number allows
 // an optional, initial minus sign, followed by one or more digits. A decimal point and another string
 // of digits may follow these digits.
 type GenericNumberState struct{}
@@ -21,28 +21,21 @@ func NewGenericNumberState() *GenericNumberState {
 // Gets the next token from the stream started from the character linked to this state.
 //
 // Parameters:
-//   - reader: A textual string to be tokenized.
+//   - scanner: A textual string to be tokenized.
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
 func (c *GenericNumberState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 
 	absorbedDot := false
 	gotADigit := false
 	tokenValue := strings.Builder{}
-
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
+	nextSymbol := scanner.Read()
 
 	// Parses leading minus.
 	if nextSymbol == '-' {
 		tokenValue.WriteRune('-')
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return nil, err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	// Parses digits before decimal separator.
@@ -50,46 +43,34 @@ func (c *GenericNumberState) NextToken(
 		!utilities.CharValidator.IsEof(nextSymbol) {
 		gotADigit = true
 		tokenValue.WriteRune(nextSymbol)
-
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return nil, err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	// Parses part after the decimal separator.
 	if nextSymbol == '.' {
 		absorbedDot = true
 		tokenValue.WriteRune('.')
-
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return nil, err
-		}
+		nextSymbol = scanner.Read()
 
 		// Absorb all digits.
 		for utilities.CharValidator.IsDigit(nextSymbol) &&
 			!utilities.CharValidator.IsEof(nextSymbol) {
 			gotADigit = true
 			tokenValue.WriteRune(nextSymbol)
-
-			nextSymbol, err = reader.Read()
-			if err != nil {
-				return nil, err
-			}
+			nextSymbol = scanner.Read()
 		}
 	}
 
-	// Pushback last unprocessed symbol.
+	// Unread last unprocessed symbol.
 	if !utilities.CharValidator.IsEof(nextSymbol) {
-		reader.Pushback(nextSymbol)
+		scanner.Unread()
 	}
 
 	// Process the result.
 	if !gotADigit {
-		reader.PushbackString(tokenValue.String())
+		scanner.UnreadMany(tokenValue.Len())
 		if tokenizer != nil && tokenizer.SymbolState() != nil {
-			return tokenizer.SymbolState().NextToken(reader, tokenizer)
+			return tokenizer.SymbolState().NextToken(scanner, tokenizer)
 		} else {
 			panic("Tokenizer must have an assigned symbol state.")
 		}

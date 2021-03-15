@@ -12,8 +12,8 @@ import (
 func TestGenericWordStateNextToken(t *testing.T) {
 	state := generic.NewGenericWordState()
 
-	reader := io.NewStringPushbackReader("AB_CD=")
-	token, err := state.NextToken(reader, nil)
+	scanner := io.NewStringScanner("AB_CD=")
+	token, err := state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "AB_CD", token.Value())
 	assert.Equal(t, tokenizers.Word, token.Type())

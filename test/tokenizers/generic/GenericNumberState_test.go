@@ -12,7 +12,7 @@ import (
 func TestGenericNumberStateNextToken(t *testing.T) {
 	state := generic.NewGenericNumberState()
 
-	reader := io.NewStringPushbackReader("ABC")
+	scanner := io.NewStringScanner("ABC")
 	failed := false
 	func() {
 		defer func() {
@@ -20,36 +20,36 @@ func TestGenericNumberStateNextToken(t *testing.T) {
 				failed = true
 			}
 		}()
-		state.NextToken(reader, nil)
+		state.NextToken(scanner, nil)
 	}()
 	assert.True(t, failed)
 
-	reader = io.NewStringPushbackReader("123#")
-	token, err := state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("123#")
+	token, err := state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "123", token.Value())
 	assert.Equal(t, tokenizers.Integer, token.Type())
 
-	reader = io.NewStringPushbackReader("-123#")
-	token, err = state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("-123#")
+	token, err = state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "-123", token.Value())
 	assert.Equal(t, tokenizers.Integer, token.Type())
 
-	reader = io.NewStringPushbackReader("123.#")
-	token, err = state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("123.#")
+	token, err = state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "123.", token.Value())
 	assert.Equal(t, tokenizers.Float, token.Type())
 
-	reader = io.NewStringPushbackReader("123.456#")
-	token, err = state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("123.456#")
+	token, err = state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "123.456", token.Value())
 	assert.Equal(t, tokenizers.Float, token.Type())
 
-	reader = io.NewStringPushbackReader("-123.456#")
-	token, err = state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("-123.456#")
+	token, err = state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "-123.456", token.Value())
 	assert.Equal(t, tokenizers.Float, token.Type())

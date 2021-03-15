@@ -113,17 +113,17 @@
 			
 			
 				
-				<dd><a href="index.html#PushbackReaderFixture">type PushbackReaderFixture</a></dd>
+				<dd><a href="index.html#ScannerFixture">type ScannerFixture</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewPushbackReaderFixture">func NewPushbackReaderFixture(reader io.IPushbackReader, content string) *PushbackReaderFixture</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewScannerFixture">func NewScannerFixture(scanner io.IScanner, content string) *ScannerFixture</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PushbackReaderFixture.TestOperations">func (c *PushbackReaderFixture) TestOperations(t *testing.T)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ScannerFixture.TestOperations">func (c *ScannerFixture) TestOperations(t *testing.T)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PushbackReaderFixture.TestPushback">func (c *PushbackReaderFixture) TestPushback(t *testing.T)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ScannerFixture.TestUnread">func (c *ScannerFixture) TestUnread(t *testing.T)</a></dd>
 				
 			
 			
@@ -137,7 +137,7 @@
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="http://localhost:6060/src/test/io/PushbackReaderFixture.go">PushbackReaderFixture.go</a>
+				<a href="http://localhost:6060/src/test/io/ScannerFixture.go">ScannerFixture.go</a>
 			
 			</span>
 			</p>
@@ -153,13 +153,13 @@
 		
 			
 			
-			<h2 id="PushbackReaderFixture">type <a href="http://localhost:6060/src/test/io/PushbackReaderFixture.go?s=223:304#L1">PushbackReaderFixture</a>
-				<a class="permalink" href="index.html#PushbackReaderFixture">&#xb6;</a>
+			<h2 id="ScannerFixture">type <a href="http://localhost:6060/src/test/io/ScannerFixture.go?s=223:304#L1">ScannerFixture</a>
+				<a class="permalink" href="index.html#ScannerFixture">&#xb6;</a>
 				
 				
 			</h2>
 			
-			<pre>type PushbackReaderFixture struct {
+			<pre>type ScannerFixture struct {
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -174,12 +174,12 @@
 
 			
 				
-				<h3 id="NewPushbackReaderFixture">func <a href="http://localhost:6060/src/test/io/PushbackReaderFixture.go?s=306:401#L6">NewPushbackReaderFixture</a>
-					<a class="permalink" href="index.html#NewPushbackReaderFixture">&#xb6;</a>
+				<h3 id="NewScannerFixture">func <a href="http://localhost:6060/src/test/io/ScannerFixture.go?s=306:401#L6">NewScannerFixture</a>
+					<a class="permalink" href="index.html#NewScannerFixture">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewPushbackReaderFixture(reader <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IPushbackReader">IPushbackReader</a>, content <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#PushbackReaderFixture">PushbackReaderFixture</a></pre>
+				<pre>func NewScannerFixture(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, content <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#ScannerFixture">ScannerFixture</a></pre>
 				
 				
 				
@@ -187,24 +187,24 @@
 
 			
 				
-				<h3 id="PushbackReaderFixture.TestOperations">func (*PushbackReaderFixture) <a href="http://localhost:6060/src/test/io/PushbackReaderFixture.go?s=489:549#L13">TestOperations</a>
-					<a class="permalink" href="index.html#PushbackReaderFixture.TestOperations">&#xb6;</a>
+				<h3 id="ScannerFixture.TestOperations">func (*ScannerFixture) <a href="http://localhost:6060/src/test/io/ScannerFixture.go?s=489:549#L13">TestOperations</a>
+					<a class="permalink" href="index.html#ScannerFixture.TestOperations">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#PushbackReaderFixture">PushbackReaderFixture</a>) TestOperations(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
+				<pre>func (c *<a href="index.html#ScannerFixture">ScannerFixture</a>) TestOperations(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="PushbackReaderFixture.TestPushback">func (*PushbackReaderFixture) <a href="http://localhost:6060/src/test/io/PushbackReaderFixture.go?s=1384:1442#L54">TestPushback</a>
-					<a class="permalink" href="index.html#PushbackReaderFixture.TestPushback">&#xb6;</a>
+				<h3 id="ScannerFixture.TestUnread">func (*ScannerFixture) <a href="http://localhost:6060/src/test/io/ScannerFixture.go?s=1384:1442#L54">TestUnread</a>
+					<a class="permalink" href="index.html#ScannerFixture.TestUnread">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#PushbackReaderFixture">PushbackReaderFixture</a>) TestPushback(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
+				<pre>func (c *<a href="index.html#ScannerFixture">ScannerFixture</a>) TestUnread(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
 				
 				
 				

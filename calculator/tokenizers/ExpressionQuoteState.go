@@ -20,49 +20,31 @@ func NewExpressionQuoteState() *ExpressionQuoteState {
 // Gets the next token from the stream started from the character linked to this state.
 //
 // Parameters:
-//   - reader: A textual string to be tokenized.
+//   - scanner: A textual string to be tokenized.
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
-func (c *ExpressionQuoteState) NextToken(reader io.IPushbackReader,
+func (c *ExpressionQuoteState) NextToken(scanner io.IScanner,
 	tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
-	firstSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
-
+	firstSymbol := scanner.Read()
 	tokenValue := strings.Builder{}
 	tokenValue.WriteRune(firstSymbol)
-
-	nextSymbol, err1 := reader.Read()
-	if err1 != nil {
-		return nil, err1
-	}
+	nextSymbol := scanner.Read()
 
 	for !utilities.CharValidator.IsEof(nextSymbol) {
 		tokenValue.WriteRune(nextSymbol)
 
 		if nextSymbol == firstSymbol {
-			chr, err := reader.Peek()
-			if err != nil {
-				return nil, err
-			}
+			chr := scanner.Peek()
 
 			if chr == firstSymbol {
-				nextSymbol, err1 = reader.Read()
-				if err1 != nil {
-					return nil, err1
-				}
-
+				nextSymbol = scanner.Read()
 				tokenValue.WriteRune(nextSymbol)
 			} else {
 				break
 			}
 		}
 
-		nextSymbol, err1 = reader.Read()
-		if err1 != nil {
-			return nil, err1
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	tokenType := tokenizers.Quoted

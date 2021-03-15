@@ -113,28 +113,28 @@
 			
 			
 				
-				<dd><a href="index.html#IPushbackReader">type IPushbackReader</a></dd>
+				<dd><a href="index.html#IScanner">type IScanner</a></dd>
 				
 				
 			
 				
-				<dd><a href="index.html#StringPushbackReader">type StringPushbackReader</a></dd>
+				<dd><a href="index.html#StringScanner">type StringScanner</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewStringPushbackReader">func NewStringPushbackReader(content string) *StringPushbackReader</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStringScanner">func NewStringScanner(content string) *StringScanner</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.Peek">func (c *StringPushbackReader) Peek() (rune, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Peek">func (c *StringScanner) Peek() (rune, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.Pushback">func (c *StringPushbackReader) Pushback(value rune)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Unread">func (c *StringScanner) Unread(value rune)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.PushbackString">func (c *StringPushbackReader) PushbackString(value string)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.UnreadMany">func (c *StringScanner) UnreadMany(value string)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringPushbackReader.Read">func (c *StringPushbackReader) Read() (rune, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Read">func (c *StringScanner) Read() (rune, error)</a></dd>
 				
 			
 			
@@ -148,9 +148,9 @@
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="http://localhost:6060/src/io/IPushbackReader.go">IPushbackReader.go</a>
+				<a href="http://localhost:6060/src/io/IScanner.go">IScanner.go</a>
 			
-				<a href="http://localhost:6060/src/io/StringPushbackReader.go">StringPushbackReader.go</a>
+				<a href="http://localhost:6060/src/io/StringScanner.go">StringScanner.go</a>
 			
 			</span>
 			</p>
@@ -166,17 +166,17 @@
 		
 			
 			
-			<h2 id="IPushbackReader">type <a href="http://localhost:6060/src/io/IPushbackReader.go?s=131:844#L1">IPushbackReader</a>
-				<a class="permalink" href="index.html#IPushbackReader">&#xb6;</a>
+			<h2 id="IScanner">type <a href="http://localhost:6060/src/io/IScanner.go?s=131:844#L1">IScanner</a>
+				<a class="permalink" href="index.html#IScanner">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Defines reader with ability to push back characters.
-This reader is used by tokenizers to process input streams.
+Defines scanner with ability to push back characters.
+This scanner is used by tokenizers to process input streams.
 </p>
 
-			<pre>type IPushbackReader interface {
+			<pre>type IScanner interface {
     <span class="comment">// Reads character from the top of the stream.</span>
     <span class="comment">//</span>
     <span class="comment">// Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to the end.&lt;/returns&gt;</span>
@@ -191,13 +191,13 @@ This reader is used by tokenizers to process input streams.
     <span class="comment">//</span>
     <span class="comment">// Parameters:</span>
     <span class="comment">//   - value: A character to be pushed back.</span>
-    Pushback(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)
+    Unread(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)
 
     <span class="comment">// Pushes the specified string to the top of the stream.</span>
     <span class="comment">//</span>
     <span class="comment">// Parameters:</span>
     <span class="comment">//   - value: A string to be pushed back.</span>
-    PushbackString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
+    UnreadMany(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
 }</pre>
 
 			
@@ -214,8 +214,8 @@ This reader is used by tokenizers to process input streams.
 		
 			
 			
-			<h2 id="StringPushbackReader">type <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=142:305#L1">StringPushbackReader</a>
-				<a class="permalink" href="index.html#StringPushbackReader">&#xb6;</a>
+			<h2 id="StringScanner">type <a href="http://localhost:6060/src/io/StringScanner.go?s=142:305#L1">StringScanner</a>
+				<a class="permalink" href="index.html#StringScanner">&#xb6;</a>
 				
 				
 			</h2>
@@ -224,7 +224,7 @@ Wraps string to provide unlimited pushback that allows tokenizers
 to look ahead through stream to perform lexical analysis.
 </p>
 
-			<pre>type StringPushbackReader struct {
+			<pre>type StringScanner struct {
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -239,12 +239,12 @@ to look ahead through stream to perform lexical analysis.
 
 			
 				
-				<h3 id="NewStringPushbackReader">func <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=405:471#L7">NewStringPushbackReader</a>
-					<a class="permalink" href="index.html#NewStringPushbackReader">&#xb6;</a>
+				<h3 id="NewStringScanner">func <a href="http://localhost:6060/src/io/StringScanner.go?s=405:471#L7">NewStringScanner</a>
+					<a class="permalink" href="index.html#NewStringScanner">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewStringPushbackReader(content <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#StringPushbackReader">StringPushbackReader</a></pre>
+				<pre>func NewStringScanner(content <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#StringScanner">StringScanner</a></pre>
 				<p>
 Creates an instance of this class.
 </p>
@@ -260,12 +260,12 @@ Parameters:
 
 			
 				
-				<h3 id="StringPushbackReader.Peek">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=1482:1533#L45">Peek</a>
-					<a class="permalink" href="index.html#StringPushbackReader.Peek">&#xb6;</a>
+				<h3 id="StringScanner.Peek">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1482:1533#L45">Peek</a>
+					<a class="permalink" href="index.html#StringScanner.Peek">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) Peek() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Peek() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Returns the character from the top of the stream without moving the stream pointer.
 </p>
@@ -278,12 +278,12 @@ Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if
 				
 			
 				
-				<h3 id="StringPushbackReader.Pushback">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=1916:1967#L63">Pushback</a>
-					<a class="permalink" href="index.html#StringPushbackReader.Pushback">&#xb6;</a>
+				<h3 id="StringScanner.Unread">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1916:1967#L63">Unread</a>
+					<a class="permalink" href="index.html#StringScanner.Unread">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) Pushback(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Unread(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)</pre>
 				<p>
 Puts the specified character to the top of the stream.
 </p>
@@ -298,12 +298,12 @@ Parameters:
 				
 			
 				
-				<h3 id="StringPushbackReader.PushbackString">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=2424:2483#L83">PushbackString</a>
-					<a class="permalink" href="index.html#StringPushbackReader.PushbackString">&#xb6;</a>
+				<h3 id="StringScanner.UnreadMany">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2424:2483#L83">UnreadMany</a>
+					<a class="permalink" href="index.html#StringScanner.UnreadMany">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) PushbackString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) UnreadMany(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
 Pushes the specified string to the top of the stream.
 </p>
@@ -318,12 +318,12 @@ Parameters:
 				
 			
 				
-				<h3 id="StringPushbackReader.Read">func (*StringPushbackReader) <a href="http://localhost:6060/src/io/StringPushbackReader.go?s=684:735#L17">Read</a>
-					<a class="permalink" href="index.html#StringPushbackReader.Read">&#xb6;</a>
+				<h3 id="StringScanner.Read">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=684:735#L17">Read</a>
+					<a class="permalink" href="index.html#StringScanner.Read">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringPushbackReader">StringPushbackReader</a>) Read() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Read() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Reads character from the top of the stream.
 </p>

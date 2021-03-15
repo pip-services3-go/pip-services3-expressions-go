@@ -97,18 +97,18 @@ type ITokenizer interface {
 	// Gets a token state to process words or indentificators.
 	WordState() IWordState
 
-	// Gets the stream reader to tokenize.
-	Reader() io.IPushbackReader
+	// Gets the stream scanner to tokenize.
+	Reader() io.IScanner
 
-	// Sets the stream reader to tokenize.
-	SetReader(reader io.IPushbackReader)
+	// Sets the stream scanner to tokenize.
+	SetReader(scanner io.IScanner)
 
 	// Checks if there is the next token exist.
 	//
-	// Returns: <code>true</code> if reader has the next token.
+	// Returns: <code>true</code> if scanner has the next token.
 	HasNextToken() (bool, error)
 
-	// Gets the next token from the reader.
+	// Gets the next token from the scanner.
 	//
 	// Returns: Next token of <code>null</code> if there are no more tokens left.
 	NextToken() (*Token, error)
@@ -116,9 +116,9 @@ type ITokenizer interface {
 	// Tokenizes a textual stream into a list of token structures.
 	//
 	// Parameters:
-	//   - reader: A textual stream to be tokenized.
+	//   - scanner: A textual stream to be tokenized.
 	// Returns: A list of token structures.
-	TokenizeStream(reader io.IPushbackReader) ([]*Token, error)
+	TokenizeStream(scanner io.IScanner) ([]*Token, error)
 
 	// Tokenizes a string buffer into a list of tokens structures.
 	//
@@ -130,9 +130,9 @@ type ITokenizer interface {
 	// Tokenizes a textual stream into a list of strings.
 	//
 	// Parameters:
-	//   - reader: A textual stream to be tokenized.
+	//   - scanner: A textual stream to be tokenized.
 	// Returns: A list of token strings.
-	TokenizeStreamToStrings(reader io.IPushbackReader) ([]string, error)
+	TokenizeStreamToStrings(scanner io.IScanner) ([]string, error)
 
 	// Tokenizes a string buffer into a list of strings.
 	//

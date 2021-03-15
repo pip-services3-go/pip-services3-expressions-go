@@ -22,34 +22,28 @@ func NewCCommentState() *CCommentState {
 //
 // Returns: Either just a slash token, or the results of delegating to a comment-handling state.
 func (c *CCommentState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 
-	firstSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
+	firstSymbol := scanner.Read()
 	if firstSymbol != '/' {
-		reader.Pushback(firstSymbol)
+		scanner.Unread()
 		panic("Incorrect usage of CppCommentState.")
 	}
 
-	secondSymbol, err1 := reader.Read()
-	if err1 != nil {
-		return nil, err1
-	}
+	secondSymbol := scanner.Read()
 	if secondSymbol == '*' {
-		str, err2 := c.GetMultiLineComment(reader)
+		str, err2 := c.GetMultiLineComment(scanner)
 		if err2 != nil {
 			return nil, err2
 		}
 		return tokenizers.NewToken(tokenizers.Comment, "/*"+str), nil
 	} else {
 		if !utilities.CharValidator.IsEof(secondSymbol) {
-			reader.Pushback(secondSymbol)
+			scanner.Unread()
 		}
 		if !utilities.CharValidator.IsEof(firstSymbol) {
-			reader.Pushback(firstSymbol)
+			scanner.Unread()
 		}
-		return tokenizer.SymbolState().NextToken(reader, tokenizer)
+		return tokenizer.SymbolState().NextToken(scanner, tokenizer)
 	}
 }

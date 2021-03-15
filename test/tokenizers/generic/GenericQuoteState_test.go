@@ -12,14 +12,14 @@ import (
 func TestGenericQuoteStateNextToken(t *testing.T) {
 	state := generic.NewGenericQuoteState()
 
-	reader := io.NewStringPushbackReader("'ABC#DEF'#")
-	token, err := state.NextToken(reader, nil)
+	scanner := io.NewStringScanner("'ABC#DEF'#")
+	token, err := state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "'ABC#DEF'", token.Value())
 	assert.Equal(t, tokenizers.Quoted, token.Type())
 
-	reader = io.NewStringPushbackReader("'ABC#DEF''")
-	token, err = state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("'ABC#DEF''")
+	token, err = state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "'ABC#DEF'", token.Value())
 	assert.Equal(t, tokenizers.Quoted, token.Type())

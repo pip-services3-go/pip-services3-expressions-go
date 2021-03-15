@@ -17,14 +17,11 @@ func NewCppCommentState() *CppCommentState {
 }
 
 // Ignore everything up to a closing star and slash, and then return the tokenizer's next token.
-func (c *CppCommentState) GetMultiLineComment(reader io.IPushbackReader) (string, error) {
+func (c *CppCommentState) GetMultiLineComment(scanner io.IScanner) (string, error) {
 	result := strings.Builder{}
 
 	lastSymbol := rune(0)
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return "", err
-	}
+	nextSymbol := scanner.Read()
 	for !utilities.CharValidator.IsEof(nextSymbol) {
 		result.WriteRune(nextSymbol)
 		if lastSymbol == '*' && nextSymbol == '/' {
@@ -32,35 +29,26 @@ func (c *CppCommentState) GetMultiLineComment(reader io.IPushbackReader) (string
 		}
 		lastSymbol = nextSymbol
 
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return "", err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	return result.String(), nil
 }
 
 // Ignore everything up to an end-of-line and return the tokenizer's next token.
-func (c *CppCommentState) GetSingleLineComment(reader io.IPushbackReader) (string, error) {
+func (c *CppCommentState) GetSingleLineComment(scanner io.IScanner) (string, error) {
 
 	result := strings.Builder{}
 
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return "", err
-	}
+	nextSymbol := scanner.Read()
 	for !utilities.CharValidator.IsEof(nextSymbol) && !utilities.CharValidator.IsEol(nextSymbol) {
 		result.WriteRune(nextSymbol)
 
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return "", err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	if utilities.CharValidator.IsEol(nextSymbol) {
-		reader.Pushback(nextSymbol)
+		scanner.Unread()
 	}
 
 	return result.String(), nil
@@ -70,40 +58,34 @@ func (c *CppCommentState) GetSingleLineComment(reader io.IPushbackReader) (strin
 //
 // Returns: Either just a slash token, or the results of delegating to a comment-handling state.
 func (c *CppCommentState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 
-	firstSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
+	firstSymbol := scanner.Read()
 	if firstSymbol != '/' {
-		reader.Pushback(firstSymbol)
+		scanner.Unread()
 		panic("Incorrect usage of CppCommentState.")
 	}
 
-	secondSymbol, err1 := reader.Read()
-	if err1 != nil {
-		return nil, err1
-	}
+	secondSymbol := scanner.Read()
 	if secondSymbol == '*' {
-		str, err2 := c.GetMultiLineComment(reader)
+		str, err2 := c.GetMultiLineComment(scanner)
 		if err2 != nil {
 			return nil, err2
 		}
 		return tokenizers.NewToken(tokenizers.Comment, "/*"+str), nil
 	} else if secondSymbol == '/' {
-		str, err2 := c.GetSingleLineComment(reader)
+		str, err2 := c.GetSingleLineComment(scanner)
 		if err2 != nil {
 			return nil, err2
 		}
 		return tokenizers.NewToken(tokenizers.Comment, "//"+str), nil
 	} else {
 		if !utilities.CharValidator.IsEof(secondSymbol) {
-			reader.Pushback(secondSymbol)
+			scanner.Unread()
 		}
 		if !utilities.CharValidator.IsEof(firstSymbol) {
-			reader.Pushback(firstSymbol)
+			scanner.Unread()
 		}
-		return tokenizer.SymbolState().NextToken(reader, tokenizer)
+		return tokenizer.SymbolState().NextToken(scanner, tokenizer)
 	}
 }

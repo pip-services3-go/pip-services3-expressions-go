@@ -8,7 +8,7 @@ import (
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/utilities"
 )
 
-// A wordState returns a word from a reader. Like other states, a tokenizer transfers the job
+// A wordState returns a word from a scanner. Like other states, a tokenizer transfers the job
 // of reading to this state, depending on an initial character. Thus, the tokenizer decides
 // which characters may begin a word, and this state determines which characters may appear
 // as a second or later character in a word. These are typically different sets of characters;
@@ -52,24 +52,18 @@ func NewGenericWordState() *GenericWordState {
 //
 // Returns: The tokenizer's next token
 func (c *GenericWordState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 
 	tokenValue := strings.Builder{}
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
+	nextSymbol := scanner.Read()
+
 	for c.mp.Lookup(nextSymbol) != nil {
 		tokenValue.WriteRune(nextSymbol)
-
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return nil, err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	if !utilities.CharValidator.IsEof(nextSymbol) {
-		reader.Pushback(nextSymbol)
+		scanner.Unread()
 	}
 
 	return tokenizers.NewToken(tokenizers.Word, tokenValue.String()), nil

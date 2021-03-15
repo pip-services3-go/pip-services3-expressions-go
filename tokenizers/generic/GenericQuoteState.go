@@ -8,11 +8,11 @@ import (
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/utilities"
 )
 
-// A quoteState returns a quoted string token from a reader. This state will collect characters
+// A quoteState returns a quoted string token from a scanner. This state will collect characters
 // until it sees a match to the character that the tokenizer used to switch to this state.
 // For example, if a tokenizer uses a double-quote character to enter this state,
 // then <code>nextToken()</code> will search for another double-quote until it finds one
-// or finds the end of the reader.
+// or finds the end of the scanner.
 type GenericQuoteState struct{}
 
 func NewGenericQuoteState() *GenericQuoteState {
@@ -20,36 +20,26 @@ func NewGenericQuoteState() *GenericQuoteState {
 	return c
 }
 
-// Return a quoted string token from a reader. This method will collect
+// Return a quoted string token from a scanner. This method will collect
 // characters until it sees a match to the character that the tokenizer used
 // to switch to this state.
 //
-// Returns: A quoted string token from a reader.
+// Returns: A quoted string token from a scanner.
 func (c *GenericQuoteState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 
-	firstSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
-
+	firstSymbol := scanner.Read()
 	tokenValue := strings.Builder{}
 	tokenValue.WriteRune(firstSymbol)
 
-	nextSymbol, err1 := reader.Read()
-	if err1 != nil {
-		return nil, err1
-	}
+	nextSymbol := scanner.Read()
 	for !utilities.CharValidator.IsEof(nextSymbol) {
 		tokenValue.WriteRune(nextSymbol)
 		if nextSymbol == firstSymbol {
 			break
 		}
 
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return nil, err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String()), nil

@@ -27,25 +27,18 @@ func NewGenericWhitespaceState() *GenericWhitespaceState {
 //
 // Returns: The tokenizer's next token
 func (c *GenericWhitespaceState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
 
 	tokenValue := strings.Builder{}
+	nextSymbol := scanner.Read()
 
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
 	for c.mp.Lookup(nextSymbol) != nil {
 		tokenValue.WriteRune(nextSymbol)
-
-		nextSymbol, err = reader.Read()
-		if err != nil {
-			return nil, err
-		}
+		nextSymbol = scanner.Read()
 	}
 
 	if !utilities.CharValidator.IsEof(nextSymbol) {
-		reader.Pushback(nextSymbol)
+		scanner.Unread()
 	}
 
 	return tokenizers.NewToken(tokenizers.Whitespace, tokenValue.String()), nil

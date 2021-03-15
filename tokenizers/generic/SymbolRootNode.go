@@ -38,30 +38,23 @@ func (c *SymbolRootNode) Add(value string, tokenType int) {
 	childNode.AddDescendantLine(v[1:], tokenType)
 }
 
-// Return a symbol string from a reader.
+// Return a symbol string from a scanner.
 //
 // Parameters:
-//   - reader: A reader to read from
-//   - firstChar: The first character of this symbol, already read from the reader.
-// Returns: A symbol string from a reader
-func (c *SymbolRootNode) NextToken(reader io.IPushbackReader) (*tokenizers.Token, error) {
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
+//   - scanner: A scanner to read from
+//   - firstChar: The first character of this symbol, already read from the scanner.
+// Returns: A symbol string from a scanner
+func (c *SymbolRootNode) NextToken(scanner io.IScanner) *tokenizers.Token {
+	nextSymbol := scanner.Read()
 
 	childNode := c.FindChildWithChar(nextSymbol)
 	if childNode != nil {
-		childNode, err = childNode.DeepestRead(reader)
-		if err != nil {
-			return nil, err
-		}
-
-		childNode = childNode.UnreadToValid(reader)
+		childNode = childNode.DeepestRead(scanner)
+		childNode = childNode.UnreadToValid(scanner)
 		childNodeValue := string(childNode.Ancestry())
-		return tokenizers.NewToken(childNode.TokenType(), childNodeValue), nil
+		return tokenizers.NewToken(childNode.TokenType(), childNodeValue)
 	} else {
 		tokenValue := string([]rune{nextSymbol})
-		return tokenizers.NewToken(tokenizers.Symbol, tokenValue), nil
+		return tokenizers.NewToken(tokenizers.Symbol, tokenValue)
 	}
 }

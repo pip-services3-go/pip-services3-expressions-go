@@ -24,7 +24,7 @@ type AbstractTokenizer struct {
 	whitespaceState IWhitespaceState
 	wordState       IWordState
 
-	reader        io.IPushbackReader
+	scanner        io.IScanner
 	nextToken     *Token
 	lastTokenType int
 }
@@ -154,12 +154,12 @@ func (c *AbstractTokenizer) ClearCharacterStates() {
 	c.mp.Clear()
 }
 
-func (c *AbstractTokenizer) Reader() io.IPushbackReader {
-	return c.reader
+func (c *AbstractTokenizer) Reader() io.IScanner {
+	return c.scanner
 }
 
-func (c *AbstractTokenizer) SetReader(value io.IPushbackReader) {
-	c.reader = value
+func (c *AbstractTokenizer) SetReader(value io.IScanner) {
+	c.scanner = value
 	c.nextToken = nil
 	c.lastTokenType = Unknown
 }
@@ -189,18 +189,16 @@ func (c *AbstractTokenizer) NextToken() (*Token, error) {
 }
 
 func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
-	if c.reader == nil {
+	if c.scanner == nil {
 		return nil, nil
 	}
 
 	var token *Token = nil
+	var err error
 
 	for true {
 		// Read character
-		nextChar, err := c.reader.Peek()
-		if err != nil {
-			return nil, err
-		}
+		nextChar := c.scanner.Peek()
 
 		// If reached Eof then exit
 		if utilities.CharValidator.IsEof(nextChar) {
@@ -211,7 +209,7 @@ func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
 		// Get state for character
 		state := c.GetCharacterState(nextChar)
 		if state != nil {
-			token, err = state.NextToken(c.reader, c)
+			token, err = state.NextToken(c.scanner, c)
 			if err != nil {
 				return nil, err
 			}
@@ -219,11 +217,7 @@ func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
 
 		// Check for unknown characters and endless loops...
 		if token == nil || token.Value() == "" {
-			chr, err := c.reader.Read()
-			if err != nil {
-				return nil, err
-			}
-
+			chr := c.scanner.Read()
 			token = NewToken(Unknown, string(chr))
 		}
 
@@ -278,8 +272,8 @@ func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
 	return token, nil
 }
 
-func (c *AbstractTokenizer) TokenizeStream(reader io.IPushbackReader) ([]*Token, error) {
-	c.SetReader(reader)
+func (c *AbstractTokenizer) TokenizeStream(scanner io.IScanner) ([]*Token, error) {
+	c.SetReader(scanner)
 	tokenList := []*Token{}
 
 	token, err := c.NextToken()
@@ -299,12 +293,12 @@ func (c *AbstractTokenizer) TokenizeStream(reader io.IPushbackReader) ([]*Token,
 }
 
 func (c *AbstractTokenizer) TokenizeBuffer(buffer string) ([]*Token, error) {
-	reader := io.NewStringPushbackReader(buffer)
-	return c.TokenizeStream(reader)
+	scanner := io.NewStringScanner(buffer)
+	return c.TokenizeStream(scanner)
 }
 
-func (c *AbstractTokenizer) TokenizeStreamToStrings(reader io.IPushbackReader) ([]string, error) {
-	c.SetReader(reader)
+func (c *AbstractTokenizer) TokenizeStreamToStrings(scanner io.IScanner) ([]string, error) {
+	c.SetReader(scanner)
 	stringList := []string{}
 
 	token, err := c.NextToken()
@@ -325,6 +319,6 @@ func (c *AbstractTokenizer) TokenizeStreamToStrings(reader io.IPushbackReader) (
 }
 
 func (c *AbstractTokenizer) TokenizeBufferToStrings(buffer string) ([]string, error) {
-	reader := io.NewStringPushbackReader(buffer)
-	return c.TokenizeStreamToStrings(reader)
+	scanner := io.NewStringScanner(buffer)
+	return c.TokenizeStreamToStrings(scanner)
 }

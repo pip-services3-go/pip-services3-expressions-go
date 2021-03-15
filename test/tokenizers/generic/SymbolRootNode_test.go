@@ -15,21 +15,17 @@ func TestSymbolRootNodeNextToken(t *testing.T) {
 	node.Add("<<", tokenizers.Symbol)
 	node.Add("<>", tokenizers.Symbol)
 
-	reader := io.NewStringPushbackReader("<A<<<>")
+	scanner := io.NewStringScanner("<A<<<>")
 
-	token, err := node.NextToken(reader)
-	assert.Nil(t, err)
+	token := node.NextToken(scanner)
 	assert.Equal(t, "<", token.Value())
 
-	token, err = node.NextToken(reader)
-	assert.Nil(t, err)
+	token = node.NextToken(scanner)
 	assert.Equal(t, "A", token.Value())
 
-	token, err = node.NextToken(reader)
-	assert.Nil(t, err)
+	token = node.NextToken(scanner)
 	assert.Equal(t, "<<", token.Value())
 
-	token, err = node.NextToken(reader)
-	assert.Nil(t, err)
+	token = node.NextToken(scanner)
 	assert.Equal(t, "<>", token.Value())
 }

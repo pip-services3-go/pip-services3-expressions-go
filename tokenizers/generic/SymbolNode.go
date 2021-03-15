@@ -77,22 +77,19 @@ func (c *SymbolNode) AddDescendantLine(value []rune, tokenType int) {
 }
 
 // Find the descendant that takes as many characters as possible from the input.
-func (c *SymbolNode) DeepestRead(reader io.IPushbackReader) (*SymbolNode, error) {
-	nextSymbol, err := reader.Read()
-	if err != nil {
-		return nil, err
-	}
+func (c *SymbolNode) DeepestRead(scanner io.IScanner) *SymbolNode {
+	nextSymbol := scanner.Read()
 
 	var childNode *SymbolNode
 	if !utilities.CharValidator.IsEof(nextSymbol) {
 		childNode = c.FindChildWithChar(nextSymbol)
 	}
 	if childNode == nil {
-		reader.Pushback(nextSymbol)
-		return c, nil
+		scanner.Unread()
+		return c
 	}
 
-	return childNode.DeepestRead(reader)
+	return childNode.DeepestRead(scanner)
 }
 
 // Find a child with the given character.
@@ -118,10 +115,10 @@ func (c *SymbolNode) FindChildWithChar(value rune) *SymbolNode {
 //  }
 // Unwind to a valid node; this node is "valid" if its ancestry represents a complete symbol.
 // If this node is not valid, put back the character and ask the parent to unwind.
-func (c *SymbolNode) UnreadToValid(reader io.IPushbackReader) *SymbolNode {
+func (c *SymbolNode) UnreadToValid(scanner io.IScanner) *SymbolNode {
 	if !c.valid && c.parent != nil {
-		reader.Pushback(c.character)
-		return c.parent.UnreadToValid(reader)
+		scanner.Unread()
+		return c.parent.UnreadToValid(scanner)
 	}
 	return c
 }

@@ -12,8 +12,8 @@ import (
 func TestGenericWhitespaceStateNextToken(t *testing.T) {
 	state := generic.NewGenericWhitespaceState()
 
-	reader := io.NewStringPushbackReader(" \t\n\r ")
-	token, err := state.NextToken(reader, nil)
+	scanner := io.NewStringScanner(" \t\n\r ")
+	token, err := state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, " \t\n\r ", token.Value())
 	assert.Equal(t, tokenizers.Whitespace, token.Type())

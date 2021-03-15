@@ -30,12 +30,12 @@ func NewGenericSymbolState() *GenericSymbolState {
 	return c
 }
 
-// Returns a symbol token from a reader.
+// Returns a symbol token from a scanner.
 //
-// Returns: A symbol token from a reader.
+// Returns: A symbol token from a scanner.
 func (c *GenericSymbolState) NextToken(
-	reader io.IPushbackReader, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
-	return c.symbols.NextToken(reader)
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	return c.symbols.NextToken(scanner), nil
 }
 
 // Add a multi-character symbol.

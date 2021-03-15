@@ -12,7 +12,7 @@ import (
 func TestCCommentStateNextToken(t *testing.T) {
 	state := generic.NewCCommentState()
 
-	reader := io.NewStringPushbackReader("// Comment \n Comment ")
+	scanner := io.NewStringScanner("// Comment \n Comment ")
 	failed := false
 	func() {
 		defer func() {
@@ -20,12 +20,12 @@ func TestCCommentStateNextToken(t *testing.T) {
 				failed = true
 			}
 		}()
-		state.NextToken(reader, nil)
+		state.NextToken(scanner, nil)
 	}()
 	assert.True(t, failed)
 
-	reader = io.NewStringPushbackReader("/* Comment \n Comment */#")
-	token, err := state.NextToken(reader, nil)
+	scanner = io.NewStringScanner("/* Comment \n Comment */#")
+	token, err := state.NextToken(scanner, nil)
 	assert.Nil(t, err)
 	assert.Equal(t, "/* Comment \n Comment */", token.Value())
 	assert.Equal(t, tokenizers.Comment, token.Type())
