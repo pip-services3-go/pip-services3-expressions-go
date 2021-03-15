@@ -6,7 +6,6 @@ import (
 	"github.com/pip-services3-go/pip-services3-expressions-go/csv"
 	test_tokenizers "github.com/pip-services3-go/pip-services3-expressions-go/test/tokenizers"
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestCsvTokenizerWithDefaultParameters(t *testing.T) {
@@ -53,8 +52,7 @@ func TestCsvTokenizerWithDefaultParameters(t *testing.T) {
 
 	tokenizer := csv.NewCsvTokenizer()
 	tokenizer.SetSkipEof(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -107,8 +105,7 @@ func TestCsvTokenizerWithOverridenParameters(t *testing.T) {
 	tokenizer.SetQuoteSymbols([]rune{'\'', '"'})
 	tokenizer.SetEndOfLine("\n")
 	tokenizer.SetSkipEof(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }

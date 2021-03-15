@@ -20,7 +20,7 @@ func NewGenericCommentState() *GenericCommentState {
 //
 // Returns: Either just a slash token, or the results of delegating to a comment-handling state
 func (c *GenericCommentState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	tokenValue := strings.Builder{}
 
@@ -34,5 +34,5 @@ func (c *GenericCommentState) NextToken(
 		scanner.Unread()
 	}
 
-	return tokenizers.NewToken(tokenizers.Comment, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenizers.Comment, tokenValue.String())
 }

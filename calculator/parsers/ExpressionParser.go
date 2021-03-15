@@ -89,12 +89,7 @@ func (c *ExpressionParser) VariableNames() []string {
 func (c *ExpressionParser) ParseString(expression string) error {
 	c.Clear()
 	c.expression = strings.Trim(expression, " \t\r\n")
-
-	var err error
-	c.originalTokens, err = c.tokenizeExpression(c.expression)
-	if err != nil {
-		return err
-	}
+	c.originalTokens = c.tokenizeExpression(c.expression)
 	return c.performParsing()
 }
 
@@ -189,7 +184,7 @@ func (c *ExpressionParser) matchTokensWithTypes(types ...int) bool {
 	return matches
 }
 
-func (c *ExpressionParser) tokenizeExpression(expression string) ([]*tokenizers.Token, error) {
+func (c *ExpressionParser) tokenizeExpression(expression string) []*tokenizers.Token {
 	expression = strings.Trim(expression, " \t\r\n")
 	if len(expression) > 0 {
 		c.tokenizer.SetSkipWhitespaces(true)
@@ -198,7 +193,7 @@ func (c *ExpressionParser) tokenizeExpression(expression string) ([]*tokenizers.
 		c.tokenizer.SetDecodeStrings(true)
 		return c.tokenizer.TokenizeBuffer(expression)
 	}
-	return []*tokenizers.Token{}, nil
+	return []*tokenizers.Token{}
 }
 
 func (c *ExpressionParser) composeExpression(tokens []*tokenizers.Token) string {

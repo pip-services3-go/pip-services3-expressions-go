@@ -22,7 +22,7 @@ func NewCCommentState() *CCommentState {
 //
 // Returns: Either just a slash token, or the results of delegating to a comment-handling state.
 func (c *CCommentState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	firstSymbol := scanner.Read()
 	if firstSymbol != '/' {
@@ -32,11 +32,8 @@ func (c *CCommentState) NextToken(
 
 	secondSymbol := scanner.Read()
 	if secondSymbol == '*' {
-		str, err2 := c.GetMultiLineComment(scanner)
-		if err2 != nil {
-			return nil, err2
-		}
-		return tokenizers.NewToken(tokenizers.Comment, "/*"+str), nil
+		str := c.GetMultiLineComment(scanner)
+		return tokenizers.NewToken(tokenizers.Comment, "/*"+str)
 	} else {
 		if !utilities.CharValidator.IsEof(secondSymbol) {
 			scanner.Unread()

@@ -27,7 +27,7 @@ func NewGenericWhitespaceState() *GenericWhitespaceState {
 //
 // Returns: The tokenizer's next token
 func (c *GenericWhitespaceState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	tokenValue := strings.Builder{}
 	nextSymbol := scanner.Read()
@@ -41,7 +41,7 @@ func (c *GenericWhitespaceState) NextToken(
 		scanner.Unread()
 	}
 
-	return tokenizers.NewToken(tokenizers.Whitespace, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenizers.Whitespace, tokenValue.String())
 }
 
 // Establish the given characters as whitespace to ignore.

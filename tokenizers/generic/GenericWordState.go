@@ -52,7 +52,7 @@ func NewGenericWordState() *GenericWordState {
 //
 // Returns: The tokenizer's next token
 func (c *GenericWordState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	tokenValue := strings.Builder{}
 	nextSymbol := scanner.Read()
@@ -66,7 +66,7 @@ func (c *GenericWordState) NextToken(
 		scanner.Unread()
 	}
 
-	return tokenizers.NewToken(tokenizers.Word, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenizers.Word, tokenValue.String())
 }
 
 // Establish characters in the given range as valid characters for part of a word after

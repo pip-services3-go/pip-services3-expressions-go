@@ -23,7 +23,7 @@ func NewCsvQuoteState() *CsvQuoteState {
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
 func (c *CsvQuoteState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	firstSymbol := scanner.Read()
 	tokenValue := strings.Builder{}
@@ -46,7 +46,7 @@ func (c *CsvQuoteState) NextToken(
 		nextSymbol = scanner.Read()
 	}
 
-	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String())
 }
 
 // Encodes a string value.

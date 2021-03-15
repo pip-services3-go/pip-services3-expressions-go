@@ -13,8 +13,7 @@ func TestGenericWhitespaceStateNextToken(t *testing.T) {
 	state := generic.NewGenericWhitespaceState()
 
 	scanner := io.NewStringScanner(" \t\n\r ")
-	token, err := state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token := state.NextToken(scanner, nil)
 	assert.Equal(t, " \t\n\r ", token.Value())
 	assert.Equal(t, tokenizers.Whitespace, token.Type())
 }

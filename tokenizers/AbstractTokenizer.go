@@ -164,37 +164,28 @@ func (c *AbstractTokenizer) SetReader(value io.IScanner) {
 	c.lastTokenType = Unknown
 }
 
-func (c *AbstractTokenizer) HasNextToken() (bool, error) {
+func (c *AbstractTokenizer) HasNextToken() bool {
 	if c.nextToken == nil {
-		var err error
-		c.nextToken, err = c.ReadNextToken()
-		if err != nil {
-			return false, err
-		}
+		c.nextToken = c.ReadNextToken()
 	}
-	return c.nextToken != nil, nil
+	return c.nextToken != nil
 }
 
-func (c *AbstractTokenizer) NextToken() (*Token, error) {
+func (c *AbstractTokenizer) NextToken() *Token {
 	token := c.nextToken
 	if token == nil {
-		var err error
-		token, err = c.ReadNextToken()
-		if err != nil {
-			return nil, err
-		}
+		token = c.ReadNextToken()
 	}
 	c.nextToken = nil
-	return token, nil
+	return token
 }
 
-func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
+func (c *AbstractTokenizer) ReadNextToken() *Token {
 	if c.scanner == nil {
-		return nil, nil
+		return nil
 	}
 
 	var token *Token = nil
-	var err error
 
 	for true {
 		// Read character
@@ -209,10 +200,7 @@ func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
 		// Get state for character
 		state := c.GetCharacterState(nextChar)
 		if state != nil {
-			token, err = state.NextToken(c.scanner, c)
-			if err != nil {
-				return nil, err
-			}
+			token = state.NextToken(c.scanner, c)
 		}
 
 		// Check for unknown characters and endless loops...
@@ -269,56 +257,41 @@ func (c *AbstractTokenizer) ReadNextToken() (*Token, error) {
 		c.lastTokenType = token.Type()
 	}
 
-	return token, nil
+	return token
 }
 
-func (c *AbstractTokenizer) TokenizeStream(scanner io.IScanner) ([]*Token, error) {
+func (c *AbstractTokenizer) TokenizeStream(scanner io.IScanner) []*Token {
 	c.SetReader(scanner)
 	tokenList := []*Token{}
+	token := c.NextToken()
 
-	token, err := c.NextToken()
-	if err != nil {
-		return tokenList, err
-	}
 	for token != nil {
 		tokenList = append(tokenList, token)
-
-		token, err = c.NextToken()
-		if err != nil {
-			return tokenList, err
-		}
+		token = c.NextToken()
 	}
 
-	return tokenList, nil
+	return tokenList
 }
 
-func (c *AbstractTokenizer) TokenizeBuffer(buffer string) ([]*Token, error) {
+func (c *AbstractTokenizer) TokenizeBuffer(buffer string) []*Token {
 	scanner := io.NewStringScanner(buffer)
 	return c.TokenizeStream(scanner)
 }
 
-func (c *AbstractTokenizer) TokenizeStreamToStrings(scanner io.IScanner) ([]string, error) {
+func (c *AbstractTokenizer) TokenizeStreamToStrings(scanner io.IScanner) []string {
 	c.SetReader(scanner)
 	stringList := []string{}
-
-	token, err := c.NextToken()
-	if err != nil {
-		return stringList, err
-	}
+	token:= c.NextToken()
 
 	for token != nil {
 		stringList = append(stringList, token.Value())
-
-		token, err = c.NextToken()
-		if err != nil {
-			return stringList, err
-		}
+		token = c.NextToken()
 	}
 
-	return stringList, nil
+	return stringList
 }
 
-func (c *AbstractTokenizer) TokenizeBufferToStrings(buffer string) ([]string, error) {
+func (c *AbstractTokenizer) TokenizeBufferToStrings(buffer string) []string {
 	scanner := io.NewStringScanner(buffer)
 	return c.TokenizeStreamToStrings(scanner)
 }

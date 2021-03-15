@@ -25,8 +25,7 @@ func TestCCommentStateNextToken(t *testing.T) {
 	assert.True(t, failed)
 
 	scanner = io.NewStringScanner("/* Comment \n Comment */#")
-	token, err := state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token := state.NextToken(scanner, nil)
 	assert.Equal(t, "/* Comment \n Comment */", token.Value())
 	assert.Equal(t, tokenizers.Comment, token.Type())
 }

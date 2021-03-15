@@ -18,5 +18,5 @@ type ITokenizerState interface {
 	//   - scanner: A textual string to be tokenized.
 	//   - tokenizer: A tokenizer class that controls the process.
 	// Returns: The next token from the top of the stream.
-	NextToken(scanner io.IScanner, tokenizer ITokenizer) (*Token, error)
+	NextToken(scanner io.IScanner, tokenizer ITokenizer) *Token
 }

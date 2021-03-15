@@ -26,7 +26,7 @@ func NewGenericQuoteState() *GenericQuoteState {
 //
 // Returns: A quoted string token from a scanner.
 func (c *GenericQuoteState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	firstSymbol := scanner.Read()
 	tokenValue := strings.Builder{}
@@ -42,7 +42,7 @@ func (c *GenericQuoteState) NextToken(
 		nextSymbol = scanner.Read()
 	}
 
-	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String())
 }
 
 // Encodes a string value.

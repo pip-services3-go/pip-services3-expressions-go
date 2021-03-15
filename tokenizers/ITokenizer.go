@@ -106,38 +106,38 @@ type ITokenizer interface {
 	// Checks if there is the next token exist.
 	//
 	// Returns: <code>true</code> if scanner has the next token.
-	HasNextToken() (bool, error)
+	HasNextToken() bool
 
 	// Gets the next token from the scanner.
 	//
 	// Returns: Next token of <code>null</code> if there are no more tokens left.
-	NextToken() (*Token, error)
+	NextToken() *Token
 
 	// Tokenizes a textual stream into a list of token structures.
 	//
 	// Parameters:
 	//   - scanner: A textual stream to be tokenized.
 	// Returns: A list of token structures.
-	TokenizeStream(scanner io.IScanner) ([]*Token, error)
+	TokenizeStream(scanner io.IScanner) []*Token
 
 	// Tokenizes a string buffer into a list of tokens structures.
 	//
 	// Parameters:
 	//   - buffer: A string buffer to be tokenized.
 	// Returns: A list of token structures.
-	TokenizeBuffer(buffer string) ([]*Token, error)
+	TokenizeBuffer(buffer string) []*Token
 
 	// Tokenizes a textual stream into a list of strings.
 	//
 	// Parameters:
 	//   - scanner: A textual stream to be tokenized.
 	// Returns: A list of token strings.
-	TokenizeStreamToStrings(scanner io.IScanner) ([]string, error)
+	TokenizeStreamToStrings(scanner io.IScanner) []string
 
 	// Tokenizes a string buffer into a list of strings.
 	//
 	// Parameters:
 	//   - buffer: A string buffer to be tokenized.
 	// Returns: A list of token strings.
-	TokenizeBufferToStrings(buffer string) ([]string, error)
+	TokenizeBufferToStrings(buffer string) []string
 }

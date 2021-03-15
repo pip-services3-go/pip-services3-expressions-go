@@ -24,7 +24,7 @@ func NewExpressionQuoteState() *ExpressionQuoteState {
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
 func (c *ExpressionQuoteState) NextToken(scanner io.IScanner,
-	tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 	firstSymbol := scanner.Read()
 	tokenValue := strings.Builder{}
 	tokenValue.WriteRune(firstSymbol)
@@ -52,7 +52,7 @@ func (c *ExpressionQuoteState) NextToken(scanner io.IScanner,
 		tokenType = tokenizers.Word
 	}
 
-	return tokenizers.NewToken(tokenType, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenType, tokenValue.String())
 }
 
 // Encodes a string value.

@@ -28,7 +28,7 @@ func NewExpressionNumberState() *ExpressionNumberState {
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
 func (c *ExpressionNumberState) NextToken(scanner io.IScanner,
-	tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 	nextChar := scanner.Peek()
 
 	// Process leading minus.
@@ -37,21 +37,18 @@ func (c *ExpressionNumberState) NextToken(scanner io.IScanner,
 	}
 
 	// Process numbers using base class algorithm.
-	token, err1 := c.GenericNumberState.NextToken(scanner, tokenizer)
-	if err1 != nil {
-		return nil, err1
-	}
+	token := c.GenericNumberState.NextToken(scanner, tokenizer)
 
 	// Exit if number was not detected.
 	if token.Type() != tokenizers.Integer && token.Type() != tokenizers.Float {
-		return token, nil
+		return token
 	}
 
 	// Exit if number is not in scientific format.
 	nextChar = scanner.Peek()
 
 	if nextChar != 'e' && nextChar != 'E' {
-		return token, nil
+		return token
 	}
 
 	nextChar = scanner.Read()
@@ -70,7 +67,7 @@ func (c *ExpressionNumberState) NextToken(scanner io.IScanner,
 	// Exit if mantissa has no digits.
 	if !utilities.CharValidator.IsDigit(nextChar) {
 		scanner.UnreadMany(tokenValue.Len())
-		return token, nil
+		return token
 	}
 
 	// Process matissa digits
@@ -80,5 +77,5 @@ func (c *ExpressionNumberState) NextToken(scanner io.IScanner,
 		nextChar = scanner.Peek()
 	}
 
-	return tokenizers.NewToken(tokenizers.Float, token.Value()+tokenValue.String()), nil
+	return tokenizers.NewToken(tokenizers.Float, token.Value()+tokenValue.String())
 }

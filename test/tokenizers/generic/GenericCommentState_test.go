@@ -13,14 +13,12 @@ func TestGenericCommentStateNextToken(t *testing.T) {
 	state := generic.NewGenericCommentState()
 
 	scanner := io.NewStringScanner("# Comment \r# Comment ")
-	token, err := state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token := state.NextToken(scanner, nil)
 	assert.Equal(t, "# Comment ", token.Value())
 	assert.Equal(t, tokenizers.Comment, token.Type())
 
 	scanner = io.NewStringScanner("# Comment \n# Comment ")
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "# Comment ", token.Value())
 	assert.Equal(t, tokenizers.Comment, token.Type())
 }

@@ -125,16 +125,31 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Peek">func (c *StringScanner) Peek() (rune, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Column">func (c *StringScanner) Column() int</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Unread">func (c *StringScanner) Unread(value rune)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Line">func (c *StringScanner) Line() int</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.UnreadMany">func (c *StringScanner) UnreadMany(value string)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Peek">func (c *StringScanner) Peek() rune</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Read">func (c *StringScanner) Read() (rune, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.PeekColumn">func (c *StringScanner) PeekColumn() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.PeekLine">func (c *StringScanner) PeekLine() int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Read">func (c *StringScanner) Read() rune</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Reset">func (c *StringScanner) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.Unread">func (c *StringScanner) Unread()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StringScanner.UnreadMany">func (c *StringScanner) UnreadMany(count int)</a></dd>
 				
 			
 			
@@ -166,13 +181,13 @@
 		
 			
 			
-			<h2 id="IScanner">type <a href="http://localhost:6060/src/io/IScanner.go?s=131:844#L1">IScanner</a>
+			<h2 id="IScanner">type <a href="http://localhost:6060/src/io/IScanner.go?s=146:1279#L1">IScanner</a>
 				<a class="permalink" href="index.html#IScanner">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Defines scanner with ability to push back characters.
+Defines scanned with ability to unread characters and count lines.
 This scanner is used by tokenizers to process input streams.
 </p>
 
@@ -180,24 +195,44 @@ This scanner is used by tokenizers to process input streams.
     <span class="comment">// Reads character from the top of the stream.</span>
     <span class="comment">//</span>
     <span class="comment">// Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to the end.&lt;/returns&gt;</span>
-    Read() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    Read() <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>
+
+    <span class="comment">// Gets the current line number</span>
+    <span class="comment">//</span>
+    <span class="comment">// Returns the current line number in the stream</span>
+    Line() <a href="http://localhost:6060/pkg/builtin/#int">int</a>
+
+    <span class="comment">// Gets the column in the current line</span>
+    <span class="comment">//</span>
+    <span class="comment">// Returns the column in the current line in the stream</span>
+    Column() <a href="http://localhost:6060/pkg/builtin/#int">int</a>
 
     <span class="comment">// Returns the character from the top of the stream without moving the stream pointer.</span>
     <span class="comment">//</span>
     <span class="comment">// Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if stream is empty.&lt;/returns&gt;</span>
-    Peek() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    Peek() <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>
+
+    <span class="comment">// Gets the next character line number</span>
+    <span class="comment">//</span>
+    <span class="comment">// Returns the next character line number in the stream</span>
+    PeekLine() <a href="http://localhost:6060/pkg/builtin/#int">int</a>
+
+    <span class="comment">// Gets the next character column</span>
+    <span class="comment">//</span>
+    <span class="comment">// Returns the next character column in the stream</span>
+    PeekColumn() <a href="http://localhost:6060/pkg/builtin/#int">int</a>
 
     <span class="comment">// Puts the specified character to the top of the stream.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Parameters:</span>
-    <span class="comment">//   - value: A character to be pushed back.</span>
-    Unread(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)
+    Unread()
 
-    <span class="comment">// Pushes the specified string to the top of the stream.</span>
+    <span class="comment">// Puts the specified number of characters to the top of the stream.</span>
     <span class="comment">//</span>
     <span class="comment">// Parameters:</span>
-    <span class="comment">//   - value: A string to be pushed back.</span>
-    UnreadMany(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
+    <span class="comment">//   - count: A number of characters to be unread</span>
+    UnreadMany(count <a href="http://localhost:6060/pkg/builtin/#int">int</a>)
+
+    <span class="comment">// Resets scanner to the initial position</span>
+    Reset()
 }</pre>
 
 			
@@ -214,13 +249,13 @@ This scanner is used by tokenizers to process input streams.
 		
 			
 			
-			<h2 id="StringScanner">type <a href="http://localhost:6060/src/io/StringScanner.go?s=142:305#L1">StringScanner</a>
+			<h2 id="StringScanner">type <a href="http://localhost:6060/src/io/StringScanner.go?s=127:208#L1">StringScanner</a>
 				<a class="permalink" href="index.html#StringScanner">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Wraps string to provide unlimited pushback that allows tokenizers
+Scan characters in a string that allows tokenizers
 to look ahead through stream to perform lexical analysis.
 </p>
 
@@ -239,7 +274,7 @@ to look ahead through stream to perform lexical analysis.
 
 			
 				
-				<h3 id="NewStringScanner">func <a href="http://localhost:6060/src/io/StringScanner.go?s=405:471#L7">NewStringScanner</a>
+				<h3 id="NewStringScanner">func <a href="http://localhost:6060/src/io/StringScanner.go?s=307:359#L6">NewStringScanner</a>
 					<a class="permalink" href="index.html#NewStringScanner">&#xb6;</a>
 					
 					
@@ -251,7 +286,7 @@ Creates an instance of this class.
 <p>
 Parameters:
 </p>
-<pre>- content: A text content to be read
+<pre>content - A text content to be read
 </pre>
 
 				
@@ -260,17 +295,53 @@ Parameters:
 
 			
 				
-				<h3 id="StringScanner.Peek">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1482:1533#L45">Peek</a>
+				<h3 id="StringScanner.Column">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2579:2615#L100">Column</a>
+					<a class="permalink" href="index.html#StringScanner.Column">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Column() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+Gets the column in the current line
+</p>
+<p>
+Returns the column in the current line in the stream
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StringScanner.Line">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2426:2460#L93">Line</a>
+					<a class="permalink" href="index.html#StringScanner.Line">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Line() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+Gets the current line number
+</p>
+<p>
+Returns the current line number in the stream
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StringScanner.Peek">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2827:2862#L107">Peek</a>
 					<a class="permalink" href="index.html#StringScanner.Peek">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Peek() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Peek() <a href="http://localhost:6060/pkg/builtin/#rune">rune</a></pre>
 				<p>
 Returns the character from the top of the stream without moving the stream pointer.
 </p>
 <p>
-Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if stream is empty.
+Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if stream is empty.&lt;/returns&gt;
 </p>
 
 				
@@ -278,58 +349,104 @@ Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if
 				
 			
 				
-				<h3 id="StringScanner.Unread">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1916:1967#L63">Unread</a>
-					<a class="permalink" href="index.html#StringScanner.Unread">&#xb6;</a>
+				<h3 id="StringScanner.PeekColumn">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3328:3368#L128">PeekColumn</a>
+					<a class="permalink" href="index.html#StringScanner.PeekColumn">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Unread(value <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) PeekColumn() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
 				<p>
-Puts the specified character to the top of the stream.
+Gets the next character column
 </p>
 <p>
-Parameters:
+Returns the next character column in the stream
 </p>
-<pre>- value: A character to be pushed back.
-</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="StringScanner.UnreadMany">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2424:2483#L83">UnreadMany</a>
-					<a class="permalink" href="index.html#StringScanner.UnreadMany">&#xb6;</a>
+				<h3 id="StringScanner.PeekLine">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2999:3037#L114">PeekLine</a>
+					<a class="permalink" href="index.html#StringScanner.PeekLine">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) UnreadMany(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) PeekLine() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
 				<p>
-Pushes the specified string to the top of the stream.
+Gets the next character line number
 </p>
 <p>
-Parameters:
+Returns the next character line number in the stream
 </p>
-<pre>- value: A string to be pushed back.
-</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="StringScanner.Read">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=684:735#L17">Read</a>
+				<h3 id="StringScanner.Read">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1845:1880#L61">Read</a>
 					<a class="permalink" href="index.html#StringScanner.Read">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Read() (<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Read() <a href="http://localhost:6060/pkg/builtin/#rune">rune</a></pre>
 				<p>
 Reads character from the top of the stream.
 </p>
 <p>
-Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to the end.
+Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to the end.&lt;/returns&gt;
 </p>
+
+				
+				
+				
+			
+				
+				<h3 id="StringScanner.Reset">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=4595:4626#L194">Reset</a>
+					<a class="permalink" href="index.html#StringScanner.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Reset()</pre>
+				<p>
+Resets scanner to the initial position
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StringScanner.Unread">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3673:3705#L144">Unread</a>
+					<a class="permalink" href="index.html#StringScanner.Unread">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) Unread()</pre>
+				<p>
+Puts the specified character to the top of the stream.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StringScanner.UnreadMany">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=4459:4504#L186">UnreadMany</a>
+					<a class="permalink" href="index.html#StringScanner.UnreadMany">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StringScanner">StringScanner</a>) UnreadMany(count <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
+				<p>
+Puts the specified number of characters to the top of the stream.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- count: A number of characters to be unread
+</pre>
 
 				
 				

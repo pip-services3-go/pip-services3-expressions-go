@@ -24,8 +24,7 @@ func TestExpressionTokenizerQuoteToken(t *testing.T) {
 	tokenizer := ctokenizers.NewExpressionTokenizer()
 	tokenizer.SetSkipEof(true)
 	tokenizer.SetDecodeStrings(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -44,8 +43,7 @@ func TestExpressionTokenizerWordToken(t *testing.T) {
 	tokenizer := ctokenizers.NewExpressionTokenizer()
 	tokenizer.SetSkipEof(true)
 	tokenizer.SetDecodeStrings(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -80,8 +78,7 @@ func TestExpressionTokenizerNumberToken(t *testing.T) {
 	tokenizer := ctokenizers.NewExpressionTokenizer()
 	tokenizer.SetSkipEof(true)
 	tokenizer.SetDecodeStrings(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -90,8 +87,7 @@ func TestExpressionTokenizerExpressionToken(t *testing.T) {
 	tokenString := "A + b / (3 - Max(-123, 1)*2)"
 
 	tokenizer := ctokenizers.NewExpressionTokenizer()
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	assert.Len(t, tokenList, 25)
 }

@@ -17,7 +17,7 @@ func NewCppCommentState() *CppCommentState {
 }
 
 // Ignore everything up to a closing star and slash, and then return the tokenizer's next token.
-func (c *CppCommentState) GetMultiLineComment(scanner io.IScanner) (string, error) {
+func (c *CppCommentState) GetMultiLineComment(scanner io.IScanner) string {
 	result := strings.Builder{}
 
 	lastSymbol := rune(0)
@@ -32,11 +32,11 @@ func (c *CppCommentState) GetMultiLineComment(scanner io.IScanner) (string, erro
 		nextSymbol = scanner.Read()
 	}
 
-	return result.String(), nil
+	return result.String()
 }
 
 // Ignore everything up to an end-of-line and return the tokenizer's next token.
-func (c *CppCommentState) GetSingleLineComment(scanner io.IScanner) (string, error) {
+func (c *CppCommentState) GetSingleLineComment(scanner io.IScanner) string {
 
 	result := strings.Builder{}
 
@@ -51,14 +51,14 @@ func (c *CppCommentState) GetSingleLineComment(scanner io.IScanner) (string, err
 		scanner.Unread()
 	}
 
-	return result.String(), nil
+	return result.String()
 }
 
 // Either delegate to a comment-handling state, or return a token with just a slash in it.
 //
 // Returns: Either just a slash token, or the results of delegating to a comment-handling state.
 func (c *CppCommentState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	firstSymbol := scanner.Read()
 	if firstSymbol != '/' {
@@ -68,17 +68,11 @@ func (c *CppCommentState) NextToken(
 
 	secondSymbol := scanner.Read()
 	if secondSymbol == '*' {
-		str, err2 := c.GetMultiLineComment(scanner)
-		if err2 != nil {
-			return nil, err2
-		}
-		return tokenizers.NewToken(tokenizers.Comment, "/*"+str), nil
+		str := c.GetMultiLineComment(scanner)
+		return tokenizers.NewToken(tokenizers.Comment, "/*"+str)
 	} else if secondSymbol == '/' {
-		str, err2 := c.GetSingleLineComment(scanner)
-		if err2 != nil {
-			return nil, err2
-		}
-		return tokenizers.NewToken(tokenizers.Comment, "//"+str), nil
+		str := c.GetSingleLineComment(scanner)
+		return tokenizers.NewToken(tokenizers.Comment, "//"+str)
 	} else {
 		if !utilities.CharValidator.IsEof(secondSymbol) {
 			scanner.Unread()

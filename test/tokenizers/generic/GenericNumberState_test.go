@@ -25,32 +25,27 @@ func TestGenericNumberStateNextToken(t *testing.T) {
 	assert.True(t, failed)
 
 	scanner = io.NewStringScanner("123#")
-	token, err := state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token := state.NextToken(scanner, nil)
 	assert.Equal(t, "123", token.Value())
 	assert.Equal(t, tokenizers.Integer, token.Type())
 
 	scanner = io.NewStringScanner("-123#")
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "-123", token.Value())
 	assert.Equal(t, tokenizers.Integer, token.Type())
 
 	scanner = io.NewStringScanner("123.#")
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "123.", token.Value())
 	assert.Equal(t, tokenizers.Float, token.Type())
 
 	scanner = io.NewStringScanner("123.456#")
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "123.456", token.Value())
 	assert.Equal(t, tokenizers.Float, token.Type())
 
 	scanner = io.NewStringScanner("-123.456#")
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "-123.456", token.Value())
 	assert.Equal(t, tokenizers.Float, token.Type())
 }

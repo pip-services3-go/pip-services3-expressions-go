@@ -42,17 +42,14 @@ func NewExpressionWordState() *ExpressionWordState {
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
 func (c *ExpressionWordState) NextToken(scanner io.IScanner,
-	tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
-	token, err := c.GenericWordState.NextToken(scanner, tokenizer)
-	if err != nil {
-		return nil, err
-	}
+	tokenizer tokenizers.ITokenizer) *tokenizers.Token {
+	token := c.GenericWordState.NextToken(scanner, tokenizer)
 
 	for _, keyword := range Keywords {
 		if keyword == strings.ToUpper(token.Value()) {
-			return tokenizers.NewToken(tokenizers.Keyword, token.Value()), nil
+			return tokenizers.NewToken(tokenizers.Keyword, token.Value())
 		}
 	}
 
-	return token, nil
+	return token
 }

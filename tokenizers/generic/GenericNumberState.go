@@ -25,7 +25,7 @@ func NewGenericNumberState() *GenericNumberState {
 //   - tokenizer: A tokenizer class that controls the process.
 // Returns: The next token from the top of the stream.
 func (c *GenericNumberState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	absorbedDot := false
 	gotADigit := false
@@ -80,5 +80,5 @@ func (c *GenericNumberState) NextToken(
 	if absorbedDot {
 		tokenType = tokenizers.Float
 	}
-	return tokenizers.NewToken(tokenType, tokenValue.String()), nil
+	return tokenizers.NewToken(tokenType, tokenValue.String())
 }

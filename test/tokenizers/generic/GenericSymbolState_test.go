@@ -17,23 +17,19 @@ func TestGenericSymbolStateNextToken(t *testing.T) {
 
 	scanner := io.NewStringScanner("<A<<<>")
 
-	token, err := state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token := state.NextToken(scanner, nil)
 	assert.Equal(t, "<", token.Value())
 	assert.Equal(t, tokenizers.Symbol, token.Type())
 
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "A", token.Value())
 	assert.Equal(t, tokenizers.Symbol, token.Type())
 
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "<<", token.Value())
 	assert.Equal(t, tokenizers.Symbol, token.Type())
 
-	token, err = state.NextToken(scanner, nil)
-	assert.Nil(t, err)
+	token = state.NextToken(scanner, nil)
 	assert.Equal(t, "<>", token.Value())
 	assert.Equal(t, tokenizers.Symbol, token.Type())
 }

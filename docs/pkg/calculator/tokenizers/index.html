@@ -122,7 +122,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionNumberState.NextToken">func (c *ExpressionNumberState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionNumberState.NextToken">func (c *ExpressionNumberState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token</a></dd>
 				
 			
 				
@@ -139,7 +139,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionQuoteState.EncodeString">func (c *ExpressionQuoteState) EncodeString(value string, quoteSymbol rune) string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionQuoteState.NextToken">func (c *ExpressionQuoteState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionQuoteState.NextToken">func (c *ExpressionQuoteState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token</a></dd>
 				
 			
 				
@@ -166,7 +166,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionWordState.NextToken">func (c *ExpressionWordState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionWordState.NextToken">func (c *ExpressionWordState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token</a></dd>
 				
 			
 			
@@ -252,13 +252,13 @@ Implements an Expression-specific number state object.
 
 			
 				
-				<h3 id="ExpressionNumberState.NextToken">func (*ExpressionNumberState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=895:1024#L20">NextToken</a>
+				<h3 id="ExpressionNumberState.NextToken">func (*ExpressionNumberState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=896:1010#L20">NextToken</a>
 					<a class="permalink" href="index.html#ExpressionNumberState.NextToken">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ExpressionNumberState">ExpressionNumberState</a>) NextToken(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>,
-    tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a></pre>
 				<p>
 Gets the next token from the stream started from the character linked to this state.
 </p>
@@ -315,7 +315,7 @@ Implements an Expression-specific quote string state object.
 
 			
 				
-				<h3 id="ExpressionQuoteState.DecodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=2353:2435#L87">DecodeString</a>
+				<h3 id="ExpressionQuoteState.DecodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=2094:2176#L69">DecodeString</a>
 					<a class="permalink" href="index.html#ExpressionQuoteState.DecodeString">&#xb6;</a>
 					
 					
@@ -339,7 +339,7 @@ Returns: An decoded string.
 				
 			
 				
-				<h3 id="ExpressionQuoteState.EncodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=1865:1947#L72">EncodeString</a>
+				<h3 id="ExpressionQuoteState.EncodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=1606:1688#L54">EncodeString</a>
 					<a class="permalink" href="index.html#ExpressionQuoteState.EncodeString">&#xb6;</a>
 					
 					
@@ -363,13 +363,13 @@ Returns: An encoded string.
 				
 			
 				
-				<h3 id="ExpressionQuoteState.NextToken">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=732:860#L16">NextToken</a>
+				<h3 id="ExpressionQuoteState.NextToken">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=733:846#L16">NextToken</a>
 					<a class="permalink" href="index.html#ExpressionQuoteState.NextToken">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ExpressionQuoteState">ExpressionQuoteState</a>) NextToken(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>,
-    tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a></pre>
 				<p>
 Gets the next token from the stream started from the character linked to this state.
 </p>
@@ -511,13 +511,13 @@ Constructs an instance of this class.
 
 			
 				
-				<h3 id="ExpressionWordState.NextToken">func (*ExpressionWordState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=1188:1315#L34">NextToken</a>
+				<h3 id="ExpressionWordState.NextToken">func (*ExpressionWordState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=1189:1301#L34">NextToken</a>
 					<a class="permalink" href="index.html#ExpressionWordState.NextToken">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ExpressionWordState">ExpressionWordState</a>) NextToken(scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>,
-    tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+    tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a></pre>
 				<p>
 Gets the next token from the stream started from the character linked to this state.
 </p>

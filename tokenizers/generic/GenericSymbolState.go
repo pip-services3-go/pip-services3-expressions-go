@@ -34,8 +34,8 @@ func NewGenericSymbolState() *GenericSymbolState {
 //
 // Returns: A symbol token from a scanner.
 func (c *GenericSymbolState) NextToken(
-	scanner io.IScanner, tokenizer tokenizers.ITokenizer) (*tokenizers.Token, error) {
-	return c.symbols.NextToken(scanner), nil
+	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
+	return c.symbols.NextToken(scanner)
 }
 
 // Add a multi-character symbol.

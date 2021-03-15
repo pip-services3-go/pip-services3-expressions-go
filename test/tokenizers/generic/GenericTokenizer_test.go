@@ -6,7 +6,6 @@ import (
 	test_tokenizers "github.com/pip-services3-go/pip-services3-expressions-go/test/tokenizers"
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers"
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/generic"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestGenericTokenizerExpression(t *testing.T) {
@@ -29,8 +28,7 @@ func TestGenericTokenizerExpression(t *testing.T) {
 	}
 
 	tokenizer := generic.NewGenericTokenizer()
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -48,8 +46,7 @@ func TestGenericTokenizerQuoteToken(t *testing.T) {
 	tokenizer := generic.NewGenericTokenizer()
 	tokenizer.SetSkipEof(true)
 	tokenizer.SetDecodeStrings(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -68,8 +65,7 @@ func TestGenericTokenizerWordToken(t *testing.T) {
 	tokenizer := generic.NewGenericTokenizer()
 	tokenizer.SetSkipEof(true)
 	tokenizer.SetDecodeStrings(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -91,8 +87,7 @@ func TestGenericTokenizerNumberToken(t *testing.T) {
 	tokenizer := generic.NewGenericTokenizer()
 	tokenizer.SetSkipEof(true)
 	tokenizer.SetDecodeStrings(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
@@ -107,8 +102,7 @@ func TestGenericTokenizerWrongToken(t *testing.T) {
 
 	tokenizer := generic.NewGenericTokenizer()
 	tokenizer.SetSkipEof(true)
-	tokenList, err := tokenizer.TokenizeBuffer(tokenString)
-	assert.Nil(t, err)
+	tokenList := tokenizer.TokenizeBuffer(tokenString)
 
 	test_tokenizers.AssertAreEqualsTokenLists(t, expectedTokens, tokenList)
 }
