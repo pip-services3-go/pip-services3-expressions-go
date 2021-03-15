@@ -6,14 +6,18 @@ import "github.com/pip-services3-go/pip-services3-expressions-go/variants"
 type ExpressionToken struct {
 	typ   int
 	value *variants.Variant
+	line int
+	column int
 }
 
 // Creates an instance of this token and initializes it with specified values.
 //
 // Parameters:
-//   - type: The type of this token.
+//   - typ: The type of this token.
 //   - value: The value of this token.
-func NewExpressionToken(typ int, value *variants.Variant) *ExpressionToken {
+//   - line: The line number where the token is.
+//   - column: The column number where the token is.
+func NewExpressionToken(typ int, value *variants.Variant, line int, column int) *ExpressionToken {
 	if value == nil {
 		value = variants.EmptyVariant()
 	}
@@ -21,16 +25,10 @@ func NewExpressionToken(typ int, value *variants.Variant) *ExpressionToken {
 	c := &ExpressionToken{
 		typ:   typ,
 		value: value,
+		line: line,
+		column: column,
 	}
 	return c
-}
-
-// Creates an instance of this class with specified type and Null value.
-//
-// Parameters:
-//   - type: The type of this token.
-func EmptyExpressionToken(typ int) *ExpressionToken {
-	return NewExpressionToken(typ, nil)
 }
 
 // The type of this token.
@@ -41,4 +39,14 @@ func (c *ExpressionToken) Type() int {
 // The value of this token.
 func (c *ExpressionToken) Value() *variants.Variant {
 	return c.value
+}
+
+// The line number where the token is.
+func (c *ExpressionToken) Line() int {
+	return c.line
+}
+
+// The column number where the token is.
+func (c *ExpressionToken) Column() int {
+	return c.column
 }

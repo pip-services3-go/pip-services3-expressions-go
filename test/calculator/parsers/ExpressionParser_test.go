@@ -14,14 +14,14 @@ func TestExpressionParserParseString(t *testing.T) {
 	assert.Nil(t, err)
 
 	expectedTokens := []*parsers.ExpressionToken{
-		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(2)),
-		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(2)),
-		parsers.NewExpressionToken(parsers.Plus, variants.Empty),
-		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(2)),
-		parsers.NewExpressionToken(parsers.Unary, variants.Empty),
-		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(1)),
-		parsers.NewExpressionToken(parsers.Function, variants.VariantFromString("ABS")),
-		parsers.NewExpressionToken(parsers.Star, variants.Empty),
+		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(2), 0, 0),
+		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(2), 0, 0),
+		parsers.NewExpressionToken(parsers.Plus, variants.Empty, 0, 0),
+		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(2), 0, 0),
+		parsers.NewExpressionToken(parsers.Unary, variants.Empty, 0, 0),
+		parsers.NewExpressionToken(parsers.Constant, variants.VariantFromInteger(1), 0, 0),
+		parsers.NewExpressionToken(parsers.Function, variants.VariantFromString("ABS"), 0, 0),
+		parsers.NewExpressionToken(parsers.Star, variants.Empty, 0, 0),
 	}
 
 	tokens := parser.ResultTokens()

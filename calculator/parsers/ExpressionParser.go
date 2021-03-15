@@ -155,8 +155,10 @@ func (c *ExpressionParser) moveToNextToken() {
 // Parameters:
 //   - type: The type of the token to be added.
 //   - value: The value of the token to be added.
-func (c *ExpressionParser) addTokenToResult(typ int, value *variants.Variant) {
-	c.resultTokens = append(c.resultTokens, NewExpressionToken(typ, value))
+//   - line: The line number where the token is.
+//   - column: The column number where the token is.
+func (c *ExpressionParser) addTokenToResult(typ int, value *variants.Variant, line int, column int) {
+	c.resultTokens = append(c.resultTokens, NewExpressionToken(typ, value, line, column))
 }
 
 // Matches available tokens types with types from the list.
@@ -297,7 +299,7 @@ func (c *ExpressionParser) completeLexicalAnalysis() error {
 			return err
 		}
 
-		c.initialTokens = append(c.initialTokens, NewExpressionToken(tokenType, tokenValue))
+		c.initialTokens = append(c.initialTokens, NewExpressionToken(tokenType, tokenValue, token.Line(), token.Column()))
 	}
 
 	return nil
@@ -325,7 +327,7 @@ func (c *ExpressionParser) performSyntaxAnalysis() error {
 				return err
 			}
 
-			c.addTokenToResult(token.Type(), variants.Empty)
+			c.addTokenToResult(token.Type(), variants.Empty, token.Line(), token.Column())
 			continue
 		}
 		break
@@ -350,7 +352,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel1() error {
 			return err
 		}
 
-		c.addTokenToResult(token.Type(), variants.Empty)
+		c.addTokenToResult(token.Type(), variants.Empty, token.Line(), token.Column())
 	} else {
 		err = c.performSyntaxAnalysisAtLevel2()
 		if err != nil {
@@ -384,7 +386,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel2() error {
 				return err
 			}
 
-			c.addTokenToResult(token.Type(), variants.Empty)
+			c.addTokenToResult(token.Type(), variants.Empty, token.Line(), token.Column())
 			continue
 		}
 		break
@@ -415,25 +417,25 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel3() error {
 				return err
 			}
 
-			c.addTokenToResult(token.Type(), variants.Empty)
+			c.addTokenToResult(token.Type(), variants.Empty, token.Line(), token.Column())
 		} else if c.matchTokensWithTypes(Not, Like) {
 			err = c.performSyntaxAnalysisAtLevel4()
 			if err != nil {
 				return err
 			}
 
-			c.addTokenToResult(NotLike, variants.Empty)
+			c.addTokenToResult(NotLike, variants.Empty, token.Line(), token.Column())
 		} else if c.matchTokensWithTypes(Is, Null) {
-			c.addTokenToResult(IsNull, variants.Empty)
+			c.addTokenToResult(IsNull, variants.Empty, token.Line(), token.Column())
 		} else if c.matchTokensWithTypes(Is, Not, Null) {
-			c.addTokenToResult(IsNotNull, variants.Empty)
+			c.addTokenToResult(IsNotNull, variants.Empty, token.Line(), token.Column())
 		} else if c.matchTokensWithTypes(Not, In) {
 			err = c.performSyntaxAnalysisAtLevel4()
 			if err != nil {
 				return err
 			}
 
-			c.addTokenToResult(NotIn, variants.Empty)
+			c.addTokenToResult(NotIn, variants.Empty, token.Line(), token.Column())
 		} else {
 			break
 		}
@@ -464,7 +466,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel4() error {
 				return err
 			}
 
-			c.addTokenToResult(token.Type(), variants.Empty)
+			c.addTokenToResult(token.Type(), variants.Empty, token.Line(), token.Column())
 			continue
 		}
 		break
@@ -496,7 +498,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel5() error {
 				return err
 			}
 
-			c.addTokenToResult(token.Type(), variants.Empty)
+			c.addTokenToResult(token.Type(), variants.Empty, token.Line(), token.Column())
 			continue
 		}
 		break
@@ -518,7 +520,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 		unaryToken = nil
 		c.moveToNextToken()
 	} else if unaryToken.Type() == Minus {
-		unaryToken = NewExpressionToken(Unary, unaryToken.Value())
+		unaryToken = NewExpressionToken(Unary, unaryToken.Value(), unaryToken.Line(), unaryToken.Column())
 		c.moveToNextToken()
 	} else {
 		unaryToken = nil
@@ -534,12 +536,12 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 	nextToken := c.getNextToken()
 	if primitiveToken.Type() == Variable &&
 		nextToken != nil && nextToken.Type() == LeftBrace {
-		primitiveToken = NewExpressionToken(Function, primitiveToken.Value())
+		primitiveToken = NewExpressionToken(Function, primitiveToken.Value(), primitiveToken.Line(), primitiveToken.Column())
 	}
 
 	if primitiveToken.Type() == Constant {
 		c.moveToNextToken()
-		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value())
+		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value(), primitiveToken.Line(), primitiveToken.Column())
 	} else if primitiveToken.Type() == Variable {
 		c.moveToNextToken()
 
@@ -555,7 +557,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 			c.variableNames = append(c.variableNames, temp)
 		}
 
-		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value())
+		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value(), primitiveToken.Line(), primitiveToken.Column())
 	} else if primitiveToken.Type() == LeftBrace {
 		c.moveToNextToken()
 
@@ -619,15 +621,15 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 
 		c.moveToNextToken()
 
-		c.addTokenToResult(Constant, variants.VariantFromInteger(paramCount))
-		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value())
+		c.addTokenToResult(Constant, variants.VariantFromInteger(paramCount), primitiveToken.Line(), primitiveToken.Column())
+		c.addTokenToResult(primitiveToken.Type(), primitiveToken.Value(), primitiveToken.Line(), primitiveToken.Column())
 	} else {
 		err = errors.NewSyntaxError("", errors.ErrErrorAt, "Syntax error at " /*+primitiveToken.Value().AsString()*/)
 		return err
 	}
 
 	if unaryToken != nil {
-		c.addTokenToResult(unaryToken.Type(), variants.Empty)
+		c.addTokenToResult(unaryToken.Type(), variants.Empty, unaryToken.Line(), unaryToken.Column())
 	}
 
 	// Process [] operator.
@@ -652,7 +654,7 @@ func (c *ExpressionParser) performSyntaxAnalysisAtLevel6() error {
 			}
 
 			c.moveToNextToken()
-			c.addTokenToResult(Element, variants.Empty)
+			c.addTokenToResult(Element, variants.Empty, 0, 0)
 		}
 	}
 
