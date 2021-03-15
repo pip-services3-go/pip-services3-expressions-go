@@ -12,13 +12,13 @@ import (
 func TestExpressionTokenizerQuoteToken(t *testing.T) {
 	tokenString := "A'xyz'\"abc\ndeg\" 'jkl\"def'\"ab\"\"de\"'df''er'"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Word, "A"),
-		tokenizers.NewToken(tokenizers.Quoted, "xyz"),
-		tokenizers.NewToken(tokenizers.Word, "abc\ndeg"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Quoted, "jkl\"def"),
-		tokenizers.NewToken(tokenizers.Word, "ab\"de"),
-		tokenizers.NewToken(tokenizers.Quoted, "df'er"),
+		tokenizers.NewToken(tokenizers.Word, "A", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "xyz", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "abc\ndeg", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "jkl\"def", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "ab\"de", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "df'er", 0, 0),
 	}
 
 	tokenizer := ctokenizers.NewExpressionTokenizer()
@@ -32,12 +32,12 @@ func TestExpressionTokenizerQuoteToken(t *testing.T) {
 func TestExpressionTokenizerWordToken(t *testing.T) {
 	tokenString := "A'xyz'Ebf_2\n2_2"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Word, "A"),
-		tokenizers.NewToken(tokenizers.Quoted, "xyz"),
-		tokenizers.NewToken(tokenizers.Word, "Ebf_2"),
-		tokenizers.NewToken(tokenizers.Whitespace, "\n"),
-		tokenizers.NewToken(tokenizers.Integer, "2"),
-		tokenizers.NewToken(tokenizers.Word, "_2"),
+		tokenizers.NewToken(tokenizers.Word, "A", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "xyz", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "Ebf_2", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, "\n", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "2", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "_2", 0, 0),
 	}
 
 	tokenizer := ctokenizers.NewExpressionTokenizer()
@@ -51,28 +51,28 @@ func TestExpressionTokenizerWordToken(t *testing.T) {
 func TestExpressionTokenizerNumberToken(t *testing.T) {
 	tokenString := "123-321 .543-.76-. 123.456 123e45 543.11E+43 1e 3E-"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Integer, "123"),
-		tokenizers.NewToken(tokenizers.Symbol, "-"),
-		tokenizers.NewToken(tokenizers.Integer, "321"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Float, ".543"),
-		tokenizers.NewToken(tokenizers.Symbol, "-"),
-		tokenizers.NewToken(tokenizers.Float, ".76"),
-		tokenizers.NewToken(tokenizers.Symbol, "-"),
-		tokenizers.NewToken(tokenizers.Symbol, "."),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Float, "123.456"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Float, "123e45"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Float, "543.11E+43"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Integer, "1"),
-		tokenizers.NewToken(tokenizers.Word, "e"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Integer, "3"),
-		tokenizers.NewToken(tokenizers.Word, "E"),
-		tokenizers.NewToken(tokenizers.Symbol, "-"),
+		tokenizers.NewToken(tokenizers.Integer, "123", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "-", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "321", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, ".543", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "-", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, ".76", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "-", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, ".", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, "123.456", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, "123e45", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, "543.11E+43", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "1", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "e", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "3", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "E", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "-", 0, 0),
 	}
 
 	tokenizer := ctokenizers.NewExpressionTokenizer()

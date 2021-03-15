@@ -31,6 +31,8 @@ func (c *GenericWhitespaceState) NextToken(
 
 	tokenValue := strings.Builder{}
 	nextSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
 
 	for c.mp.Lookup(nextSymbol) != nil {
 		tokenValue.WriteRune(nextSymbol)
@@ -41,7 +43,7 @@ func (c *GenericWhitespaceState) NextToken(
 		scanner.Unread()
 	}
 
-	return tokenizers.NewToken(tokenizers.Whitespace, tokenValue.String())
+	return tokenizers.NewToken(tokenizers.Whitespace, tokenValue.String(), line, column)
 }
 
 // Establish the given characters as whitespace to ignore.

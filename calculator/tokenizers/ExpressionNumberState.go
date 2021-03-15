@@ -30,6 +30,8 @@ func NewExpressionNumberState() *ExpressionNumberState {
 func (c *ExpressionNumberState) NextToken(scanner io.IScanner,
 	tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 	nextChar := scanner.Peek()
+	line := scanner.PeekLine()
+	column := scanner.PeekColumn()
 
 	// Process leading minus.
 	if nextChar == '-' {
@@ -77,5 +79,5 @@ func (c *ExpressionNumberState) NextToken(scanner io.IScanner,
 		nextChar = scanner.Peek()
 	}
 
-	return tokenizers.NewToken(tokenizers.Float, token.Value()+tokenValue.String())
+	return tokenizers.NewToken(tokenizers.Float, token.Value()+tokenValue.String(), line, column)
 }

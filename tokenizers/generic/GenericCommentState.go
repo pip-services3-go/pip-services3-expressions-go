@@ -23,8 +23,10 @@ func (c *GenericCommentState) NextToken(
 	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	tokenValue := strings.Builder{}
-
 	nextSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
+
 	for !utilities.CharValidator.IsEof(nextSymbol) && nextSymbol != '\n' && nextSymbol != '\r' {
 		tokenValue.WriteRune(nextSymbol)
 		nextSymbol = scanner.Read()
@@ -34,5 +36,5 @@ func (c *GenericCommentState) NextToken(
 		scanner.Unread()
 	}
 
-	return tokenizers.NewToken(tokenizers.Comment, tokenValue.String())
+	return tokenizers.NewToken(tokenizers.Comment, tokenValue.String(), line, column)
 }

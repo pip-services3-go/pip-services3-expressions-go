@@ -56,6 +56,8 @@ func (c *GenericWordState) NextToken(
 
 	tokenValue := strings.Builder{}
 	nextSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
 
 	for c.mp.Lookup(nextSymbol) != nil {
 		tokenValue.WriteRune(nextSymbol)
@@ -66,7 +68,7 @@ func (c *GenericWordState) NextToken(
 		scanner.Unread()
 	}
 
-	return tokenizers.NewToken(tokenizers.Word, tokenValue.String())
+	return tokenizers.NewToken(tokenizers.Word, tokenValue.String(), line, column)
 }
 
 // Establish characters in the given range as valid characters for part of a word after

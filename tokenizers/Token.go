@@ -7,18 +7,24 @@ package tokenizers
 type Token struct {
 	typ   int
 	value string
+	line int
+	column int
 }
 
 // Constructs this token with type and value.
 //
 // Parameters:
-//   - type: The type of this token.
+//   - typ: The type of this token.
 //   - value: The token string value.
+//   - line: The line number where the token is.
+//   - column: The column number where the token is.
 // Returns: Created token
-func NewToken(typ int, value string) *Token {
+func NewToken(typ int, value string, line int, column int) *Token {
 	return &Token{
 		typ:   typ,
 		value: value,
+		line: line,
+		column: column,
 	}
 }
 
@@ -30,6 +36,16 @@ func (c *Token) Type() int {
 // The token value.
 func (c *Token) Value() string {
 	return c.value
+}
+
+// The line number where the token is.
+func (c *Token) Line() int {
+	return c.line
+}
+
+// The column number where the token is.
+func (c *Token) Column() int {
+	return c.column
 }
 
 func (c *Token) Equals(obj interface{}) bool {

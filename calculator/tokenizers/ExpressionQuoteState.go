@@ -26,6 +26,8 @@ func NewExpressionQuoteState() *ExpressionQuoteState {
 func (c *ExpressionQuoteState) NextToken(scanner io.IScanner,
 	tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 	firstSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
 	tokenValue := strings.Builder{}
 	tokenValue.WriteRune(firstSymbol)
 	nextSymbol := scanner.Read()
@@ -52,7 +54,7 @@ func (c *ExpressionQuoteState) NextToken(scanner io.IScanner,
 		tokenType = tokenizers.Word
 	}
 
-	return tokenizers.NewToken(tokenType, tokenValue.String())
+	return tokenizers.NewToken(tokenType, tokenValue.String(), line, column)
 }
 
 // Encodes a string value.

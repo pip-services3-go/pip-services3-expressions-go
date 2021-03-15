@@ -43,11 +43,13 @@ func NewExpressionWordState() *ExpressionWordState {
 // Returns: The next token from the top of the stream.
 func (c *ExpressionWordState) NextToken(scanner io.IScanner,
 	tokenizer tokenizers.ITokenizer) *tokenizers.Token {
+	line := scanner.PeekLine()
+	column := scanner.PeekColumn()
 	token := c.GenericWordState.NextToken(scanner, tokenizer)
 
 	for _, keyword := range Keywords {
 		if keyword == strings.ToUpper(token.Value()) {
-			return tokenizers.NewToken(tokenizers.Keyword, token.Value())
+			return tokenizers.NewToken(tokenizers.Keyword, token.Value(), line, column)
 		}
 	}
 

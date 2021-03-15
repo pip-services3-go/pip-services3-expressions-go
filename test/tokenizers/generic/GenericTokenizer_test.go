@@ -11,20 +11,20 @@ import (
 func TestGenericTokenizerExpression(t *testing.T) {
 	tokenString := "A+B/123 - \t 'xyz'\n <>-10.11# This is a comment"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Word, "A"),
-		tokenizers.NewToken(tokenizers.Symbol, "+"),
-		tokenizers.NewToken(tokenizers.Word, "B"),
-		tokenizers.NewToken(tokenizers.Symbol, "/"),
-		tokenizers.NewToken(tokenizers.Integer, "123"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Symbol, "-"),
-		tokenizers.NewToken(tokenizers.Whitespace, " \t "),
-		tokenizers.NewToken(tokenizers.Quoted, "'xyz'"),
-		tokenizers.NewToken(tokenizers.Whitespace, "\n "),
-		tokenizers.NewToken(tokenizers.Symbol, "<>"),
-		tokenizers.NewToken(tokenizers.Float, "-10.11"),
-		tokenizers.NewToken(tokenizers.Comment, "# This is a comment"),
-		tokenizers.NewToken(tokenizers.Eof, ""),
+		tokenizers.NewToken(tokenizers.Word, "A", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "+", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "B", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "/", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "123", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "-", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " \t ", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "'xyz'", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, "\n ", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "<>", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, "-10.11", 0, 0),
+		tokenizers.NewToken(tokenizers.Comment, "# This is a comment", 0, 0),
+		tokenizers.NewToken(tokenizers.Eof, "", 0, 0),
 	}
 
 	tokenizer := generic.NewGenericTokenizer()
@@ -36,11 +36,11 @@ func TestGenericTokenizerExpression(t *testing.T) {
 func TestGenericTokenizerQuoteToken(t *testing.T) {
 	tokenString := "A'xyz'\"abc\ndeg\" 'jkl\"def'"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Word, "A"),
-		tokenizers.NewToken(tokenizers.Quoted, "xyz"),
-		tokenizers.NewToken(tokenizers.Quoted, "abc\ndeg"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Quoted, "jkl\"def"),
+		tokenizers.NewToken(tokenizers.Word, "A", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "xyz", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "abc\ndeg", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "jkl\"def", 0, 0),
 	}
 
 	tokenizer := generic.NewGenericTokenizer()
@@ -54,12 +54,12 @@ func TestGenericTokenizerQuoteToken(t *testing.T) {
 func TestGenericTokenizerWordToken(t *testing.T) {
 	tokenString := "A'xyz'Ebf_2\n2x_2"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Word, "A"),
-		tokenizers.NewToken(tokenizers.Quoted, "xyz"),
-		tokenizers.NewToken(tokenizers.Word, "Ebf_2"),
-		tokenizers.NewToken(tokenizers.Whitespace, "\n"),
-		tokenizers.NewToken(tokenizers.Integer, "2"),
-		tokenizers.NewToken(tokenizers.Word, "x_2"),
+		tokenizers.NewToken(tokenizers.Word, "A", 0, 0),
+		tokenizers.NewToken(tokenizers.Quoted, "xyz", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "Ebf_2", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, "\n", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "2", 0, 0),
+		tokenizers.NewToken(tokenizers.Word, "x_2", 0, 0),
 	}
 
 	tokenizer := generic.NewGenericTokenizer()
@@ -73,15 +73,15 @@ func TestGenericTokenizerWordToken(t *testing.T) {
 func TestGenericTokenizerNumberToken(t *testing.T) {
 	tokenString := "123-321 .543-.76-. -123.456"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Integer, "123"),
-		tokenizers.NewToken(tokenizers.Integer, "-321"),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Float, ".543"),
-		tokenizers.NewToken(tokenizers.Float, "-.76"),
-		tokenizers.NewToken(tokenizers.Symbol, "-"),
-		tokenizers.NewToken(tokenizers.Symbol, "."),
-		tokenizers.NewToken(tokenizers.Whitespace, " "),
-		tokenizers.NewToken(tokenizers.Float, "-123.456"),
+		tokenizers.NewToken(tokenizers.Integer, "123", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "-321", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, ".543", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, "-.76", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, "-", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, ".", 0, 0),
+		tokenizers.NewToken(tokenizers.Whitespace, " ", 0, 0),
+		tokenizers.NewToken(tokenizers.Float, "-123.456", 0, 0),
 	}
 
 	tokenizer := generic.NewGenericTokenizer()
@@ -95,9 +95,9 @@ func TestGenericTokenizerNumberToken(t *testing.T) {
 func TestGenericTokenizerWrongToken(t *testing.T) {
 	tokenString := "1>2"
 	expectedTokens := []*tokenizers.Token{
-		tokenizers.NewToken(tokenizers.Integer, "1"),
-		tokenizers.NewToken(tokenizers.Symbol, ">"),
-		tokenizers.NewToken(tokenizers.Integer, "2"),
+		tokenizers.NewToken(tokenizers.Integer, "1", 0, 0),
+		tokenizers.NewToken(tokenizers.Symbol, ">", 0, 0),
+		tokenizers.NewToken(tokenizers.Integer, "2", 0, 0),
 	}
 
 	tokenizer := generic.NewGenericTokenizer()

@@ -61,6 +61,9 @@ func (c *CppCommentState) NextToken(
 	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	firstSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
+
 	if firstSymbol != '/' {
 		scanner.Unread()
 		panic("Incorrect usage of CppCommentState.")
@@ -69,10 +72,10 @@ func (c *CppCommentState) NextToken(
 	secondSymbol := scanner.Read()
 	if secondSymbol == '*' {
 		str := c.GetMultiLineComment(scanner)
-		return tokenizers.NewToken(tokenizers.Comment, "/*"+str)
+		return tokenizers.NewToken(tokenizers.Comment, "/*"+str, line, column)
 	} else if secondSymbol == '/' {
 		str := c.GetSingleLineComment(scanner)
-		return tokenizers.NewToken(tokenizers.Comment, "//"+str)
+		return tokenizers.NewToken(tokenizers.Comment, "//"+str, line, column)
 	} else {
 		if !utilities.CharValidator.IsEof(secondSymbol) {
 			scanner.Unread()

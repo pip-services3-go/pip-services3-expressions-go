@@ -26,6 +26,9 @@ func (c *CsvQuoteState) NextToken(
 	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
 
 	firstSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
+	
 	tokenValue := strings.Builder{}
 	tokenValue.WriteRune(firstSymbol)
 	nextSymbol := scanner.Read()
@@ -46,7 +49,7 @@ func (c *CsvQuoteState) NextToken(
 		nextSymbol = scanner.Read()
 	}
 
-	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String())
+	return tokenizers.NewToken(tokenizers.Quoted, tokenValue.String(), line, column)
 }
 
 // Encodes a string value.

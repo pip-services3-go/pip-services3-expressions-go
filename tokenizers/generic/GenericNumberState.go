@@ -31,6 +31,8 @@ func (c *GenericNumberState) NextToken(
 	gotADigit := false
 	tokenValue := strings.Builder{}
 	nextSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
 
 	// Parses leading minus.
 	if nextSymbol == '-' {
@@ -80,5 +82,5 @@ func (c *GenericNumberState) NextToken(
 	if absorbedDot {
 		tokenType = tokenizers.Float
 	}
-	return tokenizers.NewToken(tokenType, tokenValue.String())
+	return tokenizers.NewToken(tokenType, tokenValue.String(), line, column)
 }

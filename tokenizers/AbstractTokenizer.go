@@ -185,6 +185,8 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 		return nil
 	}
 
+	line := c.scanner.PeekLine()
+	column := c.scanner.PeekColumn()
 	var token *Token = nil
 
 	for true {
@@ -206,7 +208,7 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 		// Check for unknown characters and endless loops...
 		if token == nil || token.Value() == "" {
 			chr := c.scanner.Read()
-			token = NewToken(Unknown, string(chr))
+			token = NewToken(Unknown, string(chr), line, column)
 		}
 
 		// Skip unknown characters if option set.
@@ -217,7 +219,7 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 
 		// Decode strings is option set.
 		if _, ok := state.(IQuoteState); ok && c.decodeStrings {
-			token = NewToken(token.Type(), c.QuoteState().DecodeString(token.Value(), nextChar))
+			token = NewToken(token.Type(), c.QuoteState().DecodeString(token.Value(), nextChar), line, column)
 		}
 
 		// Skips comments if option set.
@@ -234,13 +236,13 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 
 		// Unifies whitespaces if option set.
 		if token.Type() == Whitespace && c.mergeWhitespaces {
-			token = NewToken(Whitespace, " ")
+			token = NewToken(Whitespace, " ", line, column)
 		}
 
 		// Unifies numbers if option set.
 		if c.unifyNumbers &&
 			(token.Type() == Integer || token.Type() == Float || token.Type() == HexDecimal) {
-			token = NewToken(Number, token.Value())
+			token = NewToken(Number, token.Value(), line, column)
 		}
 
 		break
@@ -248,7 +250,7 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 
 	// Adds an Eof if option is not set.
 	if token == nil && c.lastTokenType != Eof && !c.skipEof {
-		token = NewToken(Eof, "")
+		token = NewToken(Eof, "", line, column)
 	}
 
 	// Assigns the last token type

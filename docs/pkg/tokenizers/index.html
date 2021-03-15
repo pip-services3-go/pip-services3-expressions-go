@@ -282,11 +282,17 @@
 				<dd><a href="index.html#Token">type Token</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewToken">func NewToken(typ int, value string) *Token</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewToken">func NewToken(typ int, value string, line int, column int) *Token</a></dd>
 				
 				
 					
+					<dd>&nbsp; &nbsp; <a href="index.html#Token.Column">func (c *Token) Column() int</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="index.html#Token.Equals">func (c *Token) Equals(obj interface{}) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Token.Line">func (c *Token) Line() int</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Token.Type">func (c *Token) Type() int</a></dd>
@@ -775,7 +781,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeBuffer">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6012:6078#L266">TokenizeBuffer</a>
+				<h3 id="AbstractTokenizer.TokenizeBuffer">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6146:6212#L268">TokenizeBuffer</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeBuffer">&#xb6;</a>
 					
 					
@@ -787,7 +793,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeBufferToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6433:6508#L284">TokenizeBufferToStrings</a>
+				<h3 id="AbstractTokenizer.TokenizeBufferToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6567:6642#L286">TokenizeBufferToStrings</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeBufferToStrings">&#xb6;</a>
 					
 					
@@ -799,7 +805,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeStream">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=5757:5829#L253">TokenizeStream</a>
+				<h3 id="AbstractTokenizer.TokenizeStream">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=5891:5963#L255">TokenizeStream</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeStream">&#xb6;</a>
 					
 					
@@ -811,7 +817,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeStreamToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6158:6239#L271">TokenizeStreamToStrings</a>
+				<h3 id="AbstractTokenizer.TokenizeStreamToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6292:6373#L273">TokenizeStreamToStrings</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeStreamToStrings">&#xb6;</a>
 					
 					
@@ -1268,7 +1274,7 @@ Defines an interface for tokenizer state that processes words, identificators or
 		
 			
 			
-			<h2 id="Token">type <a href="http://localhost:6060/src/tokenizers/Token.go?s=347:393#L1">Token</a>
+			<h2 id="Token">type <a href="http://localhost:6060/src/tokenizers/Token.go?s=347:415#L1">Token</a>
 				<a class="permalink" href="index.html#Token">&#xb6;</a>
 				
 				
@@ -1295,12 +1301,12 @@ to divide a string into tokens.
 
 			
 				
-				<h3 id="NewToken">func <a href="http://localhost:6060/src/tokenizers/Token.go?s=560:603#L8">NewToken</a>
+				<h3 id="NewToken">func <a href="http://localhost:6060/src/tokenizers/Token.go?s=684:749#L12">NewToken</a>
 					<a class="permalink" href="index.html#NewToken">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewToken(typ <a href="http://localhost:6060/pkg/builtin/#int">int</a>, value <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#Token">Token</a></pre>
+				<pre>func NewToken(typ <a href="http://localhost:6060/pkg/builtin/#int">int</a>, value <a href="http://localhost:6060/pkg/builtin/#string">string</a>, line <a href="http://localhost:6060/pkg/builtin/#int">int</a>, column <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="index.html#Token">Token</a></pre>
 				<p>
 Constructs this token with type and value.
 </p>
@@ -1309,6 +1315,8 @@ Parameters:
 </p>
 <pre>- type: The type of this token.
 - value: The token string value.
+- line: The line number where the token is.
+- column: The column number where the token is.
 </pre>
 <p>
 Returns: Created token
@@ -1320,7 +1328,22 @@ Returns: Created token
 
 			
 				
-				<h3 id="Token.Equals">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=795:839#L25">Equals</a>
+				<h3 id="Token.Column">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1100:1128#L37">Column</a>
+					<a class="permalink" href="index.html#Token.Column">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Token">Token</a>) Column() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+The column number where the token is.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Token.Equals">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1151:1195#L41">Equals</a>
 					<a class="permalink" href="index.html#Token.Equals">&#xb6;</a>
 					
 					
@@ -1332,7 +1355,22 @@ Returns: Created token
 				
 			
 				
-				<h3 id="Token.Type">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=677:703#L16">Type</a>
+				<h3 id="Token.Line">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1012:1038#L32">Line</a>
+					<a class="permalink" href="index.html#Token.Line">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Token">Token</a>) Line() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+The line number where the token is.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Token.Type">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=855:881#L22">Type</a>
 					<a class="permalink" href="index.html#Token.Type">&#xb6;</a>
 					
 					
@@ -1347,7 +1385,7 @@ The token type.
 				
 			
 				
-				<h3 id="Token.Value">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=743:773#L21">Value</a>
+				<h3 id="Token.Value">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=921:951#L27">Value</a>
 					<a class="permalink" href="index.html#Token.Value">&#xb6;</a>
 					
 					

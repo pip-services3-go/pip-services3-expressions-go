@@ -46,15 +46,17 @@ func (c *SymbolRootNode) Add(value string, tokenType int) {
 // Returns: A symbol string from a scanner
 func (c *SymbolRootNode) NextToken(scanner io.IScanner) *tokenizers.Token {
 	nextSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
 
 	childNode := c.FindChildWithChar(nextSymbol)
 	if childNode != nil {
 		childNode = childNode.DeepestRead(scanner)
 		childNode = childNode.UnreadToValid(scanner)
 		childNodeValue := string(childNode.Ancestry())
-		return tokenizers.NewToken(childNode.TokenType(), childNodeValue)
+		return tokenizers.NewToken(childNode.TokenType(), childNodeValue, line, column)
 	} else {
 		tokenValue := string([]rune{nextSymbol})
-		return tokenizers.NewToken(tokenizers.Symbol, tokenValue)
+		return tokenizers.NewToken(tokenizers.Symbol, tokenValue, line, column)
 	}
 }

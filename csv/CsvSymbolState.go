@@ -27,11 +27,14 @@ func NewCsvSymbolState() *CsvSymbolState {
 
 func (c *CsvSymbolState) NextToken(
 	scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token {
-
+	
 	// Optimization...
 	nextSymbol := scanner.Read()
+	line := scanner.Line()
+	column := scanner.Column()
+
 	if nextSymbol != '\n' && nextSymbol != '\r' {
-		return tokenizers.NewToken(tokenizers.Symbol, string(nextSymbol))
+		return tokenizers.NewToken(tokenizers.Symbol, string(nextSymbol), line, column)
 	} else {
 		scanner.Unread()
 		return c.GenericSymbolState.NextToken(scanner, tokenizer)
