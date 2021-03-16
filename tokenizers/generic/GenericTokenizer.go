@@ -8,9 +8,8 @@ type GenericTokenizer struct {
 }
 
 func NewGenericTokenizer() *GenericTokenizer {
-	c := &GenericTokenizer{
-		AbstractTokenizer: *tokenizers.NewAbstractTokenizer(),
-	}
+	c := &GenericTokenizer{}
+	c.AbstractTokenizer = *tokenizers.NewAbstractTokenizer(c)
 
 	c.SetSymbolState(NewGenericSymbolState())
 	c.SymbolState().Add("<>", tokenizers.Symbol)

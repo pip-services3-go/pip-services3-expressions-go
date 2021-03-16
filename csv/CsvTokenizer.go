@@ -13,11 +13,11 @@ type CsvTokenizer struct {
 // Constructs this object with default parameters.
 func NewCsvTokenizer() *CsvTokenizer {
 	c := &CsvTokenizer{
-		AbstractTokenizer: *tokenizers.NewAbstractTokenizer(),
-		fieldSeparators:   []rune{','},
-		quoteSymbols:      []rune{'"'},
-		endOfLine:         string(CR) + string(LF),
+		fieldSeparators: []rune{','},
+		quoteSymbols:    []rune{'"'},
+		endOfLine:       string(CR) + string(LF),
 	}
+	c.AbstractTokenizer = *tokenizers.NewAbstractTokenizer(c)
 
 	c.SetNumberState(nil)
 	c.SetWhitespaceState(nil)

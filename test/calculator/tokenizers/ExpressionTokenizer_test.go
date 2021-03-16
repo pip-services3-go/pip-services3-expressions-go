@@ -1,4 +1,4 @@
-package test_calculator_variables
+package test_calculator_tokenizers
 
 import (
 	"testing"

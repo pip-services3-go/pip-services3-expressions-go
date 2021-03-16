@@ -5,6 +5,10 @@ import (
 	"github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/utilities"
 )
 
+type ITokenizerOverrides interface {
+	ReadNextToken() *Token
+}
+
 // Implements an abstract tokenizer class.
 type AbstractTokenizer struct {
 	mp *utilities.CharReferenceMap
@@ -24,16 +28,18 @@ type AbstractTokenizer struct {
 	whitespaceState IWhitespaceState
 	wordState       IWordState
 
-	scanner        io.IScanner
-	nextToken     *Token
-	lastTokenType int
+	Scanner        io.IScanner
+	NextTokenValue *Token
+	LastTokenType  int
+	Overrides      ITokenizerOverrides
 }
 
-func NewAbstractTokenizer() *AbstractTokenizer {
+func NewAbstractTokenizer(overrides ITokenizerOverrides) *AbstractTokenizer {
 	c := &AbstractTokenizer{
 		mp:            utilities.NewCharReferenceMap(),
-		lastTokenType: Unknown,
+		LastTokenType: Unknown,
 	}
+	c.Overrides = overrides
 	return c
 }
 
@@ -155,43 +161,43 @@ func (c *AbstractTokenizer) ClearCharacterStates() {
 }
 
 func (c *AbstractTokenizer) Reader() io.IScanner {
-	return c.scanner
+	return c.Scanner
 }
 
 func (c *AbstractTokenizer) SetReader(value io.IScanner) {
-	c.scanner = value
-	c.nextToken = nil
-	c.lastTokenType = Unknown
+	c.Scanner = value
+	c.NextTokenValue = nil
+	c.LastTokenType = Unknown
 }
 
 func (c *AbstractTokenizer) HasNextToken() bool {
-	if c.nextToken == nil {
-		c.nextToken = c.ReadNextToken()
+	if c.NextTokenValue == nil {
+		c.NextTokenValue = c.Overrides.ReadNextToken()
 	}
-	return c.nextToken != nil
+	return c.NextTokenValue != nil
 }
 
 func (c *AbstractTokenizer) NextToken() *Token {
-	token := c.nextToken
+	token := c.NextTokenValue
 	if token == nil {
-		token = c.ReadNextToken()
+		token = c.Overrides.ReadNextToken()
 	}
-	c.nextToken = nil
+	c.NextTokenValue = nil
 	return token
 }
 
 func (c *AbstractTokenizer) ReadNextToken() *Token {
-	if c.scanner == nil {
+	if c.Scanner == nil {
 		return nil
 	}
 
-	line := c.scanner.PeekLine()
-	column := c.scanner.PeekColumn()
+	line := c.Scanner.PeekLine()
+	column := c.Scanner.PeekColumn()
 	var token *Token = nil
 
 	for true {
 		// Read character
-		nextChar := c.scanner.Peek()
+		nextChar := c.Scanner.Peek()
 
 		// If reached Eof then exit
 		if utilities.CharValidator.IsEof(nextChar) {
@@ -202,18 +208,18 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 		// Get state for character
 		state := c.GetCharacterState(nextChar)
 		if state != nil {
-			token = state.NextToken(c.scanner, c)
+			token = state.NextToken(c.Scanner, c)
 		}
 
 		// Check for unknown characters and endless loops...
 		if token == nil || token.Value() == "" {
-			chr := c.scanner.Read()
+			chr := c.Scanner.Read()
 			token = NewToken(Unknown, string(chr), line, column)
 		}
 
 		// Skip unknown characters if option set.
 		if token.Type() == Unknown && c.skipUnknown {
-			c.lastTokenType = token.Type()
+			c.LastTokenType = token.Type()
 			continue
 		}
 
@@ -224,13 +230,13 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 
 		// Skips comments if option set.
 		if token.Type() == Comment && c.skipComments {
-			c.lastTokenType = token.Type()
+			c.LastTokenType = token.Type()
 			continue
 		}
 
 		// Skips whitespaces if option set.
-		if token.Type() == Whitespace && c.lastTokenType == Whitespace && c.skipWhitespaces {
-			c.lastTokenType = token.Type()
+		if token.Type() == Whitespace && c.LastTokenType == Whitespace && c.skipWhitespaces {
+			c.LastTokenType = token.Type()
 			continue
 		}
 
@@ -249,14 +255,14 @@ func (c *AbstractTokenizer) ReadNextToken() *Token {
 	}
 
 	// Adds an Eof if option is not set.
-	if token == nil && c.lastTokenType != Eof && !c.skipEof {
+	if token == nil && c.LastTokenType != Eof && !c.skipEof {
 		token = NewToken(Eof, "", line, column)
 	}
 
 	// Assigns the last token type
-	c.lastTokenType = Eof
+	c.LastTokenType = Eof
 	if token != nil {
-		c.lastTokenType = token.Type()
+		c.LastTokenType = token.Type()
 	}
 
 	return token
@@ -283,7 +289,7 @@ func (c *AbstractTokenizer) TokenizeBuffer(buffer string) []*Token {
 func (c *AbstractTokenizer) TokenizeStreamToStrings(scanner io.IScanner) []string {
 	c.SetReader(scanner)
 	stringList := []string{}
-	token:= c.NextToken()
+	token := c.NextToken()
 
 	for token != nil {
 		stringList = append(stringList, token.Value())

@@ -11,9 +11,8 @@ type ExpressionTokenizer struct {
 }
 
 func NewExpressionTokenizer() *ExpressionTokenizer {
-	c := &ExpressionTokenizer{
-		AbstractTokenizer: *tokenizers.NewAbstractTokenizer(),
-	}
+	c := &ExpressionTokenizer{}
+	c.AbstractTokenizer = *tokenizers.NewAbstractTokenizer(c)
 
 	c.SetDecodeStrings(false)
 
