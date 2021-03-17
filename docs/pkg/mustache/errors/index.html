@@ -77,7 +77,7 @@
 		
 		<div id="short-nav">
 			<dl>
-			<dd><code>import "calculator/errors"</code></dd>
+			<dd><code>import "mustache/errors"</code></dd>
 			</dl>
 			<dl>
 			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
@@ -109,15 +109,10 @@
 			<div id="manual-nav">
 			<dl>
 			
-				<dd><a href="index.html#pkg-constants">Constants</a></dd>
-			
 			
 			
 				
-				<dd><a href="index.html#NewExpressionError">func NewExpressionError(correlationId, code, message string, line, column int) *cerrors.ApplicationError</a></dd>
-			
-				
-				<dd><a href="index.html#NewSyntaxError">func NewSyntaxError(correlationId, code, message string, line, column int) *cerrors.ApplicationError</a></dd>
+				<dd><a href="index.html#NewMustacheError">func NewMustacheError(correlationId, code, message string, line, column int) *cerrors.ApplicationError</a></dd>
 			
 			
 			
@@ -131,11 +126,7 @@
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="http://localhost:6060/src/calculator/errors/ExpressionError.go">ExpressionError.go</a>
-			
-				<a href="http://localhost:6060/src/calculator/errors/SyntaxError.go">SyntaxError.go</a>
-			
-				<a href="http://localhost:6060/src/calculator/errors/SyntaxErrorCode.go">SyntaxErrorCode.go</a>
+				<a href="http://localhost:6060/src/mustache/errors/MustacheError.go">MustacheError.go</a>
 			
 			</span>
 			</p>
@@ -146,67 +137,18 @@
 		
 
 		
-			<h2 id="pkg-constants">Constants</h2>
-			
-				<p>
-General syntax errors.
-</p>
-
-				<pre>const (
-    <span class="comment">// The unknown</span>
-    <span id="ErrUnknown">ErrUnknown</span> = &#34;UNKNOWN&#34;
-
-    <span class="comment">// The internal error</span>
-    <span id="ErrInternal">ErrInternal</span> = &#34;INTERNAL&#34;
-
-    <span class="comment">// The unexpected end.</span>
-    <span id="ErrUnexpectedEnd">ErrUnexpectedEnd</span> = &#34;UNEXPECTED_END&#34;
-
-    <span class="comment">// The error near</span>
-    <span id="ErrErrorNear">ErrErrorNear</span> = &#34;ERROR_NEAR&#34;
-
-    <span class="comment">// The error at</span>
-    <span id="ErrErrorAt">ErrErrorAt</span> = &#34;ERROR_AT&#34;
-
-    <span class="comment">// The unknown symbol</span>
-    <span id="ErrUnknownSymbol">ErrUnknownSymbol</span> = &#34;UNKNOWN_SYMBOL&#34;
-
-    <span class="comment">// The missed close parenthesis</span>
-    <span id="ErrMissedCloseParenthesis">ErrMissedCloseParenthesis</span> = &#34;MISSED_CLOSE_PARENTHESIS&#34;
-
-    <span class="comment">// The missed close square bracket</span>
-    <span id="ErrMissedCloseSquareBracket">ErrMissedCloseSquareBracket</span> = &#34;MISSED_CLOSE_SQUARE_BRACKET&#34;
-)</pre>
-			
-		
 		
 		
 			
 			
-			<h2 id="NewExpressionError">func <a href="http://localhost:6060/src/calculator/errors/ExpressionError.go?s=170:274#L1">NewExpressionError</a>
-				<a class="permalink" href="index.html#NewExpressionError">&#xb6;</a>
+			<h2 id="NewMustacheError">func <a href="http://localhost:6060/src/mustache/errors/MustacheError.go?s=164:266#L1">NewMustacheError</a>
+				<a class="permalink" href="index.html#NewMustacheError">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func NewExpressionError(correlationId, code, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, line, column <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">cerrors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ApplicationError">ApplicationError</a></pre>
+			<pre>func NewMustacheError(correlationId, code, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, line, column <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">cerrors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ApplicationError">ApplicationError</a></pre>
 			<p>
-Exception that can be thrown by Expression Calculator.
-</p>
-
-			
-			
-
-		
-			
-			
-			<h2 id="NewSyntaxError">func <a href="http://localhost:6060/src/calculator/errors/SyntaxError.go?s=164:264#L1">NewSyntaxError</a>
-				<a class="permalink" href="index.html#NewSyntaxError">&#xb6;</a>
-				
-				
-			</h2>
-			<pre>func NewSyntaxError(correlationId, code, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, line, column <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">cerrors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ApplicationError">ApplicationError</a></pre>
-			<p>
-Exception that can be thrown by Expression Parser.
+Exception that can be thrown by Mustache Template.
 </p>
 
 			

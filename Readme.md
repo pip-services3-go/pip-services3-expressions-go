@@ -4,11 +4,12 @@ This module is a part of the [Pip.Services](http://pip.services.org) polyglot mi
 It provides syntax and lexical analyzers and expression calculator optimized for repeated calculations.
 
 The module contains the following packages:
-- [**Calculator**](https://godoc.org/github.com/pip-services3-go/pip-services3-expressions-go/calculator) - Expression calculator
-- [**CSV**](https://godoc.org/github.com/pip-services3-go/pip-services3-expressions-go/csv) - CSV tokenizer
-- [**IO**](https://godoc.org/github.com/pip-services3-go/pip-services3-expressions-go/io) - input/output utility classes to support lexical analysis
-- [**Tokenizers**](https://godoc.org/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers) - lexical analyzers to break incoming character streams into tokens
-- [**Variants**](https://godoc.org/github.com/pip-services3-go/pip-services3-expressions-go/variants) - dynamic objects that can hold any values and operators for them
+- **Calculator** - Expression calculator
+- **CSV** - CSV tokenizer
+- **IO** - input/output utility classes to support lexical analysis
+- **Mustache** - Mustache templating engine
+- **Tokenizers** - lexical analyzers to break incoming character streams into tokens
+- **Variants** - dynamic objects that can hold any values and operators for them
 
 <a name="links"></a> Quick links:
 
@@ -22,6 +23,55 @@ The module contains the following packages:
 Get the package from the Github repository:
 ```bash
 go get -u github.com/pip-services3-go/pip-services3-expressions-go@latest
+```
+
+The example below shows how to use expression calculator to dynamically
+calculate user-defined expressions.
+
+```golang
+import (
+    "fmt"
+
+    calc "github.com/pip-services3-go/pip-services3-expressions-go/calculator"
+    vars "github.com/pip-services3-go/pip-services3-expressions-go/calculator/variables"
+    variants "github.com/pip-services3-go/pip-services3-expressions-go/variants"
+)
+
+...
+calculator := calc.NewExpressionCalculator()
+
+calculator.SetExpression("A + b / (3 - Max(-123, 1)*2)")
+
+variables := vars.NewVariableCollection()
+variables.Add(vars.NewVariable("A", variants.NewVariantFromInteger(1)))
+variables.Add(vars.NewVariable("B", variants.NewVariantFromString("3")))
+
+result, err := calculator.EvaluateWithVariables(variables)
+if err != nil {
+    fmt.Println("Failed to calculate the expression")
+} else {
+    fmt.Println("The result of the expression is " + result.AsString())
+}
+...
+```
+
+This is an example to process mustache templates.
+
+```golang
+import (
+    "fmt"
+
+    mustache "github.com/pip-services3-go/pip-services3-expressions-go/mustache"
+)
+
+template := mustache.NewMustacheTemplate()
+template.SetTemplate("Hello, {{{NAME}}}{{#ESCLAMATION}}!{{/ESCLAMATION}}{{#unless ESCLAMATION}}.{{/unless}}")
+result, err := template.EvaluateWithVariables(map[string]string{ "NAME": "Mike", "ESCLAMATION": "true" })
+if err != nil {
+    fmt.Println("Failed to evaluate mustache template")
+} else {
+    fmt.Println("The result of template evaluation is '" + result + "'")
+}
 ```
 
 ## Develop

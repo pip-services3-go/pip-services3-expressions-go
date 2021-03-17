@@ -156,11 +156,14 @@
 				<dd><a href="index.html#ExpressionToken">type ExpressionToken</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#EmptyExpressionToken">func EmptyExpressionToken(typ int) *ExpressionToken</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewExpressionToken">func NewExpressionToken(typ int, value *variants.Variant, line int, column int) *ExpressionToken</a></dd>
+				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewExpressionToken">func NewExpressionToken(typ int, value *variants.Variant) *ExpressionToken</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionToken.Column">func (c *ExpressionToken) Column() int</a></dd>
 				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionToken.Line">func (c *ExpressionToken) Line() int</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ExpressionToken.Type">func (c *ExpressionToken) Type() int</a></dd>
@@ -438,7 +441,7 @@ Gets the list of found variable names.
 		
 			
 			
-			<h2 id="ExpressionToken">type <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=132:199#L1">ExpressionToken</a>
+			<h2 id="ExpressionToken">type <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=132:221#L1">ExpressionToken</a>
 				<a class="permalink" href="index.html#ExpressionToken">&#xb6;</a>
 				
 				
@@ -462,39 +465,22 @@ Defines an expression token holder.
 
 			
 				
-				<h3 id="EmptyExpressionToken">func <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=706:757#L22">EmptyExpressionToken</a>
-					<a class="permalink" href="index.html#EmptyExpressionToken">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func EmptyExpressionToken(typ <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="index.html#ExpressionToken">ExpressionToken</a></pre>
-				<p>
-Creates an instance of this class with specified type and Null value.
-</p>
-<p>
-Parameters:
-</p>
-<pre>- type: The type of this token.
-</pre>
-
-				
-				
-			
-				
-				<h3 id="NewExpressionToken">func <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=374:448#L6">NewExpressionToken</a>
+				<h3 id="NewExpressionToken">func <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=497:593#L10">NewExpressionToken</a>
 					<a class="permalink" href="index.html#NewExpressionToken">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewExpressionToken(typ <a href="http://localhost:6060/pkg/builtin/#int">int</a>, value *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/variants/">variants</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/variants/#Variant">Variant</a>) *<a href="index.html#ExpressionToken">ExpressionToken</a></pre>
+				<pre>func NewExpressionToken(typ <a href="http://localhost:6060/pkg/builtin/#int">int</a>, value *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/variants/">variants</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/variants/#Variant">Variant</a>, line <a href="http://localhost:6060/pkg/builtin/#int">int</a>, column <a href="http://localhost:6060/pkg/builtin/#int">int</a>) *<a href="index.html#ExpressionToken">ExpressionToken</a></pre>
 				<p>
 Creates an instance of this token and initializes it with specified values.
 </p>
 <p>
 Parameters:
 </p>
-<pre>- type: The type of this token.
+<pre>- typ: The type of this token.
 - value: The value of this token.
+- line: The line number where the token is.
+- column: The column number where the token is.
 </pre>
 
 				
@@ -503,7 +489,37 @@ Parameters:
 
 			
 				
-				<h3 id="ExpressionToken.Type">func (*ExpressionToken) <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=827:863#L27">Type</a>
+				<h3 id="ExpressionToken.Column">func (*ExpressionToken) <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=1076:1114#L40">Column</a>
+					<a class="permalink" href="index.html#ExpressionToken.Column">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ExpressionToken">ExpressionToken</a>) Column() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+The column number where the token is.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ExpressionToken.Line">func (*ExpressionToken) <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=978:1014#L35">Line</a>
+					<a class="permalink" href="index.html#ExpressionToken.Line">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ExpressionToken">ExpressionToken</a>) Line() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<p>
+The line number where the token is.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ExpressionToken.Type">func (*ExpressionToken) <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=782:818#L25">Type</a>
 					<a class="permalink" href="index.html#ExpressionToken.Type">&#xb6;</a>
 					
 					
@@ -518,7 +534,7 @@ The type of this token.
 				
 			
 				
-				<h3 id="ExpressionToken.Value">func (*ExpressionToken) <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=911:962#L32">Value</a>
+				<h3 id="ExpressionToken.Value">func (*ExpressionToken) <a href="http://localhost:6060/src/calculator/parsers/ExpressionToken.go?s=866:917#L30">Value</a>
 					<a class="permalink" href="index.html#ExpressionToken.Value">&#xb6;</a>
 					
 					

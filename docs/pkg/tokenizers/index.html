@@ -120,7 +120,7 @@
 				<dd><a href="index.html#AbstractTokenizer">type AbstractTokenizer</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewAbstractTokenizer">func NewAbstractTokenizer() *AbstractTokenizer</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewAbstractTokenizer">func NewAbstractTokenizer(overrides ITokenizerOverrides) *AbstractTokenizer</a></dd>
 				
 				
 					
@@ -264,6 +264,11 @@
 				
 			
 				
+				<dd><a href="index.html#ITokenizerOverrides">type ITokenizerOverrides</a></dd>
+				
+				
+			
+				
 				<dd><a href="index.html#ITokenizerState">type ITokenizerState</a></dd>
 				
 				
@@ -372,7 +377,7 @@ Types (categories) of tokens such as &#34;number&#34;, &#34;symbol&#34; or &#34;
 		
 			
 			
-			<h2 id="AbstractTokenizer">type <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=219:699#L1">AbstractTokenizer</a>
+			<h2 id="AbstractTokenizer">type <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=283:801#L3">AbstractTokenizer</a>
 				<a class="permalink" href="index.html#AbstractTokenizer">&#xb6;</a>
 				
 				
@@ -382,6 +387,10 @@ Implements an abstract tokenizer class.
 </p>
 
 			<pre>type AbstractTokenizer struct {
+<span id="AbstractTokenizer.Scanner"></span>    Scanner        <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>
+<span id="AbstractTokenizer.NextTokenValue"></span>    NextTokenValue *<a href="index.html#Token">Token</a>
+<span id="AbstractTokenizer.LastTokenType"></span>    LastTokenType  <a href="http://localhost:6060/pkg/builtin/#int">int</a>
+<span id="AbstractTokenizer.Overrides"></span>    Overrides      <a href="index.html#ITokenizerOverrides">ITokenizerOverrides</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -396,12 +405,12 @@ Implements an abstract tokenizer class.
 
 			
 				
-				<h3 id="NewAbstractTokenizer">func <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=701:747#L22">NewAbstractTokenizer</a>
+				<h3 id="NewAbstractTokenizer">func <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=803:878#L27">NewAbstractTokenizer</a>
 					<a class="permalink" href="index.html#NewAbstractTokenizer">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewAbstractTokenizer() *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a></pre>
+				<pre>func NewAbstractTokenizer(overrides <a href="index.html#ITokenizerOverrides">ITokenizerOverrides</a>) *<a href="index.html#AbstractTokenizer">AbstractTokenizer</a></pre>
 				
 				
 				
@@ -409,7 +418,7 @@ Implements an abstract tokenizer class.
 
 			
 				
-				<h3 id="AbstractTokenizer.ClearCharacterStates">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3351:3401#L143">ClearCharacterStates</a>
+				<h3 id="AbstractTokenizer.ClearCharacterStates">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3507:3557#L149">ClearCharacterStates</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.ClearCharacterStates">&#xb6;</a>
 					
 					
@@ -421,7 +430,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.CommentState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2003:2059#L86">CommentState</a>
+				<h3 id="AbstractTokenizer.CommentState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2159:2215#L92">CommentState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.CommentState">&#xb6;</a>
 					
 					
@@ -433,7 +442,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.DecodeStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1838:1886#L78">DecodeStrings</a>
+				<h3 id="AbstractTokenizer.DecodeStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1994:2042#L84">DecodeStrings</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.DecodeStrings">&#xb6;</a>
 					
 					
@@ -445,7 +454,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.GetCharacterState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3053:3127#L134">GetCharacterState</a>
+				<h3 id="AbstractTokenizer.GetCharacterState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3209:3283#L140">GetCharacterState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.GetCharacterState">&#xb6;</a>
 					
 					
@@ -457,7 +466,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.HasNextToken">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3620:3667#L157">HasNextToken</a>
+				<h3 id="AbstractTokenizer.HasNextToken">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3781:3828#L163">HasNextToken</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.HasNextToken">&#xb6;</a>
 					
 					
@@ -469,7 +478,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.MergeWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1500:1551#L62">MergeWhitespaces</a>
+				<h3 id="AbstractTokenizer.MergeWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1656:1707#L68">MergeWhitespaces</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.MergeWhitespaces">&#xb6;</a>
 					
 					
@@ -481,7 +490,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.NextToken">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3762:3808#L164">NextToken</a>
+				<h3 id="AbstractTokenizer.NextToken">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3948:3994#L170">NextToken</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.NextToken">&#xb6;</a>
 					
 					
@@ -493,7 +502,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.NumberState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2182:2236#L94">NumberState</a>
+				<h3 id="AbstractTokenizer.NumberState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2338:2392#L100">NumberState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.NumberState">&#xb6;</a>
 					
 					
@@ -505,7 +514,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.QuoteState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2355:2407#L102">QuoteState</a>
+				<h3 id="AbstractTokenizer.QuoteState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2511:2563#L108">QuoteState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.QuoteState">&#xb6;</a>
 					
 					
@@ -517,7 +526,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.ReadNextToken">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3919:3969#L173">ReadNextToken</a>
+				<h3 id="AbstractTokenizer.ReadNextToken">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=4125:4175#L179">ReadNextToken</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.ReadNextToken">&#xb6;</a>
 					
 					
@@ -529,7 +538,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.Reader">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3421:3469#L147">Reader</a>
+				<h3 id="AbstractTokenizer.Reader">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3577:3625#L153">Reader</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.Reader">&#xb6;</a>
 					
 					
@@ -541,7 +550,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetCharacterState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3198:3298#L139">SetCharacterState</a>
+				<h3 id="AbstractTokenizer.SetCharacterState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3354:3454#L145">SetCharacterState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetCharacterState">&#xb6;</a>
 					
 					
@@ -553,7 +562,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetCommentState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2088:2152#L90">SetCommentState</a>
+				<h3 id="AbstractTokenizer.SetCommentState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2244:2308#L96">SetCommentState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetCommentState">&#xb6;</a>
 					
 					
@@ -565,7 +574,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetDecodeStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1916:1972#L82">SetDecodeStrings</a>
+				<h3 id="AbstractTokenizer.SetDecodeStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2072:2128#L88">SetDecodeStrings</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetDecodeStrings">&#xb6;</a>
 					
 					
@@ -577,7 +586,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetMergeWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1584:1643#L66">SetMergeWhitespaces</a>
+				<h3 id="AbstractTokenizer.SetMergeWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1740:1799#L72">SetMergeWhitespaces</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetMergeWhitespaces">&#xb6;</a>
 					
 					
@@ -589,7 +598,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetNumberState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2264:2326#L98">SetNumberState</a>
+				<h3 id="AbstractTokenizer.SetNumberState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2420:2482#L104">SetNumberState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetNumberState">&#xb6;</a>
 					
 					
@@ -601,7 +610,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetQuoteState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2434:2494#L106">SetQuoteState</a>
+				<h3 id="AbstractTokenizer.SetQuoteState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2590:2650#L112">SetQuoteState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetQuoteState">&#xb6;</a>
 					
 					
@@ -613,7 +622,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetReader">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3493:3549#L151">SetReader</a>
+				<h3 id="AbstractTokenizer.SetReader">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3649:3705#L157">SetReader</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetReader">&#xb6;</a>
 					
 					
@@ -625,7 +634,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetSkipComments">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1274:1329#L50">SetSkipComments</a>
+				<h3 id="AbstractTokenizer.SetSkipComments">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1430:1485#L56">SetSkipComments</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetSkipComments">&#xb6;</a>
 					
 					
@@ -637,7 +646,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetSkipEof">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1425:1475#L58">SetSkipEof</a>
+				<h3 id="AbstractTokenizer.SetSkipEof">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1581:1631#L64">SetSkipEof</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetSkipEof">&#xb6;</a>
 					
 					
@@ -649,7 +658,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetSkipUnknown">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=942:996#L34">SetSkipUnknown</a>
+				<h3 id="AbstractTokenizer.SetSkipUnknown">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1098:1152#L40">SetSkipUnknown</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetSkipUnknown">&#xb6;</a>
 					
 					
@@ -661,7 +670,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetSkipWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1107:1165#L42">SetSkipWhitespaces</a>
+				<h3 id="AbstractTokenizer.SetSkipWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1263:1321#L48">SetSkipWhitespaces</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetSkipWhitespaces">&#xb6;</a>
 					
 					
@@ -673,7 +682,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetSymbolState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2604:2666#L114">SetSymbolState</a>
+				<h3 id="AbstractTokenizer.SetSymbolState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2760:2822#L120">SetSymbolState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetSymbolState">&#xb6;</a>
 					
 					
@@ -685,7 +694,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetUnifyNumbers">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1753:1808#L74">SetUnifyNumbers</a>
+				<h3 id="AbstractTokenizer.SetUnifyNumbers">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1909:1964#L80">SetUnifyNumbers</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetUnifyNumbers">&#xb6;</a>
 					
 					
@@ -697,7 +706,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetWhitespaceState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2789:2859#L122">SetWhitespaceState</a>
+				<h3 id="AbstractTokenizer.SetWhitespaceState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2945:3015#L128">SetWhitespaceState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetWhitespaceState">&#xb6;</a>
 					
 					
@@ -709,7 +718,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SetWordState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2968:3026#L130">SetWordState</a>
+				<h3 id="AbstractTokenizer.SetWordState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3124:3182#L136">SetWordState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SetWordState">&#xb6;</a>
 					
 					
@@ -721,7 +730,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SkipComments">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1198:1245#L46">SkipComments</a>
+				<h3 id="AbstractTokenizer.SkipComments">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1354:1401#L52">SkipComments</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SkipComments">&#xb6;</a>
 					
 					
@@ -733,7 +742,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SkipEof">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1359:1401#L54">SkipEof</a>
+				<h3 id="AbstractTokenizer.SkipEof">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1515:1557#L60">SkipEof</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SkipEof">&#xb6;</a>
 					
 					
@@ -745,7 +754,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SkipUnknown">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=868:914#L30">SkipUnknown</a>
+				<h3 id="AbstractTokenizer.SkipUnknown">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1024:1070#L36">SkipUnknown</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SkipUnknown">&#xb6;</a>
 					
 					
@@ -757,7 +766,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SkipWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1025:1075#L38">SkipWhitespaces</a>
+				<h3 id="AbstractTokenizer.SkipWhitespaces">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1181:1231#L44">SkipWhitespaces</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SkipWhitespaces">&#xb6;</a>
 					
 					
@@ -769,7 +778,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.SymbolState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2522:2576#L110">SymbolState</a>
+				<h3 id="AbstractTokenizer.SymbolState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2678:2732#L116">SymbolState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.SymbolState">&#xb6;</a>
 					
 					
@@ -781,7 +790,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeBuffer">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6146:6212#L268">TokenizeBuffer</a>
+				<h3 id="AbstractTokenizer.TokenizeBuffer">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6352:6418#L274">TokenizeBuffer</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeBuffer">&#xb6;</a>
 					
 					
@@ -793,7 +802,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeBufferToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6567:6642#L286">TokenizeBufferToStrings</a>
+				<h3 id="AbstractTokenizer.TokenizeBufferToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6774:6849#L292">TokenizeBufferToStrings</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeBufferToStrings">&#xb6;</a>
 					
 					
@@ -805,7 +814,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeStream">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=5891:5963#L255">TokenizeStream</a>
+				<h3 id="AbstractTokenizer.TokenizeStream">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6097:6169#L261">TokenizeStream</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeStream">&#xb6;</a>
 					
 					
@@ -817,7 +826,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.TokenizeStreamToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6292:6373#L273">TokenizeStreamToStrings</a>
+				<h3 id="AbstractTokenizer.TokenizeStreamToStrings">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=6498:6579#L279">TokenizeStreamToStrings</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.TokenizeStreamToStrings">&#xb6;</a>
 					
 					
@@ -829,7 +838,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.UnifyNumbers">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1677:1724#L70">UnifyNumbers</a>
+				<h3 id="AbstractTokenizer.UnifyNumbers">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=1833:1880#L76">UnifyNumbers</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.UnifyNumbers">&#xb6;</a>
 					
 					
@@ -841,7 +850,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.WhitespaceState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2695:2757#L118">WhitespaceState</a>
+				<h3 id="AbstractTokenizer.WhitespaceState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2851:2913#L124">WhitespaceState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.WhitespaceState">&#xb6;</a>
 					
 					
@@ -853,7 +862,7 @@ Implements an abstract tokenizer class.
 				
 			
 				
-				<h3 id="AbstractTokenizer.WordState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=2892:2942#L126">WordState</a>
+				<h3 id="AbstractTokenizer.WordState">func (*AbstractTokenizer) <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=3048:3098#L132">WordState</a>
 					<a class="permalink" href="index.html#AbstractTokenizer.WordState">&#xb6;</a>
 					
 					
@@ -1157,6 +1166,30 @@ of what characters can be part of a word, after the first character.
 		
 			
 			
+			<h2 id="ITokenizerOverrides">type <a href="http://localhost:6060/src/tokenizers/AbstractTokenizer.go?s=176:238#L1">ITokenizerOverrides</a>
+				<a class="permalink" href="index.html#ITokenizerOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ITokenizerOverrides interface {
+    ReadNextToken() *<a href="index.html#Token">Token</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
 			<h2 id="ITokenizerState">type <a href="http://localhost:6060/src/tokenizers/ITokenizerState.go?s=702:1077#L4">ITokenizerState</a>
 				<a class="permalink" href="index.html#ITokenizerState">&#xb6;</a>
 				
@@ -1301,7 +1334,7 @@ to divide a string into tokens.
 
 			
 				
-				<h3 id="NewToken">func <a href="http://localhost:6060/src/tokenizers/Token.go?s=684:749#L12">NewToken</a>
+				<h3 id="NewToken">func <a href="http://localhost:6060/src/tokenizers/Token.go?s=683:748#L12">NewToken</a>
 					<a class="permalink" href="index.html#NewToken">&#xb6;</a>
 					
 					
@@ -1313,7 +1346,7 @@ Constructs this token with type and value.
 <p>
 Parameters:
 </p>
-<pre>- type: The type of this token.
+<pre>- typ: The type of this token.
 - value: The token string value.
 - line: The line number where the token is.
 - column: The column number where the token is.
@@ -1328,7 +1361,7 @@ Returns: Created token
 
 			
 				
-				<h3 id="Token.Column">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1100:1128#L37">Column</a>
+				<h3 id="Token.Column">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1099:1127#L37">Column</a>
 					<a class="permalink" href="index.html#Token.Column">&#xb6;</a>
 					
 					
@@ -1343,7 +1376,7 @@ The column number where the token is.
 				
 			
 				
-				<h3 id="Token.Equals">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1151:1195#L41">Equals</a>
+				<h3 id="Token.Equals">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1150:1194#L41">Equals</a>
 					<a class="permalink" href="index.html#Token.Equals">&#xb6;</a>
 					
 					
@@ -1355,7 +1388,7 @@ The column number where the token is.
 				
 			
 				
-				<h3 id="Token.Line">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1012:1038#L32">Line</a>
+				<h3 id="Token.Line">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=1011:1037#L32">Line</a>
 					<a class="permalink" href="index.html#Token.Line">&#xb6;</a>
 					
 					
@@ -1370,7 +1403,7 @@ The line number where the token is.
 				
 			
 				
-				<h3 id="Token.Type">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=855:881#L22">Type</a>
+				<h3 id="Token.Type">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=854:880#L22">Type</a>
 					<a class="permalink" href="index.html#Token.Type">&#xb6;</a>
 					
 					
@@ -1385,7 +1418,7 @@ The token type.
 				
 			
 				
-				<h3 id="Token.Value">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=921:951#L27">Value</a>
+				<h3 id="Token.Value">func (*Token) <a href="http://localhost:6060/src/tokenizers/Token.go?s=920:950#L27">Value</a>
 					<a class="permalink" href="index.html#Token.Value">&#xb6;</a>
 					
 					
