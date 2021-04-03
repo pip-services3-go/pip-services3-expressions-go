@@ -11,7 +11,8 @@ type ITokenizerOverrides interface {
 
 // Implements an abstract tokenizer class.
 type AbstractTokenizer struct {
-	mp *utilities.CharReferenceMap
+	Overrides ITokenizerOverrides
+	mp        *utilities.CharReferenceMap
 
 	skipUnknown      bool
 	skipWhitespaces  bool
@@ -31,16 +32,15 @@ type AbstractTokenizer struct {
 	Scanner        io.IScanner
 	NextTokenValue *Token
 	LastTokenType  int
-	Overrides      ITokenizerOverrides
 }
 
-func NewAbstractTokenizer(overrides ITokenizerOverrides) *AbstractTokenizer {
-	c := &AbstractTokenizer{
+func InheritAbstractTokenizer(overrides ITokenizerOverrides) *AbstractTokenizer {
+	c := AbstractTokenizer{
+		Overrides:     overrides,
 		mp:            utilities.NewCharReferenceMap(),
 		LastTokenType: Unknown,
 	}
-	c.Overrides = overrides
-	return c
+	return &c
 }
 
 func (c *AbstractTokenizer) SkipUnknown() bool {

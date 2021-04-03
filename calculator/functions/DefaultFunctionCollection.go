@@ -3,6 +3,7 @@ package functions
 import (
 	"math"
 	"math/rand"
+	"strconv"
 	"strings"
 	"time"
 
@@ -71,8 +72,8 @@ func checkParamCount(parameters []*variants.Variant, expectedParamCount int) err
 	paramCount := len(parameters)
 	if expectedParamCount != paramCount {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected "+string(expectedParamCount)+
-				" parameters but was found "+string(paramCount), 0, 0)
+			"Expected "+strconv.Itoa(expectedParamCount)+
+				" parameters but was found "+strconv.Itoa(paramCount), 0, 0)
 		return err
 	}
 	return nil
@@ -376,7 +377,7 @@ func chooseFunctionCalculator(parameters []*variants.Variant,
 
 	if paramCount < paramIndex+1 {
 		err := errors.NewExpressionError("", "WRONG_PARAM_COUNT",
-			"Expected at least "+string(paramIndex+1)+" parameters", 0, 0)
+			"Expected at least "+strconv.Itoa(paramIndex+1)+" parameters", 0, 0)
 		return nil, err
 	}
 

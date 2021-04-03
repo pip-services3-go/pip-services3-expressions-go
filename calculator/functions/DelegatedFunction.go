@@ -1,8 +1,7 @@
 package functions
 
 import (
-	"fmt"
-
+	cconv "github.com/pip-services3-go/pip-services3-commons-go/convert"
 	"github.com/pip-services3-go/pip-services3-expressions-go/calculator/errors"
 	"github.com/pip-services3-go/pip-services3-expressions-go/variants"
 )
@@ -61,7 +60,7 @@ func (c *DelegatedFunction) Calculate(parameters []*variants.Variant,
 	// Capture calculation error
 	defer func() {
 		if r := recover(); r != nil {
-			message := fmt.Sprint("%v", r)
+			message := cconv.StringConverter.ToString(r)
 			err = errors.NewExpressionError("", "CALC_FAILED", message, 0, 0)
 		}
 	}()

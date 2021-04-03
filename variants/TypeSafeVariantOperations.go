@@ -8,10 +8,8 @@ type TypeSafeVariantOperations struct {
 }
 
 func NewTypeSafeVariantOperations() *TypeSafeVariantOperations {
-	c := &TypeSafeVariantOperations{
-		AbstractVariantOperations: AbstractVariantOperations{},
-	}
-	c.AbstractVariantOperations.convertFunc = c.Convert
+	c := &TypeSafeVariantOperations{}
+	c.AbstractVariantOperations = *InheritAbstractVariantOperations(c)
 	return c
 }
 

@@ -2,9 +2,20 @@ package variants
 
 import "github.com/pip-services3-go/pip-services3-commons-go/errors"
 
+type IVariantOperationsOverrides interface {
+	Convert(value *Variant, newType int) (*Variant, error)
+}
+
 // Implements an abstractd variant operations manager object.
 type AbstractVariantOperations struct {
-	convertFunc func(value *Variant, newType int) (*Variant, error)
+	Overrides IVariantOperationsOverrides
+}
+
+func InheritAbstractVariantOperations(overrides IVariantOperationsOverrides) *AbstractVariantOperations {
+	c := AbstractVariantOperations{
+		Overrides: overrides,
+	}
+	return &c
 }
 
 // Convert variant type to string representation
@@ -41,18 +52,6 @@ func typeToString(value int) string {
 	}
 }
 
-// Converts variant to specified type
-//
-// Parameters:
-//   - value: A variant value to be converted.
-//   - newType: A type of object to be returned.
-// Returns: A converted Variant value.
-func (c *AbstractVariantOperations) Convert(
-	value *Variant, newType int) (*Variant, error) {
-	return c.convertFunc(value, newType)
-	//err = errors.NewUnsupportedError("", "OP_NOT_SUPPORTED", "Not implemented operation")
-}
-
 // Performs '+' operation for two variants.
 //
 // Parameters:
@@ -70,7 +69,7 @@ func (c *AbstractVariantOperations) Add(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -119,7 +118,7 @@ func (c *AbstractVariantOperations) Sub(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -168,7 +167,7 @@ func (c *AbstractVariantOperations) Mul(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -211,7 +210,7 @@ func (c *AbstractVariantOperations) Div(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -254,7 +253,7 @@ func (c *AbstractVariantOperations) Mod(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -297,12 +296,12 @@ func (c *AbstractVariantOperations) Pow(
 	case Double:
 		// Converts second operant to the type of the first operand.
 		var err error
-		value1, err = c.Convert(value1, Double)
+		value1, err = c.Overrides.Convert(value1, Double)
 		if err != nil {
 			return nil, err
 		}
 
-		value2, err = c.Convert(value2, Double)
+		value2, err = c.Overrides.Convert(value2, Double)
 		if err != nil {
 			return nil, err
 		}
@@ -333,7 +332,7 @@ func (c *AbstractVariantOperations) And(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -373,7 +372,7 @@ func (c *AbstractVariantOperations) Or(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -413,7 +412,7 @@ func (c *AbstractVariantOperations) Xor(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -454,7 +453,7 @@ func (c *AbstractVariantOperations) Lsh(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, Integer)
+	value2, err = c.Overrides.Convert(value2, Integer)
 	if err != nil {
 		return nil, err
 	}
@@ -491,7 +490,7 @@ func (c *AbstractVariantOperations) Rsh(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, Integer)
+	value2, err = c.Overrides.Convert(value2, Integer)
 	if err != nil {
 		return nil, err
 	}
@@ -599,7 +598,7 @@ func (c *AbstractVariantOperations) Equal(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -664,7 +663,7 @@ func (c *AbstractVariantOperations) NotEqual(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -724,7 +723,7 @@ func (c *AbstractVariantOperations) More(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -776,7 +775,7 @@ func (c *AbstractVariantOperations) Less(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -828,7 +827,7 @@ func (c *AbstractVariantOperations) MoreEqual(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -882,7 +881,7 @@ func (c *AbstractVariantOperations) LessEqual(
 
 	// Converts second operant to the type of the first operand.
 	var err error
-	value2, err = c.Convert(value2, value1.Type())
+	value2, err = c.Overrides.Convert(value2, value1.Type())
 	if err != nil {
 		return nil, err
 	}
@@ -975,7 +974,7 @@ func (c *AbstractVariantOperations) GetElement(
 	}
 
 	var err error
-	value2, err = c.Convert(value2, Integer)
+	value2, err = c.Overrides.Convert(value2, Integer)
 	if err != nil {
 		return nil, err
 	}

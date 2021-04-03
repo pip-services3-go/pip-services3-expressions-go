@@ -117,15 +117,15 @@
 				
 				<dd><a href="index.html#AbstractVariantOperations">type AbstractVariantOperations</a></dd>
 				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritAbstractVariantOperations">func InheritAbstractVariantOperations(overrides IVariantOperationsOverrides) *AbstractVariantOperations</a></dd>
+				
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Add">func (c *AbstractVariantOperations) Add(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.And">func (c *AbstractVariantOperations) And(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Convert">func (c *AbstractVariantOperations) Convert(value *Variant, newType int) (*Variant, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#AbstractVariantOperations.Div">func (c *AbstractVariantOperations) Div(value1 *Variant, value2 *Variant) (*Variant, error)</a></dd>
@@ -187,6 +187,11 @@
 			
 				
 				<dd><a href="index.html#IVariantOperations">type IVariantOperations</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#IVariantOperationsOverrides">type IVariantOperationsOverrides</a></dd>
 				
 				
 			
@@ -407,7 +412,7 @@ Defines supported types of variant values.
 		
 			
 			
-			<h2 id="AbstractVariantOperations">type <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=150:256#L1">AbstractVariantOperations</a>
+			<h2 id="AbstractVariantOperations">type <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=254:334#L1">AbstractVariantOperations</a>
 				<a class="permalink" href="index.html#AbstractVariantOperations">&#xb6;</a>
 				
 				
@@ -417,7 +422,7 @@ Implements an abstractd variant operations manager object.
 </p>
 
 			<pre>type AbstractVariantOperations struct {
-    <span class="comment">// contains filtered or unexported fields</span>
+<span id="AbstractVariantOperations.Overrides"></span>    Overrides <a href="index.html#IVariantOperationsOverrides">IVariantOperationsOverrides</a>
 }
 </pre>
 
@@ -430,10 +435,21 @@ Implements an abstractd variant operations manager object.
 			
 
 			
+				
+				<h3 id="InheritAbstractVariantOperations">func <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=336:439#L4">InheritAbstractVariantOperations</a>
+					<a class="permalink" href="index.html#InheritAbstractVariantOperations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritAbstractVariantOperations(overrides <a href="index.html#IVariantOperationsOverrides">IVariantOperationsOverrides</a>) *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a></pre>
+				
+				
+				
+			
 
 			
 				
-				<h3 id="AbstractVariantOperations.Add">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=1483:1576#L52">Add</a>
+				<h3 id="AbstractVariantOperations.Add">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=1325:1418#L51">Add</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Add">&#xb6;</a>
 					
 					
@@ -458,7 +474,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.And">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=8667:8760#L315">And</a>
+				<h3 id="AbstractVariantOperations.And">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=8579:8672#L314">And</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.And">&#xb6;</a>
 					
 					
@@ -483,32 +499,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Convert">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=1052:1144#L40">Convert</a>
-					<a class="permalink" href="index.html#AbstractVariantOperations.Convert">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#AbstractVariantOperations">AbstractVariantOperations</a>) Convert(
-    value *<a href="index.html#Variant">Variant</a>, newType <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				<p>
-Converts variant to specified type
-</p>
-<p>
-Parameters:
-</p>
-<pre>- value: A variant value to be converted.
-- newType: A type of object to be returned.
-</pre>
-<p>
-Returns: A converted Variant value.
-</p>
-
-				
-				
-				
-			
-				
-				<h3 id="AbstractVariantOperations.Div">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=5448:5541#L193">Div</a>
+				<h3 id="AbstractVariantOperations.Div">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=5320:5413#L192">Div</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Div">&#xb6;</a>
 					
 					
@@ -533,7 +524,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Equal">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=15661:15756#L576">Equal</a>
+				<h3 id="AbstractVariantOperations.Equal">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=15623:15718#L575">Equal</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Equal">&#xb6;</a>
 					
 					
@@ -558,7 +549,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.GetElement">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=26466:26566#L958">GetElement</a>
+				<h3 id="AbstractVariantOperations.GetElement">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=26488:26588#L957">GetElement</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.GetElement">&#xb6;</a>
 					
 					
@@ -583,7 +574,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.In">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=25538:25630#L918">In</a>
+				<h3 id="AbstractVariantOperations.In">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=25560:25652#L917">In</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.In">&#xb6;</a>
 					
 					
@@ -608,7 +599,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Less">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=20905:20999#L758">Less</a>
+				<h3 id="AbstractVariantOperations.Less">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=20897:20991#L757">Less</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Less">&#xb6;</a>
 					
 					
@@ -633,7 +624,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.LessEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=23972:24071#L864">LessEqual</a>
+				<h3 id="AbstractVariantOperations.LessEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=23984:24083#L863">LessEqual</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.LessEqual">&#xb6;</a>
 					
 					
@@ -658,7 +649,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Lsh">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=12018:12111#L436">Lsh</a>
+				<h3 id="AbstractVariantOperations.Lsh">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=11960:12053#L435">Lsh</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Lsh">&#xb6;</a>
 					
 					
@@ -683,7 +674,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Mod">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=6634:6727#L236">Mod</a>
+				<h3 id="AbstractVariantOperations.Mod">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=6516:6609#L235">Mod</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Mod">&#xb6;</a>
 					
 					
@@ -708,7 +699,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.More">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=19407:19501#L706">More</a>
+				<h3 id="AbstractVariantOperations.More">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=19389:19483#L705">More</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.More">&#xb6;</a>
 					
 					
@@ -733,7 +724,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.MoreEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=22405:22504#L810">MoreEqual</a>
+				<h3 id="AbstractVariantOperations.MoreEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=22407:22506#L809">MoreEqual</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.MoreEqual">&#xb6;</a>
 					
 					
@@ -758,7 +749,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Mul">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=4262:4355#L150">Mul</a>
+				<h3 id="AbstractVariantOperations.Mul">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=4124:4217#L149">Mul</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Mul">&#xb6;</a>
 					
 					
@@ -783,7 +774,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Negative">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=14753:14831#L541">Negative</a>
+				<h3 id="AbstractVariantOperations.Negative">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=14715:14793#L540">Negative</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Negative">&#xb6;</a>
 					
 					
@@ -806,7 +797,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Not">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=13955:14028#L509">Not</a>
+				<h3 id="AbstractVariantOperations.Not">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=13917:13990#L508">Not</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Not">&#xb6;</a>
 					
 					
@@ -829,7 +820,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.NotEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=17532:17630#L641">NotEqual</a>
+				<h3 id="AbstractVariantOperations.NotEqual">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=17504:17602#L640">NotEqual</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.NotEqual">&#xb6;</a>
 					
 					
@@ -854,7 +845,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Or">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=9766:9858#L355">Or</a>
+				<h3 id="AbstractVariantOperations.Or">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=9688:9780#L354">Or</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Or">&#xb6;</a>
 					
 					
@@ -879,7 +870,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Pow">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=7634:7727#L273">Pow</a>
+				<h3 id="AbstractVariantOperations.Pow">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=7526:7619#L272">Pow</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Pow">&#xb6;</a>
 					
 					
@@ -904,7 +895,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Rsh">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=13019:13112#L473">Rsh</a>
+				<h3 id="AbstractVariantOperations.Rsh">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=12971:13064#L472">Rsh</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Rsh">&#xb6;</a>
 					
 					
@@ -929,7 +920,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Sub">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=2867:2960#L101">Sub</a>
+				<h3 id="AbstractVariantOperations.Sub">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=2719:2812#L100">Sub</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Sub">&#xb6;</a>
 					
 					
@@ -954,7 +945,7 @@ Returns: A result variant object.
 				
 			
 				
-				<h3 id="AbstractVariantOperations.Xor">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=10864:10957#L395">Xor</a>
+				<h3 id="AbstractVariantOperations.Xor">func (*AbstractVariantOperations) <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=10796:10889#L394">Xor</a>
 					<a class="permalink" href="index.html#AbstractVariantOperations.Xor">&#xb6;</a>
 					
 					
@@ -1180,6 +1171,30 @@ Defines an interface for variant operations manager.
 		
 			
 			
+			<h2 id="IVariantOperationsOverrides">type <a href="http://localhost:6060/src/variants/AbstractVariantOperations.go?s=88:190#L1">IVariantOperationsOverrides</a>
+				<a class="permalink" href="index.html#IVariantOperationsOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IVariantOperationsOverrides interface {
+    Convert(value *<a href="index.html#Variant">Variant</a>, newType <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (*<a href="index.html#Variant">Variant</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
 			<h2 id="TypeSafeVariantOperations">type <a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go?s=166:234#L1">TypeSafeVariantOperations</a>
 				<a class="permalink" href="index.html#TypeSafeVariantOperations">&#xb6;</a>
 				
@@ -1217,7 +1232,7 @@ Implements a strongly typed (type safe) variant operations manager object.
 
 			
 				
-				<h3 id="TypeSafeVariantOperations.Convert">func (*TypeSafeVariantOperations) <a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go?s=653:745#L14">Convert</a>
+				<h3 id="TypeSafeVariantOperations.Convert">func (*TypeSafeVariantOperations) <a href="http://localhost:6060/src/variants/TypeSafeVariantOperations.go?s=608:700#L12">Convert</a>
 					<a class="permalink" href="index.html#TypeSafeVariantOperations.Convert">&#xb6;</a>
 					
 					
@@ -1281,7 +1296,7 @@ Implements a type unsafe variant operations manager object.
 
 			
 				
-				<h3 id="TypeUnsafeVariantOperations.Convert">func (*TypeUnsafeVariantOperations) <a href="http://localhost:6060/src/variants/TypeUnsafeVariantOperations.go?s=738:832#L20">Convert</a>
+				<h3 id="TypeUnsafeVariantOperations.Convert">func (*TypeUnsafeVariantOperations) <a href="http://localhost:6060/src/variants/TypeUnsafeVariantOperations.go?s=693:787#L18">Convert</a>
 					<a class="permalink" href="index.html#TypeUnsafeVariantOperations.Convert">&#xb6;</a>
 					
 					

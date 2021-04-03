@@ -12,7 +12,7 @@ type ExpressionTokenizer struct {
 
 func NewExpressionTokenizer() *ExpressionTokenizer {
 	c := &ExpressionTokenizer{}
-	c.AbstractTokenizer = *tokenizers.NewAbstractTokenizer(c)
+	c.AbstractTokenizer = *tokenizers.InheritAbstractTokenizer(c)
 
 	c.SetDecodeStrings(false)
 

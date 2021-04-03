@@ -15,7 +15,7 @@ func NewMustacheTokenizer() *MustacheTokenizer {
 	c := &MustacheTokenizer{
 		special: true,
 	}
-	c.AbstractTokenizer = *tokenizers.NewAbstractTokenizer(c)
+	c.AbstractTokenizer = *tokenizers.InheritAbstractTokenizer(c)
 
 	c.SetSymbolState(generic.NewGenericSymbolState())
 	c.SymbolState().Add("{{", tokenizers.Symbol)

@@ -14,10 +14,8 @@ type TypeUnsafeVariantOperations struct {
 }
 
 func NewTypeUnsafeVariantOperations() *TypeUnsafeVariantOperations {
-	c := &TypeUnsafeVariantOperations{
-		AbstractVariantOperations: AbstractVariantOperations{},
-	}
-	c.AbstractVariantOperations.convertFunc = c.Convert
+	c := &TypeUnsafeVariantOperations{}
+	c.AbstractVariantOperations = *InheritAbstractVariantOperations(c)
 	return c
 }
 

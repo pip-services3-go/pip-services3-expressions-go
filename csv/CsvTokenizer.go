@@ -17,7 +17,7 @@ func NewCsvTokenizer() *CsvTokenizer {
 		quoteSymbols:    []rune{'"'},
 		endOfLine:       string(CR) + string(LF),
 	}
-	c.AbstractTokenizer = *tokenizers.NewAbstractTokenizer(c)
+	c.AbstractTokenizer = *tokenizers.InheritAbstractTokenizer(c)
 
 	c.SetNumberState(nil)
 	c.SetWhitespaceState(nil)
