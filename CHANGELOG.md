@@ -3,6 +3,7 @@
 ## <a name="1.1.0"></a> 1.1.0 (2021-03-15)
 
 ### Features
+* Updated dependencies
 * Replaced pushback reader with scanner
 * Added line and column numbers to errors
 * Added Mustache template processing with tokenizers and parsers

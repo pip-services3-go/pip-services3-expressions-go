@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>csv - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.16.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package csv
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "csv"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#CsvQuoteState">type CsvQuoteState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCsvQuoteState">func NewCsvQuoteState() *CsvQuoteState</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvQuoteState.DecodeString">func (c *CsvQuoteState) DecodeString(value string, quoteSymbol rune) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvQuoteState.EncodeString">func (c *CsvQuoteState) EncodeString(value string, quoteSymbol rune) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvQuoteState.NextToken">func (c *CsvQuoteState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CsvSymbolState">type CsvSymbolState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCsvSymbolState">func NewCsvSymbolState() *CsvSymbolState</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvSymbolState.NextToken">func (c *CsvSymbolState) NextToken(scanner io.IScanner, tokenizer tokenizers.ITokenizer) *tokenizers.Token</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CsvTokenizer">type CsvTokenizer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCsvTokenizer">func NewCsvTokenizer() *CsvTokenizer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.AssignStates">func (c *CsvTokenizer) AssignStates()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.EndOfLine">func (c *CsvTokenizer) EndOfLine() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.FieldSeparators">func (c *CsvTokenizer) FieldSeparators() []rune</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.QuoteSymbols">func (c *CsvTokenizer) QuoteSymbols() []rune</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.SetEndOfLine">func (c *CsvTokenizer) SetEndOfLine(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.SetFieldSeparators">func (c *CsvTokenizer) SetFieldSeparators(value []rune)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CsvTokenizer.SetQuoteSymbols">func (c *CsvTokenizer) SetQuoteSymbols(value []rune)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CsvWordState">type CsvWordState</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCsvWordState">func NewCsvWordState(fieldSeparators []rune, quoteSymbols []rune) *CsvWordState</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/csv/CsvConstant.go">CsvConstant.go</a>
+			
+				<a href="http://localhost:6060/src/csv/CsvQuoteState.go">CsvQuoteState.go</a>
+			
+				<a href="http://localhost:6060/src/csv/CsvSymbolState.go">CsvSymbolState.go</a>
+			
+				<a href="http://localhost:6060/src/csv/CsvTokenizer.go">CsvTokenizer.go</a>
+			
+				<a href="http://localhost:6060/src/csv/CsvWordState.go">CsvWordState.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="Nil">Nil</span> = <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>(0)
+    <span id="CR">CR</span>  = &#39;\r&#39;
+    <span id="LF">LF</span>  = &#39;\n&#39;
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="CsvQuoteState">type <a href="http://localhost:6060/src/csv/CsvQuoteState.go?s=322:349#L2">CsvQuoteState</a>
+				<a class="permalink" href="index.html#CsvQuoteState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements a quote string state object for CSV streams.
+</p>
+
+			<pre>type CsvQuoteState struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCsvQuoteState">func <a href="http://localhost:6060/src/csv/CsvQuoteState.go?s=353:391#L4">NewCsvQuoteState</a>
+					<a class="permalink" href="index.html#NewCsvQuoteState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCsvQuoteState() *<a href="index.html#CsvQuoteState">CsvQuoteState</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="CsvQuoteState.DecodeString">func (*CsvQuoteState) <a href="http://localhost:6060/src/csv/CsvQuoteState.go?s=2101:2176#L66">DecodeString</a>
+					<a class="permalink" href="index.html#CsvQuoteState.DecodeString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvQuoteState">CsvQuoteState</a>) DecodeString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>, quoteSymbol <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Decodes a string value.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A string value to be decoded.
+- quoteSymbol: A string quote character.
+</pre>
+<p>
+Returns: An decoded string.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvQuoteState.EncodeString">func (*CsvQuoteState) <a href="http://localhost:6060/src/csv/CsvQuoteState.go?s=1603:1678#L51">EncodeString</a>
+					<a class="permalink" href="index.html#CsvQuoteState.EncodeString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvQuoteState">CsvQuoteState</a>) EncodeString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>, quoteSymbol <a href="http://localhost:6060/pkg/builtin/#rune">rune</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Encodes a string value.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- value: A string value to be encoded.
+- quoteSymbol: A string quote character.
+</pre>
+<p>
+Returns: An encoded string.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvQuoteState.NextToken">func (*CsvQuoteState) <a href="http://localhost:6060/src/csv/CsvQuoteState.go?s=715:823#L15">NextToken</a>
+					<a class="permalink" href="index.html#CsvQuoteState.NextToken">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvQuoteState">CsvQuoteState</a>) NextToken(
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a></pre>
+				<p>
+Gets the next token from the stream started from the character linked to this state.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- scanner: A textual string to be tokenized.
+- tokenizer: A tokenizer class that controls the process.
+</pre>
+<p>
+Returns: The next token from the top of the stream.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CsvSymbolState">type <a href="http://localhost:6060/src/csv/CsvSymbolState.go?s=315:375#L1">CsvSymbolState</a>
+				<a class="permalink" href="index.html#CsvSymbolState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements a symbol state to tokenize delimiters in CSV streams.
+</p>
+
+			<pre>type CsvSymbolState struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/generic/">generic</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/generic/#GenericSymbolState">GenericSymbolState</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCsvSymbolState">func <a href="http://localhost:6060/src/csv/CsvSymbolState.go?s=433:473#L5">NewCsvSymbolState</a>
+					<a class="permalink" href="index.html#NewCsvSymbolState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCsvSymbolState() *<a href="index.html#CsvSymbolState">CsvSymbolState</a></pre>
+				<p>
+Constructs this object with specified parameters.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CsvSymbolState.NextToken">func (*CsvSymbolState) <a href="http://localhost:6060/src/csv/CsvSymbolState.go?s=706:815#L18">NextToken</a>
+					<a class="permalink" href="index.html#CsvSymbolState.NextToken">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvSymbolState">CsvSymbolState</a>) NextToken(
+    scanner <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/">io</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/io/#IScanner">IScanner</a>, tokenizer <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#ITokenizer">ITokenizer</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#Token">Token</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CsvTokenizer">type <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=143:278#L1">CsvTokenizer</a>
+				<a class="permalink" href="index.html#CsvTokenizer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements a tokenizer class for CSV files.
+</p>
+
+			<pre>type CsvTokenizer struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/">tokenizers</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/#AbstractTokenizer">AbstractTokenizer</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCsvTokenizer">func <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=334:370#L4">NewCsvTokenizer</a>
+					<a class="permalink" href="index.html#NewCsvTokenizer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCsvTokenizer() *<a href="index.html#CsvTokenizer">CsvTokenizer</a></pre>
+				<p>
+Constructs this object with default parameters.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CsvTokenizer.AssignStates">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=2392:2429#L82">AssignStates</a>
+					<a class="permalink" href="index.html#CsvTokenizer.AssignStates">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) AssignStates()</pre>
+				<p>
+Assigns tokenizer states to correct characters.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvTokenizer.EndOfLine">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=1533:1574#L48">EndOfLine</a>
+					<a class="permalink" href="index.html#CsvTokenizer.EndOfLine">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) EndOfLine() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets a separator for rows in CSV stream.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvTokenizer.FieldSeparators">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=884:931#L24">FieldSeparators</a>
+					<a class="permalink" href="index.html#CsvTokenizer.FieldSeparators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) FieldSeparators() []<a href="http://localhost:6060/pkg/builtin/#rune">rune</a></pre>
+				<p>
+Gets separators for fields in CSV stream.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvTokenizer.QuoteSymbols">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=1766:1810#L58">QuoteSymbols</a>
+					<a class="permalink" href="index.html#CsvTokenizer.QuoteSymbols">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) QuoteSymbols() []<a href="http://localhost:6060/pkg/builtin/#rune">rune</a></pre>
+				<p>
+Gets characters to quote strings
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvTokenizer.SetEndOfLine">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=1649:1698#L53">SetEndOfLine</a>
+					<a class="permalink" href="index.html#CsvTokenizer.SetEndOfLine">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) SetEndOfLine(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets a separator for rows in CSV stream.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvTokenizer.SetFieldSeparators">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=1013:1068#L29">SetFieldSeparators</a>
+					<a class="permalink" href="index.html#CsvTokenizer.SetFieldSeparators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) SetFieldSeparators(value []<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)</pre>
+				<p>
+Sets separators for fields in CSV stream.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CsvTokenizer.SetQuoteSymbols">func (*CsvTokenizer) <a href="http://localhost:6060/src/csv/CsvTokenizer.go?s=1880:1932#L63">SetQuoteSymbols</a>
+					<a class="permalink" href="index.html#CsvTokenizer.SetQuoteSymbols">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CsvTokenizer">CsvTokenizer</a>) SetQuoteSymbols(value []<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>)</pre>
+				<p>
+Sets characters to quote strings
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CsvWordState">type <a href="http://localhost:6060/src/csv/CsvWordState.go?s=155:211#L1">CsvWordState</a>
+				<a class="permalink" href="index.html#CsvWordState">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Implements a word state to tokenize CSV stream.
+</p>
+
+			<pre>type CsvWordState struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/generic/">generic</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-expressions-go/tokenizers/generic/#GenericWordState">GenericWordState</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCsvWordState">func <a href="http://localhost:6060/src/csv/CsvWordState.go?s=411:490#L5">NewCsvWordState</a>
+					<a class="permalink" href="index.html#NewCsvWordState">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCsvWordState(fieldSeparators []<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>, quoteSymbols []<a href="http://localhost:6060/pkg/builtin/#rune">rune</a>) *<a href="index.html#CsvWordState">CsvWordState</a></pre>
+				<p>
+Constructs this object with specified parameters.
+</p>
+<p>
+Parameters:
+</p>
+<pre>- fieldSeparators: Separators for fields in CSV stream.
+- quoteSymbol: Delimiters character to quote strings.
+</pre>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.16.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

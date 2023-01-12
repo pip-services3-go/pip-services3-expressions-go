@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.16.15";</script>
 <script src="../../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -215,7 +215,7 @@ Supported expression keywords.
 		
 			
 			
-			<h2 id="ExpressionNumberState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=396:461#L3">ExpressionNumberState</a>
+			<h2 id="ExpressionNumberState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=408:475#L3">ExpressionNumberState</a>
 				<a class="permalink" href="index.html#ExpressionNumberState">&#xb6;</a>
 				
 				
@@ -239,7 +239,7 @@ Implements an Expression-specific number state object.
 
 			
 				
-				<h3 id="NewExpressionNumberState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=463:517#L7">NewExpressionNumberState</a>
+				<h3 id="NewExpressionNumberState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=479:533#L7">NewExpressionNumberState</a>
 					<a class="permalink" href="index.html#NewExpressionNumberState">&#xb6;</a>
 					
 					
@@ -252,7 +252,7 @@ Implements an Expression-specific number state object.
 
 			
 				
-				<h3 id="ExpressionNumberState.NextToken">func (*ExpressionNumberState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=896:1010#L20">NextToken</a>
+				<h3 id="ExpressionNumberState.NextToken">func (*ExpressionNumberState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionNumberState.go?s=925:1040#L20">NextToken</a>
 					<a class="permalink" href="index.html#ExpressionNumberState.NextToken">&#xb6;</a>
 					
 					
@@ -279,7 +279,7 @@ Returns: The next token from the top of the stream.
 		
 			
 			
-			<h2 id="ExpressionQuoteState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=323:359#L2">ExpressionQuoteState</a>
+			<h2 id="ExpressionQuoteState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=334:371#L2">ExpressionQuoteState</a>
 				<a class="permalink" href="index.html#ExpressionQuoteState">&#xb6;</a>
 				
 				
@@ -302,7 +302,7 @@ Implements an Expression-specific quote string state object.
 
 			
 				
-				<h3 id="NewExpressionQuoteState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=361:413#L5">NewExpressionQuoteState</a>
+				<h3 id="NewExpressionQuoteState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=375:427#L5">NewExpressionQuoteState</a>
 					<a class="permalink" href="index.html#NewExpressionQuoteState">&#xb6;</a>
 					
 					
@@ -315,7 +315,7 @@ Implements an Expression-specific quote string state object.
 
 			
 				
-				<h3 id="ExpressionQuoteState.DecodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=2160:2242#L71">DecodeString</a>
+				<h3 id="ExpressionQuoteState.DecodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=2240:2322#L71">DecodeString</a>
 					<a class="permalink" href="index.html#ExpressionQuoteState.DecodeString">&#xb6;</a>
 					
 					
@@ -339,7 +339,7 @@ Returns: An decoded string.
 				
 			
 				
-				<h3 id="ExpressionQuoteState.EncodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=1672:1754#L56">EncodeString</a>
+				<h3 id="ExpressionQuoteState.EncodeString">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=1737:1819#L56">EncodeString</a>
 					<a class="permalink" href="index.html#ExpressionQuoteState.EncodeString">&#xb6;</a>
 					
 					
@@ -363,7 +363,7 @@ Returns: An encoded string.
 				
 			
 				
-				<h3 id="ExpressionQuoteState.NextToken">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=733:846#L16">NextToken</a>
+				<h3 id="ExpressionQuoteState.NextToken">func (*ExpressionQuoteState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionQuoteState.go?s=758:872#L16">NextToken</a>
 					<a class="permalink" href="index.html#ExpressionQuoteState.NextToken">&#xb6;</a>
 					
 					
@@ -390,7 +390,7 @@ Returns: The next token from the top of the stream.
 		
 			
 			
-			<h2 id="ExpressionSymbolState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionSymbolState.go?s=219:284#L1">ExpressionSymbolState</a>
+			<h2 id="ExpressionSymbolState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionSymbolState.go?s=227:294#L1">ExpressionSymbolState</a>
 				<a class="permalink" href="index.html#ExpressionSymbolState">&#xb6;</a>
 				
 				
@@ -414,7 +414,7 @@ Implements a symbol state object.
 
 			
 				
-				<h3 id="NewExpressionSymbolState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionSymbolState.go?s=327:381#L4">NewExpressionSymbolState</a>
+				<h3 id="NewExpressionSymbolState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionSymbolState.go?s=340:394#L4">NewExpressionSymbolState</a>
 					<a class="permalink" href="index.html#NewExpressionSymbolState">&#xb6;</a>
 					
 					
@@ -432,7 +432,7 @@ Constructs an instance of this class.
 		
 			
 			
-			<h2 id="ExpressionTokenizer">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionTokenizer.go?s=253:318#L1">ExpressionTokenizer</a>
+			<h2 id="ExpressionTokenizer">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionTokenizer.go?s=261:328#L1">ExpressionTokenizer</a>
 				<a class="permalink" href="index.html#ExpressionTokenizer">&#xb6;</a>
 				
 				
@@ -456,7 +456,7 @@ Implements a tokenizer to perform lexical analysis for expressions.
 
 			
 				
-				<h3 id="NewExpressionTokenizer">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionTokenizer.go?s=320:370#L3">NewExpressionTokenizer</a>
+				<h3 id="NewExpressionTokenizer">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionTokenizer.go?s=332:382#L3">NewExpressionTokenizer</a>
 					<a class="permalink" href="index.html#NewExpressionTokenizer">&#xb6;</a>
 					
 					
@@ -471,7 +471,7 @@ Implements a tokenizer to perform lexical analysis for expressions.
 		
 			
 			
-			<h2 id="ExpressionWordState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=292:353#L2">ExpressionWordState</a>
+			<h2 id="ExpressionWordState">type <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=303:366#L2">ExpressionWordState</a>
 				<a class="permalink" href="index.html#ExpressionWordState">&#xb6;</a>
 				
 				
@@ -495,7 +495,7 @@ Implements a word state object.
 
 			
 				
-				<h3 id="NewExpressionWordState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=540:590#L12">NewExpressionWordState</a>
+				<h3 id="NewExpressionWordState">func <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=561:611#L12">NewExpressionWordState</a>
 					<a class="permalink" href="index.html#NewExpressionWordState">&#xb6;</a>
 					
 					
@@ -511,7 +511,7 @@ Constructs an instance of this class.
 
 			
 				
-				<h3 id="ExpressionWordState.NextToken">func (*ExpressionWordState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=1189:1301#L34">NextToken</a>
+				<h3 id="ExpressionWordState.NextToken">func (*ExpressionWordState) <a href="http://localhost:6060/src/calculator/tokenizers/ExpressionWordState.go?s=1232:1345#L34">NextToken</a>
 					<a class="permalink" href="index.html#ExpressionWordState.NextToken">&#xb6;</a>
 					
 					
@@ -547,13 +547,13 @@ Returns: The next token from the top of the stream.
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.16.15.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

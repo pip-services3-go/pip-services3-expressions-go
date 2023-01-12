@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.16.15";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -181,7 +181,7 @@
 		
 			
 			
-			<h2 id="IScanner">type <a href="http://localhost:6060/src/io/IScanner.go?s=146:1279#L1">IScanner</a>
+			<h2 id="IScanner">type <a href="http://localhost:6060/src/io/IScanner.go?s=150:1325#L1">IScanner</a>
 				<a class="permalink" href="index.html#IScanner">&#xb6;</a>
 				
 				
@@ -249,7 +249,7 @@ This scanner is used by tokenizers to process input streams.
 		
 			
 			
-			<h2 id="StringScanner">type <a href="http://localhost:6060/src/io/StringScanner.go?s=127:208#L1">StringScanner</a>
+			<h2 id="StringScanner">type <a href="http://localhost:6060/src/io/StringScanner.go?s=131:217#L1">StringScanner</a>
 				<a class="permalink" href="index.html#StringScanner">&#xb6;</a>
 				
 				
@@ -274,7 +274,7 @@ to look ahead through stream to perform lexical analysis.
 
 			
 				
-				<h3 id="NewStringScanner">func <a href="http://localhost:6060/src/io/StringScanner.go?s=307:359#L6">NewStringScanner</a>
+				<h3 id="NewStringScanner">func <a href="http://localhost:6060/src/io/StringScanner.go?s=322:374#L6">NewStringScanner</a>
 					<a class="permalink" href="index.html#NewStringScanner">&#xb6;</a>
 					
 					
@@ -295,7 +295,7 @@ Parameters:
 
 			
 				
-				<h3 id="StringScanner.Column">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2579:2615#L100">Column</a>
+				<h3 id="StringScanner.Column">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2688:2724#L100">Column</a>
 					<a class="permalink" href="index.html#StringScanner.Column">&#xb6;</a>
 					
 					
@@ -313,7 +313,7 @@ Returns the column in the current line in the stream
 				
 			
 				
-				<h3 id="StringScanner.Line">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2426:2460#L93">Line</a>
+				<h3 id="StringScanner.Line">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2528:2562#L93">Line</a>
 					<a class="permalink" href="index.html#StringScanner.Line">&#xb6;</a>
 					
 					
@@ -331,7 +331,7 @@ Returns the current line number in the stream
 				
 			
 				
-				<h3 id="StringScanner.Peek">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2827:2862#L107">Peek</a>
+				<h3 id="StringScanner.Peek">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2943:2978#L107">Peek</a>
 					<a class="permalink" href="index.html#StringScanner.Peek">&#xb6;</a>
 					
 					
@@ -349,7 +349,7 @@ Returns a character from the top of the stream or &lt;code&gt;-1&lt;/code&gt; if
 				
 			
 				
-				<h3 id="StringScanner.PeekColumn">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3328:3368#L128">PeekColumn</a>
+				<h3 id="StringScanner.PeekColumn">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3465:3505#L128">PeekColumn</a>
 					<a class="permalink" href="index.html#StringScanner.PeekColumn">&#xb6;</a>
 					
 					
@@ -367,7 +367,7 @@ Returns the next character column in the stream
 				
 			
 				
-				<h3 id="StringScanner.PeekLine">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=2999:3037#L114">PeekLine</a>
+				<h3 id="StringScanner.PeekLine">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3122:3160#L114">PeekLine</a>
 					<a class="permalink" href="index.html#StringScanner.PeekLine">&#xb6;</a>
 					
 					
@@ -385,7 +385,7 @@ Returns the next character line number in the stream
 				
 			
 				
-				<h3 id="StringScanner.Read">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1845:1880#L61">Read</a>
+				<h3 id="StringScanner.Read">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=1915:1950#L61">Read</a>
 					<a class="permalink" href="index.html#StringScanner.Read">&#xb6;</a>
 					
 					
@@ -403,7 +403,7 @@ Returns a read character or &lt;code&gt;-1&lt;/code&gt; if stream processed to t
 				
 			
 				
-				<h3 id="StringScanner.Reset">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=4595:4626#L194">Reset</a>
+				<h3 id="StringScanner.Reset">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=4798:4829#L194">Reset</a>
 					<a class="permalink" href="index.html#StringScanner.Reset">&#xb6;</a>
 					
 					
@@ -418,7 +418,7 @@ Resets scanner to the initial position
 				
 			
 				
-				<h3 id="StringScanner.Unread">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3673:3705#L144">Unread</a>
+				<h3 id="StringScanner.Unread">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=3826:3858#L144">Unread</a>
 					<a class="permalink" href="index.html#StringScanner.Unread">&#xb6;</a>
 					
 					
@@ -433,7 +433,7 @@ Puts the specified character to the top of the stream.
 				
 			
 				
-				<h3 id="StringScanner.UnreadMany">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=4459:4504#L186">UnreadMany</a>
+				<h3 id="StringScanner.UnreadMany">func (*StringScanner) <a href="http://localhost:6060/src/io/StringScanner.go?s=4654:4699#L186">UnreadMany</a>
 					<a class="permalink" href="index.html#StringScanner.UnreadMany">&#xb6;</a>
 					
 					
@@ -464,13 +464,13 @@ Parameters:
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.16.15.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->
